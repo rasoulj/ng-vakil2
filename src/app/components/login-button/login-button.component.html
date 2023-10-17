@@ -1,0 +1,4 @@
+<button *ngIf="!isLogged" routerLink="/login" class="btn-login" mat-button routerLinkActive="active">{{"login" |
+    persian}}</button>
+<button *ngIf="isLogged" routerLink="/profile/profile-home" class="btn-login" mat-button>{{"profile" |
+    persian}}</button>

@@ -1,0 +1,31 @@
+{
+    "legal-requests": [
+        {"id": 1, "title": "title 1", "body": "body 1", "completed": false, "userId": 1},
+        {"id": 2, "title": "title 2", "body": "body 2", "completed": false, "userId": 1},
+        {"id": 3, "title": "title 3", "body": "body 3", "completed": false, "userId": 2}
+    ],
+    "favorite-lawyers": [
+        {"id": 1, "name": "lawyer 1"},
+        {"id": 2, "name": "lawyer 2"}
+    ],
+    "pending-payments": [
+        {"id": 1, "title": "Payment 1", "body": "body 1", "completed": false, "userId": 1},
+        {"id": 2, "title": "Payment 2", "body": "body 2", "completed": false, "userId": 1},
+        {"id": 3, "title": "Payment 3", "body": "body 3", "completed": false, "userId": 2}
+    ],
+    "my-questions": [
+        {"id": 1, "title": "Questions 1", "body": "body 1", "completed": false, "userId": 1},
+        {"id": 2, "title": "Questions 2", "body": "body 2", "completed": false, "userId": 1},
+        {"id": 3, "title": "Questions 3", "body": "body 3", "completed": false, "userId": 2},
+        {"id": 3, "title": "Questions 4", "body": "body 3", "completed": false, "userId": 2},
+        {"id": 3, "title": "Questions 5", "body": "body 3", "completed": false, "userId": 2},
+        {"id": 3, "title": "Questions 6", "body": "body 3", "completed": false, "userId": 2},
+        {"id": 3, "title": "Questions 7", "body": "body 3", "completed": false, "userId": 2}
+    ],
+    "my-calls": [
+        {"id": 1, "title": "Call 1", "body": "body 1", "completed": false, "userId": 1},
+        {"id": 2, "title": "Call 2", "body": "body 2", "completed": false, "userId": 1},
+        {"id": 3, "title": "Call 3", "body": "body 3", "completed": false, "userId": 2}
+    ]
+
+}

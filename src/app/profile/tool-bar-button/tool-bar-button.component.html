@@ -1,0 +1,6 @@
+<button (click)="onClick()" style="width: 100%; display: flex; justify-content: flex-start;" [routerLink]="data.link"
+    mat-button routerLinkActive="active">
+    <mat-icon style="margin-left: 10px;">{{data.icon}}</mat-icon>
+    {{data.title | persian}}
+</button>
+<hr *ngIf="data.hasDivider" style="width: 100%; color: #f1f1f1;" />

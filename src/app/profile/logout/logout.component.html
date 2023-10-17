@@ -1,0 +1,17 @@
+<style>
+    h1,
+    h3 {
+        font-family: "IRANSans", Roboto, "Helvetica Neue", sans-serif;
+    }
+</style>
+<div style="height: 100%; display: flex; justify-content: space-around; flex-direction: column;">
+    <div>
+        <h1>{{"sign-out-title" | persian}}</h1>
+        <h3>{{"sign-out-desc" | persian}}</h3>
+
+    </div>
+    <button mat-raised-button color="accent" style="width: 200px;" (click)="logout()" class="btn-login"
+        type="button">{{"logout" |
+        persian}}</button>
+    <br>
+</div>

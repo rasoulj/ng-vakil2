@@ -1,0 +1,23 @@
+.center {
+    margin: auto;
+    max-width: 500px;
+    text-align: center;
+    padding: 10px;
+
+}
+
+.title {
+    margin: 20px auto;
+    text-align: center;
+    font-family: IRANSans;
+}
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.example-full-width {
+    width: 100%;
+}

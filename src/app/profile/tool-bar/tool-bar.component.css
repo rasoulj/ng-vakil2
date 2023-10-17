@@ -1,0 +1,9 @@
+.active {
+    background-color: #f1f1f1;
+}
+
+.menu-item {
+    display: flex;
+    justify-content: flex-start;
+    padding-bottom: 2rem;
+}

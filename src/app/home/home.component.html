@@ -1,0 +1,35 @@
+<mat-grid-list [cols]="cols" rowHeight="1:1">
+    <mat-grid-tile>
+        <img style="width: 90%;" src="assets/images/main_bg.png" alt="Sample image">
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <div style=" margin: 1rem" class="d-flex">
+            <h1 style="font-size: xx-large; margin-bottom: 5rem; font-weight: bolder;">
+                {{"main-title" | persian}}
+            </h1>
+            <h3>
+                {{"main-subtitle" | persian}}
+            </h3>
+            <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                <button routerLink="/call-lawyer" style="width: 100%; margin-left: 1rem;" mat-raised-button
+                    color="accent">
+                    {{"call-lawyer" | persian}}
+                </button>
+                <button routerLink="/text-lawyer"
+                    style="width: 100%; margin-right: 1rem; background-color: antiquewhite; color: brown;"
+                    mat-raised-button>
+                    {{"text-lawyer" | persian}}
+                </button>
+            </div>
+            <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                <button routerLink="/set-a-complain"
+                    style="width: 100%; margin-top: 2rem; background-color: antiquewhite; color: brown;"
+                    mat-raised-button color="accent">
+                    {{"set-a-complain" | persian}}
+                </button>
+
+            </div>
+        </div>
+
+    </mat-grid-tile>
+</mat-grid-list>

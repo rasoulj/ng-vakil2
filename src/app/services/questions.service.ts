@@ -1,0 +1,21 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { BASE_URL } from '../config/consts';
+import { Observable } from 'rxjs';
+import { Question } from '../profile/models/question.model';
+
+const END_POINT = `${BASE_URL}my-questions`;
+
+@Injectable({
+  providedIn: 'root'
+})
+export class QuestionsService {
+
+  constructor(
+    private http: HttpClient,
+  ) { }
+
+  getAll(): Observable<Question[]> {
+    return this.http.get(END_POINT) as Observable<Question[]>;
+  }
+}

@@ -1,0 +1,30 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.active {
+    background-color: red;
+}
+
+button:hover {
+    border-bottom: 2px solid red;
+}
+
+button {
+    margin-right: 4px;
+}
+
+.avatar {
+    border-radius: 50%;
+    width: 2.5rem;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    display: flex;
+    justify-content: center;
+
+    background-color: red;
+
+}
+
+.progress {
+    height: 3px;
+}

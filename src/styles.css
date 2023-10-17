@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+
+* {
+    font-family: "IRANSans", Roboto, "Helvetica Neue", sans-serif;
+}
+
+html,
+body {
+    height: 100%;
+    direction: rtl;
+}
+
+body {
+    margin: 0;
+
+}
