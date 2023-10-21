@@ -9,7 +9,7 @@ import { AuthService } from './services/auth.service';
 
 const canActivate = () => inject(AuthService).isLogged;
 
-//Salaam test for branching
+//Salaam test for branching, continue
 const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "law-tables", component: LawTablesComponent },
