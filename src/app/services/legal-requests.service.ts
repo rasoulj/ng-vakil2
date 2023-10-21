@@ -18,4 +18,8 @@ export class LegalRequestsService {
   getAll(): Observable<LegalRequest[]> {
     return this.http.get(END_POINT) as Observable<LegalRequest[]>;
   }
+
+  addNew(request: LegalRequest): Observable<LegalRequest> {
+    return this.http.post(END_POINT, request) as Observable<LegalRequest>;
+  }
 }

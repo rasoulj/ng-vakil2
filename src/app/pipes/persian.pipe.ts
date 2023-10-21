@@ -3,7 +3,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { fa } from './lang/fa';
 
 @Pipe({
-  name: 'persian'
+  name: 'persian',
 })
 export class PersianPipe implements PipeTransform {
 

@@ -1,1 +1,45 @@
-<h1>Profile Home</h1>
+<!-- <div cdkDropListGroup>
+    <h1>Seen Movies:</h1>
+    <div cdkDropList [cdkDropListData]="movies" class="example-list" (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let movie of movies" cdkDrag>{{movie}}</div>
+    </div>
+    <br>
+    <h1>Not Seen Movies:</h1>
+    <div cdkDropList [cdkDropListData]="seenMovies" class="example-list" (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let movie of seenMovies" cdkDrag>{{movie}}</div>
+    </div>
+
+</div> -->
+
+
+<!-- <div cdkDropListGroup>
+    <div class="example-container">
+        <h2>To do</h2>
+
+        <div cdkDropList [cdkDropListData]="seenMovies" class="example-list" (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let item of seenMovies" cdkDrag>{{item}}</div>
+        </div>
+    </div>
+
+    <div class="example-container">
+        <h2>Done</h2>
+
+        <div cdkDropList [cdkDropListData]="movies" class="example-list" (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let item of movies" cdkDrag>{{item}}</div>
+        </div>
+    </div>
+</div> -->
+
+
+
+<h1>Seen Movies:</h1>
+<div #seen="cdkDropList" [cdkDropListConnectedTo]="[notSeen]" cdkDropList [cdkDropListData]="seenMovies"
+    class="example-list" (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let movie of seenMovies" cdkDrag>{{movie}}</div>
+</div>
+<br>
+<h1>Not Seen Movies:</h1>
+<div #notSeen="cdkDropList" [cdkDropListConnectedTo]="[seen]" cdkDropList [cdkDropListData]="movies"
+    class="example-list" (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let movie of movies" cdkDrag>{{movie}}</div>
+</div>

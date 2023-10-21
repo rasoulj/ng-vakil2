@@ -18,7 +18,11 @@ import { ToolBarButtonComponent } from './tool-bar-button/tool-bar-button.compon
 import { LogoutComponent } from './logout/logout.component';
 import { ErrorMessageComponent } from './error-message/error-message.component';
 import { NoDataComponent } from './no-data/no-data.component';
-
+import { CdkDropList, CdkDrag } from '@angular/cdk/drag-drop';
+import { DialogModule } from '@angular/cdk/dialog';
+import { FormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTableModule } from '@angular/material/table';
 
 
 @NgModule({
@@ -34,17 +38,25 @@ import { NoDataComponent } from './no-data/no-data.component';
     ToolBarButtonComponent,
     LogoutComponent,
     ErrorMessageComponent,
-    NoDataComponent
+    NoDataComponent,
   ],
   imports: [
     CommonModule,
+    DialogModule,
+    FormsModule,
+    MatSnackBarModule,
+
     ProfileRoutingModule,
 
     MatButtonModule,
     MatDividerModule,
     MatIconModule,
+    MatTableModule,
+
+    CdkDropList, CdkDrag,
 
     PipesModule,
+
   ],
   exports: [
     ToolBarButtonComponent,
