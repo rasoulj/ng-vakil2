@@ -61,6 +61,5 @@ import { MatTableModule } from '@angular/material/table';
   exports: [
     ToolBarButtonComponent,
   ],
-
 })
 export class ProfileModule { }
