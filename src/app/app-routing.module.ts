@@ -9,7 +9,6 @@ import { AuthService } from './services/auth.service';
 
 const canActivate = () => inject(AuthService).isLogged;
 
-
 const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "law-tables", component: LawTablesComponent },
