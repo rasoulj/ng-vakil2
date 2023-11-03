@@ -1,12 +1,12 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { SIDE_MENU_TOOLBAR } from '../profile/config/consts';
-import { LayoutService } from '../services/layout.service';
+import { LayoutService } from '../_services/layout.service';
 import { ActivatedRoute, NavigationEnd, Route, Router } from '@angular/router';
 import { filter, map } from 'rxjs';
 import { Title } from '@angular/platform-browser';
-import { PersianPipe } from '../pipes/persian.pipe';
-import { LoadingService } from '../services/loading.service';
+import { PersianPipe } from '../_pipes/persian.pipe';
+import { LoadingService } from '../_services/loading.service';
 
 const MAIN_TITLE = PersianPipe.toPersian("title");
 

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BASE_URL } from '../config/consts';
+import { BASE_URL } from '../_config/consts';
 import { Observable } from 'rxjs';
 import { Call } from '../profile/models/call.model';
 

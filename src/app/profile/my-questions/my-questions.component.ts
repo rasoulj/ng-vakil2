@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Question } from '../models/question.model';
-import { QuestionsService } from 'src/app/services/questions.service';
+import { QuestionsService } from 'src/app/_services/questions.service';
 import { catchError } from 'rxjs';
 
 @Component({

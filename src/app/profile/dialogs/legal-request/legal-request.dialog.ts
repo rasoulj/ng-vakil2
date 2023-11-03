@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { NEW_REQUEST } from '../../legal-requests/legal-requests.component';
 
 @Component({
   selector: 'app-legal-request-dialog',
@@ -35,7 +36,7 @@ export class LegalRequestDialog implements OnInit {
 
   onSubmit() {
     let result: LegalRequest = {
-      id: this.data.id,
+      _id: this.data._id,
       title: this.title.value,
       body: this.body.value,
       completed: this.completed.value,
@@ -74,7 +75,7 @@ export class LegalRequestDialog implements OnInit {
 
 
   get headerText(): string {
-    return this.data.id === 0 ? "New Legal Request" : "Edit Legal Request";
+    return !this.data._id ? "New Legal Request" : "Edit Legal Request";
   }
 
 }

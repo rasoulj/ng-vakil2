@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { PendingPayment } from '../models/pending-payment.model';
-import { PendingPaymentsService } from 'src/app/services/pending-payments.service';
+import { PendingPaymentsService } from 'src/app/_services/pending-payments.service';
 import { catchError } from 'rxjs';
 
 @Component({

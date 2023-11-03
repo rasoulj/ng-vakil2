@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BASE_URL } from '../config/consts';
+import { BASE_URL } from '../_config/consts';
 import { Observable } from 'rxjs';
 import { LegalRequest } from "../profile/models/legal-requests.model"
 
@@ -22,4 +22,15 @@ export class LegalRequestsService {
   addNew(request: LegalRequest): Observable<LegalRequest> {
     return this.http.post(END_POINT, request) as Observable<LegalRequest>;
   }
+
+  editRequest(id: string | undefined, request: Partial<LegalRequest>): Observable<LegalRequest> {
+
+    console.log(`${END_POINT}/${id}`);
+    return this.http.put(`${END_POINT}/${id}`, request) as Observable<LegalRequest>;
+  }
+
+  deleteOne(id: string | undefined): Observable<any> {
+    return this.http.delete(`${END_POINT}/${id}`);
+  }
+
 }

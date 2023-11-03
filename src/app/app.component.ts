@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PROFILE_TOOLBAR, SIDE_MENU_TOOLBAR } from './profile/config/consts';
 import { ToolBarButton } from './profile/models/toolbar-button.model';
-import { AuthService } from './services/auth.service';
+import { AuthService } from './_services/auth.service';
 
 
 const HomeToolBar: ToolBarButton = {
@@ -44,8 +44,8 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.authService.isLogged$.subscribe(isLogged => {
-      this.profileLinks = getMenu(isLogged);
+    this.authService.loggedUser$.subscribe(user => {
+      this.profileLinks = getMenu(!!user);
       this.links = getMainMenu(this.authService.isLogged);
     })
   }

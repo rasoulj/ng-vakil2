@@ -5,7 +5,9 @@ import { CallLawyerComponent } from './call-lawyer/call-lawyer.component';
 import { TextLawyerComponent } from './text-lawyer/text-lawyer.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { AuthService } from './services/auth.service';
+import { AuthService } from './_services/auth.service';
+import { LawyerRegisterComponent } from './lawyer-register/lawyer-register.component';
+import { CheckOtpComponent } from './check-otp/check-otp.component';
 
 const canActivate = () => inject(AuthService).isLogged;
 
@@ -17,6 +19,8 @@ const routes: Routes = [
   { path: "text-lawyer", component: TextLawyerComponent },
   { path: "home", component: HomeComponent },
   { path: "login", component: LoginComponent },
+  { path: "lawyer-register", component: LawyerRegisterComponent },
+  { path: "otp", component: CheckOtpComponent },
 
   {
     path: 'profile',

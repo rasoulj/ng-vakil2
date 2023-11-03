@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FavoriteLawyer } from '../models/favorite-lawyers.model';
-import { FavoriteLawyersService } from 'src/app/services/favorite-lawyers.service';
+import { FavoriteLawyersService } from 'src/app/_services/favorite-lawyers.service';
 import { catchError } from 'rxjs';
 
 @Component({

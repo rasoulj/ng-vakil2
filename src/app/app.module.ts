@@ -21,17 +21,20 @@ import { LawTablesComponent } from './law-tables/law-tables.component';
 import { TextLawyerComponent } from './text-lawyer/text-lawyer.component';
 import { CallLawyerComponent } from './call-lawyer/call-lawyer.component';
 import { HomeComponent } from './home/home.component';
-import { LoginButtonComponent } from './components/login-button/login-button.component';
+import { LoginButtonComponent } from './_components/login-button/login-button.component';
 import { LoginComponent } from './login/login.component';
 import { NgIf } from '@angular/common';
 import { FooterComponent } from './footer/footer.component';
-import { PipesModule } from './pipes/pipes.module';
+import { PipesModule } from './_pipes/pipes.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { ProfileModule } from './profile/profile.module';
-import { LoadingInterceptor } from './interceptors/loading.interceptor';
+import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { LawyerRegisterComponent } from './lawyer-register/lawyer-register.component';
+import { CheckOtpComponent } from './check-otp/check-otp.component';
+import { AuthInterceptor } from './_interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -44,6 +47,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     LoginButtonComponent,
     LoginComponent,
     FooterComponent,
+    LawyerRegisterComponent,
+    CheckOtpComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,6 +74,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

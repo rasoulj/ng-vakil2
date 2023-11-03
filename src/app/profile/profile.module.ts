@@ -12,7 +12,7 @@ import { ProfileHomeComponent } from './profile-home/profile-home.component';
 import { ToolBarComponent } from './tool-bar/tool-bar.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
-import { PipesModule } from '../pipes/pipes.module';
+import { PipesModule } from '../_pipes/pipes.module';
 import { MatIconModule } from '@angular/material/icon';
 import { ToolBarButtonComponent } from './tool-bar-button/tool-bar-button.component';
 import { LogoutComponent } from './logout/logout.component';
@@ -23,7 +23,8 @@ import { DialogModule } from '@angular/cdk/dialog';
 import { FormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
-
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -39,12 +40,15 @@ import { MatTableModule } from '@angular/material/table';
     LogoutComponent,
     ErrorMessageComponent,
     NoDataComponent,
+
   ],
   imports: [
     CommonModule,
     DialogModule,
     FormsModule,
     MatSnackBarModule,
+    MatCheckboxModule,
+    MatCardModule,
 
     ProfileRoutingModule,
 

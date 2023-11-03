@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LegalRequestsService } from 'src/app/services/legal-requests.service';
+import { LegalRequestsService } from 'src/app/_services/legal-requests.service';
 
 import { LegalRequest } from '../models/legal-requests.model';
 import { catchError } from 'rxjs';
@@ -8,15 +8,15 @@ import { LegalRequestDialog } from '../dialogs/legal-request/legal-request.dialo
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 
-const NEW_REQUEST: LegalRequest = {
-  id: 0,
+export const NEW_REQUEST: LegalRequest = {
+  _id: undefined,
   title: '',
   body: '',
   completed: false,
   userId: 0,
 }
 
-const COLUMNS: string[] = ['id', 'title', 'body', 'completed'];
+const COLUMNS: string[] = ['id', 'title', 'body', 'completed', "actions"];
 
 
 @Component({
@@ -25,6 +25,33 @@ const COLUMNS: string[] = ['id', 'title', 'body', 'completed'];
   styleUrls: ['./legal-requests.component.css']
 })
 export class LegalRequestsComponent implements OnInit {
+
+  onDelete(req: LegalRequest) {
+    this.requestService.deleteOne(req._id).subscribe(
+      () => {
+        this.loadData();
+        this.snackBar.open("Deleted!", "Undo", {
+          duration: 5000,
+        }).onAction().subscribe(() => {
+          this.requestService.addNew(req).subscribe(
+            () => this.loadData()
+          );
+
+        });
+      }
+    );
+  }
+
+  toggle(request: LegalRequest) {
+    console.warn(request);
+    try {
+      this.requestService.editRequest(request._id, {
+        completed: !request.completed,
+      }).subscribe();
+    } catch (e) {
+      console.warn(e);
+    }
+  }
   data: LegalRequest[] = [];
   errorMessage?: string;
 
@@ -55,6 +82,7 @@ export class LegalRequestsComponent implements OnInit {
       this.requestService.addNew(result)
         .pipe(catchError(err => {
           this.handleError(err);
+          console.warn(err);
           return removeResult();
         }))
         .subscribe(res => {
@@ -71,11 +99,11 @@ export class LegalRequestsComponent implements OnInit {
   ngOnInit(): void {
     this.loadData();
   }
+
   loadData() {
     this.requestService.getAll().pipe(
       catchError(this.handleError)
     ).subscribe(res => {
-      console.log(res);
       this.data = res;
     });
   }

@@ -1,5 +1,5 @@
 export interface LegalRequest {
-    id: number,
+    _id: string | undefined,
     title: string,
     body: string,
     completed: boolean,

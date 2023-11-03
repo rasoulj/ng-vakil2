@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { LoadingService } from 'src/app/services/loading.service';
+import { LoadingService } from 'src/app/_services/loading.service';
 
 @Component({
   selector: 'app-error-message',
