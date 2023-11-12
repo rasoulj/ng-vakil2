@@ -1,1 +1,167 @@
-<p>lawyer-register works!</p>
+<mat-card class="center">
+    <form class="example-form" [formGroup]="form" (submit)="onSubmit()">
+        <mat-card-header>
+            <mat-card-title class="title">
+                {{"register-as-lawyer" | persian}}
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+
+            <mat-form-field [class]="className$ | async">
+                <mat-label>{{"firstName" | persian}}</mat-label>
+                <input type="text" matInput formControlName="firstName" placeholder="">
+                <mat-error *ngIf="c('firstName')?.touched && c('firstName')?.invalid">
+                    {{"invalid_firstName"| persian}}
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field [class]="className$ | async">
+                <mat-label>{{"lastName" | persian}}</mat-label>
+                <input type="text" matInput formControlName="lastName" placeholder="">
+                <mat-error *ngIf="c('lastName')?.touched && c('lastName')?.invalid">
+                    {{"invalid_lastName"| persian}}
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field [class]="className$ | async">
+                <mat-label>{{"phone" | persian}}</mat-label>
+                <input style="direction: ltr;" type="tel" matInput formControlName="phone" placeholder="">
+                <mat-error *ngIf="c('phone')?.touched && getError('phone', 'mobile')">
+                    {{"invalid_phone"| persian}}
+                </mat-error>
+                <mat-error *ngIf="c('phone')?.touched && getError('phone', 'mobileExists')">
+                    {{"invalid_mobileExists"| persian}}
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field [class]="className$ | async">
+                <mat-label>{{"email" | persian}}</mat-label>
+                <input type="email" matInput formControlName="email" placeholder="">
+                <mat-error *ngIf="c('email')?.touched && c('email')?.invalid">
+                    {{"invalid_email"| persian}}
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field [class]="className$ | async">
+                <mat-label>{{"lawyerDocId" | persian}}</mat-label>
+                <input type="text" matInput formControlName="lawyerDocId" placeholder="">
+                <mat-error *ngIf="c('lawyerDocId')?.touched && c('lawyerDocId')?.invalid">
+                    {{"invalid_lawyerDocId"| persian}}
+                </mat-error>
+            </mat-form-field>
+
+
+            <mat-form-field [class]="className$ | async">
+                <mat-label>{{"age" | persian}}</mat-label>
+                <input style="direction: ltr;" type="number" matInput formControlName="age" placeholder="">
+                <mat-error *ngIf="c('age')?.touched && c('age')?.invalid">
+                    {{"invalid_age"| persian}}
+                </mat-error>
+            </mat-form-field>
+
+
+            <mat-form-field [class]="className$ | async">
+                <mat-label>{{"expertise1" | persian}}</mat-label>
+                <mat-select formControlName="expertise1" placeholder="">
+                    <mat-option class="mat-option" *ngFor="let exp of expertise1$ | async" [value]="exp.id">
+                        {{exp.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="c('expertise1')?.touched && c('expertise1')?.invalid">
+                    {{"invalid_expertise1"| persian}}
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field [class]="className$ | async">
+                <mat-label>{{"expertise2" | persian}}</mat-label>
+                <mat-select formControlName="expertise2" placeholder="">
+                    <mat-option class="mat-option" *ngFor="let exp of expertise2$ | async" [value]="exp.id">
+                        {{exp.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="c('expertise2')?.touched && c('expertise2')?.invalid">
+                    {{"invalid_expertise2"| persian}}
+                </mat-error>
+            </mat-form-field>
+
+
+            <div [class]="radioCN$ | async">
+                <mat-label>{{"lawyerType" | persian}}</mat-label>
+                <br />
+                <mat-radio-group [class]="className$ | async" formControlName="lawyerType">
+
+                    <mat-radio-button *ngFor="let value of lawyerType" [value]="value">
+                        {{"enum.LawyerTypeEnum."+value | persian}}
+                    </mat-radio-button>
+                </mat-radio-group>
+            </div>
+
+            <div [class]="radioCN$ | async">
+                <mat-label>{{"gender" | persian}}</mat-label>
+                <br />
+                <mat-radio-group [class]="className$ | async" formControlName="gender">
+
+                    <mat-radio-button *ngFor="let value of genderType" [value]="value">
+                        {{"enum.GenderEnum."+value | persian}}
+                    </mat-radio-button>
+                </mat-radio-group>
+            </div>
+
+            <div [class]="radioCN$ | async">
+                <mat-label>{{"graduationType" | persian}}</mat-label>
+                <br />
+                <mat-radio-group [class]="className$ | async" formControlName="graduationType">
+
+                    <mat-radio-button *ngFor="let value of graduationType" [value]="value">
+                        {{"enum.GraduationTypeEnum."+value | persian}}
+                    </mat-radio-button>
+                </mat-radio-group>
+            </div>
+
+            <mat-form-field [class]="className$ | async">
+                <mat-label>{{"pick-province" | persian}}</mat-label>
+                <mat-select formControlName="provinceId" placeholder="" (valueChange)="provinceChanged($event, true)">
+                    <mat-option class="mat-option" *ngFor="let exp of provinceIds$ | async" [value]="exp.id">
+                        {{exp.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="c('provinceId')?.touched && c('provinceId')?.invalid">
+                    {{"invalid_provinceId"| persian}}
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field [class]="className$ | async">
+                <mat-label>{{"pick-city" | persian}}</mat-label>
+                <mat-select formControlName="cityId" placeholder="">
+                    <mat-option class="mat-option" *ngFor="let exp of cityIds$ | async" [value]="exp.id">
+                        {{exp.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="c('cityId')?.touched && c('cityId')?.invalid">
+                    {{"invalid_cityId"| persian}}
+                </mat-error>
+            </mat-form-field>
+
+
+            <mat-form-field [class]="className$ | async">
+                <mat-label>{{"address" | persian}}</mat-label>
+                <textarea matInput formControlName="address" placeholder="" rows="5"></textarea>
+                <mat-error *ngIf="c('address')?.touched && c('address')?.invalid">
+                    {{"invalid_address"| persian}}
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field [class]="className$ | async">
+                <mat-label>{{"bio" | persian}}</mat-label>
+                <textarea matInput formControlName="bio" placeholder="" rows="5"></textarea>
+                <mat-error *ngIf="c('bio')?.touched && c('bio')?.invalid">
+                    {{"invalid_bio"| persian}}
+                </mat-error>
+            </mat-form-field>
+
+            <button style="width: 33%;" [disabled]="form.invalid" type="submit" mat-raised-button color="accent">
+                {{"continue" | persian}}
+            </button>
+        </mat-card-content>
+    </form>
+</mat-card>

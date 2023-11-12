@@ -12,15 +12,13 @@
             {{"verify-otp-2" | persian: phone}}
         </mat-card-content>
 
-
-
         <mat-card-content>
 
             <mat-form-field class="example-full-width">
                 <mat-label>{{"otp" | persian}}</mat-label>
                 <input style="direction: ltr;" type="tel" matInput formControlName="otp" placeholder="12345">
-                <mat-hint>{{"enter-otp-2" | persian}}</mat-hint>
-                <mat-error *ngIf="otp?.touched && otp?.invalid">
+                <!-- <mat-hint>{{"enter-otp-2" | persian}}</mat-hint> -->
+                <mat-error *ngIf="otp?.invalid && otp?.value?.length === 5">
                     {{"invalid_otp"| persian}}
                 </mat-error>
             </mat-form-field>
@@ -32,8 +30,8 @@
         </mat-card-content>
 
         <mat-card-actions>
-            <button style="width: 100%;" [disabled]="form.invalid || count <= 0 || !phone" type="submit"
-                mat-raised-button color="accent">
+            <button style="width: 100%;" [disabled]="(form.invalid && !invalidOtp) || count <= 0 || !phone"
+                type="submit" mat-raised-button color="accent">
                 {{"continue" | persian}}
             </button>
         </mat-card-actions>

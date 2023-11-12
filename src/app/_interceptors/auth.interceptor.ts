@@ -4,7 +4,7 @@ import { HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http'
 
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, filter, switchMap, take, tap } from 'rxjs/operators';
-import { AuthService } from '../_services/auth.service';
+import { AuthService } from '../_modules/shared/services/auth.service';
 
 const TOKEN_HEADER_KEY = 'Authorization';  // for Spring Boot back-end
 // const TOKEN_HEADER_KEY = 'x-access-token';    // for Node.js Express back-end
@@ -77,7 +77,6 @@ export class AuthInterceptor implements HttpInterceptor {
             headers: request.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + token)
         })
 
-        // console.log({ headers:  })
         // return request.clone({ headers: { TOKEN_HEADER_KEY: 'Bearer ' + token } });
 
         /* for Node.js Express back-end */

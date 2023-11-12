@@ -1,0 +1,19 @@
+<mat-card style="margin: 2rem;">
+    <mat-card-content>
+        <ng-container *ngFor="let context of all">
+            <ng-container *ngTemplateOutlet="term; context: context" />
+        </ng-container>
+    </mat-card-content>
+    <mat-card-content>
+        <h3>{{ "admit this data?" | persian }}</h3>
+    </mat-card-content>
+    <mat-card-actions>
+        <button (click)="submit()" mat-raised-button color="accent">{{"ok" | persian}}</button>
+        &nbsp;
+        <button (click)="cancel()" mat-raised-button>{{"modify" | persian}}</button>
+    </mat-card-actions>
+</mat-card>
+
+<ng-template #term let-term="term" let-def="def">
+    <p>{{term | persian}}: <strong>{{def | async}}</strong></p>
+</ng-template>

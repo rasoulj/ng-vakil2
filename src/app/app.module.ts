@@ -14,20 +14,21 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatGridListModule } from '@angular/material/grid-list';
-
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
 
 
 import { LawTablesComponent } from './law-tables/law-tables.component';
 import { TextLawyerComponent } from './text-lawyer/text-lawyer.component';
 import { CallLawyerComponent } from './call-lawyer/call-lawyer.component';
 import { HomeComponent } from './home/home.component';
-import { LoginButtonComponent } from './_components/login-button/login-button.component';
+import { LoginButtonComponent } from './_modules/shared/components/login-button/login-button.component';
 import { LoginComponent } from './login/login.component';
 import { NgIf } from '@angular/common';
 import { FooterComponent } from './footer/footer.component';
-import { PipesModule } from './_pipes/pipes.module';
+import { PipesModule } from './_modules/pipes/pipes.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { ProfileModule } from './profile/profile.module';
+import { ProfileModule } from './_modules/profile/profile.module';
 import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
@@ -35,6 +36,9 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { LawyerRegisterComponent } from './lawyer-register/lawyer-register.component';
 import { CheckOtpComponent } from './check-otp/check-otp.component';
 import { AuthInterceptor } from './_interceptors/auth.interceptor';
+import { VerifyComponent } from './lawyer-register/verify/verify.component';
+import { ConfirmComponent } from './lawyer-register/confirm/confirm.component';
+import { SharedModule } from './_modules/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -49,6 +53,8 @@ import { AuthInterceptor } from './_interceptors/auth.interceptor';
     FooterComponent,
     LawyerRegisterComponent,
     CheckOtpComponent,
+    VerifyComponent,
+    ConfirmComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,6 +66,8 @@ import { AuthInterceptor } from './_interceptors/auth.interceptor';
     MatGridListModule,
     MatInputModule,
     MatFormFieldModule,
+    MatRadioModule,
+    MatSelectModule,
     FormsModule,
     ReactiveFormsModule,
     NgIf,
@@ -71,6 +79,7 @@ import { AuthInterceptor } from './_interceptors/auth.interceptor';
 
     PipesModule,
     ProfileModule,
+    SharedModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },

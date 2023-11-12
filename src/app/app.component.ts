@@ -1,30 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { PROFILE_TOOLBAR, SIDE_MENU_TOOLBAR } from './profile/config/consts';
-import { ToolBarButton } from './profile/models/toolbar-button.model';
-import { AuthService } from './_services/auth.service';
+import { AuthService } from './_modules/shared/services/auth.service';
+import { ToolBarButton } from './_modules/shared/components/tool-bar-button/toolbar-button.model';
+import { getSideMenu, getToolbarMenu } from './_modules/shared/config/consts';
 
 
-const HomeToolBar: ToolBarButton = {
-  title: "home-page",
-  link: "/home",
-  icon: "home",
-}
-
-const SignInToolBar: ToolBarButton = {
-  title: "login",
-  link: "/login",
-  icon: "login",
-}
-
-function getMenu(isLogged: boolean): ToolBarButton[] {
-  return isLogged ? PROFILE_TOOLBAR.map(p => {
-    return { ...p, link: `/profile/${p.link}` }
-  }).filter((_, i) => i < 6 || i > 7) : [];
-}
-
-function getMainMenu(isLogged: boolean): ToolBarButton[] {
-  return isLogged ? [HomeToolBar, ...SIDE_MENU_TOOLBAR] : [HomeToolBar, ...SIDE_MENU_TOOLBAR, SignInToolBar];
-}
 
 @Component({
   selector: 'app-root',
@@ -32,8 +11,8 @@ function getMainMenu(isLogged: boolean): ToolBarButton[] {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  links = getMainMenu(this.authService.isLogged);
-  profileLinks = getMenu(this.authService.isLogged);
+  links: ToolBarButton[] = [];
+  profileLinks: ToolBarButton[] = [];
 
   constructor(
     private authService: AuthService,
@@ -45,8 +24,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.loggedUser$.subscribe(user => {
-      this.profileLinks = getMenu(!!user);
-      this.links = getMainMenu(this.authService.isLogged);
+      this.profileLinks = getToolbarMenu(user?.role);
+      this.links = getSideMenu(user?.role);
     })
   }
 

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../_services/auth.service';
+import { AuthService } from '../_modules/shared/services/auth.service';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { interval, take } from 'rxjs';
+import { UserProfile } from '../_modules/shared/models/user-profile.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 const MAX_COUNT = 120;
 
@@ -20,13 +22,14 @@ export class CheckOtpComponent implements OnInit {
 
   reSendOtp() {
     this.authService.reSendOtp().subscribe(
-      value => this.ngOnInit()
+      (user: UserProfile) => this.ngOnInit()
     );
   }
 
   constructor(
     private authService: AuthService,
     private router: Router,
+    private snack: MatSnackBar,
   ) { }
 
   ngOnInit(): void {
@@ -50,12 +53,22 @@ export class CheckOtpComponent implements OnInit {
   }
 
   onSubmit() {
-    this.authService.checkOtp(this.otp?.value ?? "").subscribe(
-      (user) => {
-        this.authService.saveUser(user);
-        this.router.navigate(['']);
+    this.authService.checkOtp(this.otp?.value ?? "").subscribe({
+      next: (user) => {
+        if (!!user.accessToken) {
+          this.authService.saveUser(user);
+          this.router.navigate(['']);
+        }
+      },
+      error: (err) => {
+        this.otp?.setErrors({ invalidOtp: true });
+        // this.snack.open(err.error, PersianPipe.toPersian("ok"), {
+        //   duration: 3000,
+        //   panelClass: "success-snackbar",
+        // });
+
       }
-    );
+    });
   }
 
   form = new FormGroup({
@@ -63,4 +76,8 @@ export class CheckOtpComponent implements OnInit {
   })
 
   get otp() { return this.form.get('otp') }
+
+  get invalidOtp(): boolean {
+    return this.otp?.getError("invalidOtp");
+  }
 }

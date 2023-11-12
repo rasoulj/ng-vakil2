@@ -1,12 +1,14 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-import { SIDE_MENU_TOOLBAR } from '../profile/config/consts';
-import { LayoutService } from '../_services/layout.service';
-import { ActivatedRoute, NavigationEnd, Route, Router } from '@angular/router';
-import { filter, map } from 'rxjs';
+import { LayoutService } from '../_modules/shared/services/layout.service';
+import { NavigationEnd, Router } from '@angular/router';
+import { combineLatest, filter, map, mergeAll } from 'rxjs';
 import { Title } from '@angular/platform-browser';
-import { PersianPipe } from '../_pipes/persian.pipe';
-import { LoadingService } from '../_services/loading.service';
+import { PersianPipe } from '../_modules/pipes/persian.pipe';
+import { LoadingService } from '../_modules/shared/services/loading.service';
+import { getHeaderMenu, getSideMenu } from '../_modules/shared/config/consts';
+import { UserRole, UserRoles } from '../_modules/shared/models/user-profile.model';
+import { AuthService } from '../_modules/shared/services/auth.service';
+import { ToolBarButton } from '../_modules/shared/components/tool-bar-button/toolbar-button.model';
 
 const MAIN_TITLE = PersianPipe.toPersian("title");
 
@@ -18,7 +20,7 @@ const MAIN_TITLE = PersianPipe.toPersian("title");
 export class HeaderComponent implements OnInit {
 
   isHandset = false;
-  links = SIDE_MENU_TOOLBAR;
+  links: ToolBarButton[] = [];
   title = "title";
 
   @Output() menuClick = new EventEmitter<void>();
@@ -32,15 +34,16 @@ export class HeaderComponent implements OnInit {
     private layoutService: LayoutService,
     private router: Router,
     private loadingService: LoadingService,
+    private authService: AuthService,
   ) { }
   ngOnInit(): void {
-    this.layoutService.isHandset$.subscribe(result => {
+    combineLatest([this.layoutService.isHandset$, this.authService.loggedUser$]).subscribe(([result, user]) => {
       this.isHandset = false;
       this.links = [];
 
       if (result) {
         this.isHandset = true;
-        this.links = SIDE_MENU_TOOLBAR;
+        this.links = getHeaderMenu(user?.role);
       }
     });
 
@@ -58,10 +61,16 @@ export class HeaderComponent implements OnInit {
       this.title = title;
       this.titleService.setTitle(title === "" ? MAIN_TITLE : `${MAIN_TITLE} | ${PersianPipe.toPersian(title)}`);
     });
+
+    // this.authService.loggedUser$.subscribe((user) => {
+    //   this.links = getSideMenu(user?.role);
+    // });
   }
 
 
   get loading() {
     return this.loadingService.isLoading$;
   }
+
+
 }

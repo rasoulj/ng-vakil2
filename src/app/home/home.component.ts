@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LayoutService } from '../_services/layout.service';
+import { LayoutService } from '../_modules/shared/services/layout.service';
 
 @Component({
   selector: 'app-home',
