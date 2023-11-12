@@ -1,8 +1,10 @@
 <mat-sidenav-container dir="rtl" class="example-container" fullscreen>
   <mat-sidenav style="width: 50%;" #sidenav mode="over">
     <div style="display: flex; flex-direction: column;">
-      <div style="height: 5rem;  display: flex; align-items: center; justify-content: center;">
-        <img src="assets/images/avatar.jpeg" style="border-radius: 50%; width: 3rem; height: 3rem;" alt="">
+      <div style="height: 7rem;  display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <!-- <img src="assets/images/avatar.jpeg" style="border-radius: 50%; width: 3rem; height: 3rem;" alt=""> -->
+        <app-avatar [user]="loggedUser" [height]="4"></app-avatar>
+        <p style="padding-top: 0.5rem;">{{displayName}}</p>
 
       </div>
       <hr style="width: 90%;">
@@ -21,7 +23,7 @@
 
   <mat-sidenav-content>
     <app-header (menuClick)="sidenav.toggle()"></app-header>
-    <div style="width: 100%; min-height: calc(100% - 300px); background-color: #f1f1f1;">
+    <div style="width: 100%; min-height: calc(100% - 10rem); background-color: #f1f1f1;">
       <router-outlet></router-outlet>
     </div>
     <app-footer></app-footer>

@@ -1,0 +1,10 @@
+.fab-button-container {
+    position: fixed;
+
+    bottom: 4.5rem;
+    left: 20px;
+}
+
+table {
+    position: relative;
+}

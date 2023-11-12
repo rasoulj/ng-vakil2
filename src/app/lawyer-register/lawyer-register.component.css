@@ -1,0 +1,62 @@
+.center {
+    margin: auto;
+    /* max-width: 500px; */
+    text-align: center;
+    padding: 10px;
+
+}
+
+.title {
+    margin: 20px auto;
+    text-align: center;
+    font-family: IRANSans;
+}
+
+.mat-option {
+    font-family: IRANSans;
+}
+
+.example-form {
+    /* min-width: 150px; */
+    /* max-width: 500px; */
+    width: 100%;
+}
+
+.full-width {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.one-third-width {
+    width: 32%;
+    margin-left: 1%;
+    margin-bottom: 1rem;
+}
+
+.radio-33 {
+    margin-top: 0;
+    width: 32%;
+    margin-left: 1%;
+    margin-bottom: 1rem;
+    display: inline-block;
+    justify-content: flex-start;
+    flex-direction: column;
+    /* align-items: end; */
+    border: 0.5px solid gray;
+    border-radius: 1rem;
+
+}
+
+.radio-100 {
+    margin-top: 0;
+    width: 100%;
+    margin-left: 1%;
+    margin-bottom: 1rem;
+    display: inline-block;
+    justify-content: flex-start;
+    flex-direction: column;
+    /* align-items: end; */
+    border: 0.5px solid gray;
+    border-radius: 1rem;
+
+}
