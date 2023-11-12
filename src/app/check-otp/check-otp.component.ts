@@ -72,7 +72,7 @@ export class CheckOtpComponent implements OnInit {
   }
 
   form = new FormGroup({
-    otp: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(5)]),
+    otp: new FormControl('25374', [Validators.required, Validators.minLength(5), Validators.maxLength(5)]),
   })
 
   get otp() { return this.form.get('otp') }

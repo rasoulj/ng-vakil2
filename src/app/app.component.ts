@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from './_modules/shared/services/auth.service';
 import { ToolBarButton } from './_modules/shared/components/tool-bar-button/toolbar-button.model';
 import { getSideMenu, getToolbarMenu } from './_modules/shared/config/consts';
+import { UserProfile } from './_modules/shared/models/user-profile.model';
 
 
 
@@ -18,6 +19,14 @@ export class AppComponent implements OnInit {
     private authService: AuthService,
   ) {
 
+  }
+
+  get loggedUser(): UserProfile | undefined {
+    return this.authService.getUser();
+  }
+
+  get displayName(): string {
+    return this.authService.displayName ?? '--';
   }
 
 

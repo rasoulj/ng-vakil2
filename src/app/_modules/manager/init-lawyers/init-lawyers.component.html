@@ -1,0 +1,7 @@
+<div style="display: flex; flex-wrap: wrap;">
+    <div *ngFor="let lawyer of data">
+        <app-lawyer-view [actions]="actions" (action)="onAction($event, lawyer)" [user]="lawyer"></app-lawyer-view>
+    </div>
+</div>
+
+<app-error-message [length]="data.length"></app-error-message>

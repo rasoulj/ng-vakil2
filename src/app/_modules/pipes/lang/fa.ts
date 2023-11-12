@@ -1,5 +1,17 @@
 export const fa: any = {
     "ok": "تایید",
+    "cancel": "لغو",
+    "yes": "بله",
+    "no": "خیر",
+    "close": "بستن",
+    "save": "ذخیره",
+    "edit": "ویرایش",
+    "delete": "حذف",
+    "view": "مشاهده",
+
+    "reject": "رد کردن",
+    "detail": "جزییات",
+
     "about": "درباره",
     "main-title": "مشاوره حقوقی آنلاین ",
     "main-subtitle": "سوالات حقوقی خود را به صورت تلفنی و یا متنی از وکلا و کارشناسان آنلاین ما بپرسید",
@@ -8,7 +20,9 @@ export const fa: any = {
     "set-a-complain": "تنظیم دادخواست و شکواییه",
     "new": "جدید",
     "search": "جستجو",
-    "profile-home": "پروفایل من",
+    "my-home": "پروفایل من",
+    "init-lawyers": "وکلای جدید",
+    "registered-lawyers": "وکلا",
     "favorite-lawyers": "وکلای مورد علاقه",
     "legal-requests": "درخواست های حقوقی",
     "pending-payments": "در انتظار پرداخت",

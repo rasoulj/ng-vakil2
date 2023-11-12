@@ -1,0 +1,9 @@
+<a routerLink="/profile">
+    <div *ngIf="isLogged else logo" class="avatar" [style]="style">
+        {{name}}
+    </div>
+</a>
+
+<ng-template #logo>
+    <img class="avatar" [style]="style" src="assets/images/logo.jpeg" alt="Avatar">
+</ng-template>

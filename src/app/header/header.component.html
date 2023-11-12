@@ -23,7 +23,5 @@
 </ng-template>
 
 <ng-template #avatar>
-    <a routerLink="/profile">
-        <img class="avatar" src="assets/images/avatar.jpeg" alt="Avatar">
-    </a>
+    <app-avatar [user]="loggedUser"></app-avatar>
 </ng-template>

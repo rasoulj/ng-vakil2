@@ -17,7 +17,7 @@ const SignInToolBar: ToolBarButton = {
 
 const LogoutToolBar: ToolBarButton = {
     title: "logout",
-    link: "logout",
+    link: "/logout",
     icon: "logout",
 }
 
@@ -38,9 +38,9 @@ const NONE_TOOLBAR: ToolBarButton[] = [
 ];
 
 const NONE_SIDE: ToolBarButton[] = [
-    { title: "call-lawyer", link: "call-lawyer", icon: "call" },
-    { title: "text-lawyer", link: "text-lawyer", icon: "textsms" },
-    { title: "law-tables", link: "law-tables", icon: "payment", hasDivider: true },
+    { title: "call-lawyer", link: "/call-lawyer", icon: "call" },
+    { title: "text-lawyer", link: "/text-lawyer", icon: "textsms" },
+    { title: "law-tables", link: "/law-tables", icon: "payment", hasDivider: true },
 
     SignInToolBar,
 ]
@@ -48,15 +48,35 @@ const NONE_SIDE: ToolBarButton[] = [
 //Customer logged
 
 const CUSTOMER_TOOLBAR: ToolBarButton[] = [
-    { title: "profile-home", link: "profile-home", icon: "home" },
-    { title: "favorite-lawyers", link: "favorite-lawyers", icon: "favorite" },
-    { title: "legal-requests", link: "legal-requests", icon: "assignment" },
-    { title: "pending-payments", link: "pending-payments", icon: "payment" },
-    { title: "my-calls", link: "my-calls", icon: "call" },
-    { title: "my-questions", link: "my-questions", icon: "question_answer", hasDivider: true },
+    { title: "my-home", link: "/profile/profile-home", icon: "home" },
+    { title: "favorite-lawyers", link: "/profile/favorite-lawyers", icon: "favorite" },
+    { title: "legal-requests", link: "/profile/legal-requests", icon: "assignment" },
+    { title: "pending-payments", link: "/profile/pending-payments", icon: "payment" },
+    { title: "my-calls", link: "/profile/my-calls", icon: "call" },
+    { title: "my-questions", link: "/profile/my-questions", icon: "question_answer", hasDivider: true },
 
-    { title: "call-lawyer", link: "../call-lawyer", icon: "call" },
-    { title: "text-lawyer", link: "../text-lawyer", icon: "textsms", hasDivider: true },
+    { title: "call-lawyer", link: "/call-lawyer", icon: "call" },
+    { title: "text-lawyer", link: "/text-lawyer", icon: "textsms", hasDivider: true },
+
+    LogoutToolBar,
+]
+
+const MANAGER_TOOLBAR: ToolBarButton[] = [
+    { title: "my-home", link: "/manager/manager-home", icon: "home" },
+    { title: "init-lawyers", link: "/manager/init-lawyers", icon: "home", },
+    { title: "registered-lawyers", link: "/manager/registered-lawyers", icon: "home", hasDivider: true },
+
+    { title: "call-lawyer", link: "/call-lawyer", icon: "call" },
+    { title: "text-lawyer", link: "/text-lawyer", icon: "textsms", hasDivider: true },
+
+    LogoutToolBar,
+]
+
+const LAWYER_TOOLBAR: ToolBarButton[] = [
+    { title: "my-home", link: "/lawyer/lawyer-home", icon: "home", hasDivider: true },
+
+    { title: "call-lawyer", link: "/call-lawyer", icon: "call" },
+    { title: "text-lawyer", link: "/text-lawyer", icon: "textsms", hasDivider: true },
 
     LogoutToolBar,
 ]
@@ -74,9 +94,9 @@ const TOOLBAR = {
     [UserRoles.customer]: CUSTOMER_TOOLBAR,
     [UserRoles.admin]: TODO_TOOLBAR,
     [UserRoles.init]: TODO_TOOLBAR,
-    [UserRoles.initLawyer]: TODO_TOOLBAR,
-    [UserRoles.lawyer]: TODO_TOOLBAR,
-    [UserRoles.manager]: TODO_TOOLBAR,
+    [UserRoles.initLawyer]: LAWYER_TOOLBAR,
+    [UserRoles.lawyer]: LAWYER_TOOLBAR,
+    [UserRoles.manager]: MANAGER_TOOLBAR,
 }
 
 const HEADER = {
@@ -104,9 +124,9 @@ const LINKS = {
     [UserRoles.customer]: ["profile", "profile-home"],
     [UserRoles.admin]: [""],
     [UserRoles.init]: [""],
-    [UserRoles.initLawyer]: ["lawyer"],
-    [UserRoles.lawyer]: [""],
-    [UserRoles.manager]: [""],
+    [UserRoles.initLawyer]: ["lawyer", "lawyer-home"],
+    [UserRoles.lawyer]: ["lawyer", "lawyer-home"],
+    [UserRoles.manager]: ["manager", "manager-home"],
 }
 
 

@@ -6,7 +6,7 @@ import { Title } from '@angular/platform-browser';
 import { PersianPipe } from '../_modules/pipes/persian.pipe';
 import { LoadingService } from '../_modules/shared/services/loading.service';
 import { getHeaderMenu, getSideMenu } from '../_modules/shared/config/consts';
-import { UserRole, UserRoles } from '../_modules/shared/models/user-profile.model';
+import { UserProfile, UserRole, UserRoles } from '../_modules/shared/models/user-profile.model';
 import { AuthService } from '../_modules/shared/services/auth.service';
 import { ToolBarButton } from '../_modules/shared/components/tool-bar-button/toolbar-button.model';
 
@@ -70,6 +70,10 @@ export class HeaderComponent implements OnInit {
 
   get loading() {
     return this.loadingService.isLoading$;
+  }
+
+  get loggedUser(): UserProfile | undefined {
+    return this.authService.getUser();
   }
 
 

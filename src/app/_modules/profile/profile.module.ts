@@ -13,8 +13,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { PipesModule } from '../pipes/pipes.module';
 import { MatIconModule } from '@angular/material/icon';
-import { ErrorMessageComponent } from './error-message/error-message.component';
-import { NoDataComponent } from './no-data/no-data.component';
 import { CdkDropList, CdkDrag } from '@angular/cdk/drag-drop';
 import { DialogModule } from '@angular/cdk/dialog';
 import { FormsModule } from '@angular/forms';
@@ -33,8 +31,6 @@ import { SharedModule } from '../shared/shared.module';
     MyCallsComponent,
     MyQuestionsComponent,
     ProfileHomeComponent,
-    ErrorMessageComponent,
-    NoDataComponent,
 
   ],
   imports: [
@@ -44,6 +40,7 @@ import { SharedModule } from '../shared/shared.module';
     MatSnackBarModule,
     MatCheckboxModule,
     MatCardModule,
+    MatButtonModule,
 
     ProfileRoutingModule,
 

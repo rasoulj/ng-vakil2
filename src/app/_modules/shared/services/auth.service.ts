@@ -4,8 +4,8 @@ import { BehaviorSubject, Observable, map, of, tap } from 'rxjs';
 import { BASE_URL } from '../config/consts';
 import { UserProfile, UserRole, UserRoles } from '../models/user-profile.model';
 import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
-import { MobileValidator, normalizePhone, toLatin } from '../validators/mobile.validator';
-import { removeItem, setItem, getItem } from '../utils/utils';
+import { MobileValidator, normalizePhone, stdViewPhone, toLatin } from '../validators/mobile.validator';
+import { removeItem, setItem, getItem, getDisplayName } from '../utils/utils';
 import { ILawyer } from 'src/app/lawyer-register/lawyer-register.model';
 
 
@@ -68,6 +68,11 @@ export class AuthService {
 
   constructor(private http: HttpClient) {
     this.setLogged(this.getUser());
+  }
+
+
+  get displayName(): string | undefined {
+    return getDisplayName(this.getUser());
   }
 
   createOtp(phone: string): Observable<any> {

@@ -18,7 +18,7 @@ export class LoginButtonComponent {
 
 
   get title(): string {
-    return PersianPipe.toPersian(this.isLogged ? "profile" : "login");
+    return PersianPipe.toPersian(this.isLogged ? this.authService.displayName ?? "profile" : "login");
   }
 
   onClick() {

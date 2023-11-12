@@ -38,6 +38,11 @@ const routes: Routes = [
     canActivate: [isLogged],
     loadChildren: () => import('./_modules/lawyer/lawyer.module').then(m => m.LawyerModule)
   },
+  {
+    path: 'manager',
+    canActivate: [isLogged],
+    loadChildren: () => import('./_modules/manager/manager.module').then(m => m.ManagerModule)
+  },
 ];
 
 @NgModule({
