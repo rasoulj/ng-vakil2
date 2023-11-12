@@ -6,6 +6,7 @@ import { Dialog } from '@angular/cdk/dialog';
 import { LegalRequestDialog } from '../_dialogs/legal-request/legal-request.dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LegalRequestsService } from './legal-requests.service';
+import { PersianPipe } from '../../pipes/persian.pipe';
 
 
 
@@ -36,14 +37,16 @@ export class LegalRequestsComponent implements OnInit {
   }
 
   toggle(request: LegalRequest) {
-    try {
-      this.requestService.editRequest(request._id, {
-        completed: !request.completed,
-      }).subscribe();
-    } catch (e) {
-      console.warn(e);
-    }
+    this.requestService.editRequest(request._id, {
+      completed: !request.completed,
+    }).subscribe({
+      error: err => this.snackBar.open(err.error, PersianPipe.toPersian("ok"), {
+        duration: 3000,
+      }),
+    });
   }
+
+
   data: LegalRequest[] = [];
   errorMessage?: string;
 

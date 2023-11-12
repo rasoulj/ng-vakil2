@@ -116,16 +116,13 @@ export function getProfileLink(role: UserRole) {
 }
 
 export function getSideMenu(role: UserRole): ToolBarButton[] {
-    console.log("getSideMenu", role ?? UserRoles.none);
     return SIDE[role ?? UserRoles.none];
 }
 
 export function getToolbarMenu(role: UserRole): ToolBarButton[] {
-    console.log("getToolbarMenu", role ?? UserRoles.none);
     return TOOLBAR[role ?? UserRoles.none];
 }
 
 export function getHeaderMenu(role: UserRole): ToolBarButton[] {
-    console.log("getHeaderMenu", role ?? UserRoles.none)
     return HEADER[role ?? UserRoles.none];
 }

@@ -22,7 +22,6 @@ export class LoginButtonComponent {
   }
 
   onClick() {
-    console.log(getProfileLink(this.authService.role))
     this.router.navigate(getProfileLink(this.authService.role));
   }
 

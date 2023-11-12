@@ -23,7 +23,6 @@ export class LoginComponent {
     this.authService.createOtp(this.phone?.value ?? "").subscribe({
       next: value => this.router.navigate(['otp']),
       error: (err) => {
-        console.log(err);
         this.snack.open(err.message, PersianPipe.toPersian("ok"), {
           duration: 3000,
           panelClass: "success-snackbar",
