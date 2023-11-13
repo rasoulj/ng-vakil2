@@ -16,6 +16,7 @@ import { PipesModule } from '../pipes/pipes.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { LawyerOnlineViewComponent } from './_components/lawyer-online-view/lawyer-online-view.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { MatMenuModule } from '@angular/material/menu';
     ManagerHomeComponent,
     RegisteredLawyersComponent,
     LawyerViewComponent,
+    LawyerOnlineViewComponent,
   ],
   imports: [
     CommonModule,

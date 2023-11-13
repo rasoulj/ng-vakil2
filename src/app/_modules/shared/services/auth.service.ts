@@ -2,10 +2,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, map, of, tap } from 'rxjs';
 import { BASE_URL } from '../config/consts';
-import { UserProfile, UserRole, UserRoles } from '../models/user-profile.model';
+import { UserProfile, UserRole, UserRoles, getDisplayName } from '../models/user-profile.model';
 import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
 import { MobileValidator, normalizePhone, stdViewPhone, toLatin } from '../validators/mobile.validator';
-import { removeItem, setItem, getItem, getDisplayName } from '../utils/utils';
+import { removeItem, setItem, getItem } from '../utils/utils';
 
 const BASE = "users/"
 const AUTH = "auth";

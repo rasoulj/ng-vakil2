@@ -1,6 +1,10 @@
-//accessToken
-//refreshToken
+const A_MIN = 60000;
+const ONLINE_PERIOD = 8;
+
+import { stdViewPhone } from "../validators/mobile.validator";
+
 export type UserRole = "init" | "admin" | "manager" | "lawyer" | "customer" | undefined;
+
 export const UserRoles = {
     none: "none",
 
@@ -66,4 +70,31 @@ export interface UserProfile {
 
     accessToken?: string,
     refreshToken?: string,
+}
+
+export function getDisplayName(user?: { firstName?: string, lastName?: string, phone?: string }): string | undefined {
+    if (!user) return undefined;
+    const fn = `${user.firstName} ${user.lastName}`;
+    if (fn === ' ') {
+        return stdViewPhone(user.phone);
+    } else {
+        return fn;
+    }
+}
+
+function lastOnlineInMinutes(user?: Partial<UserProfile>): number {
+    if (!user || !user.lastSeen) {
+        return 100000;
+    }
+
+    return (new Date().getTime() - new Date(user.lastSeen).getTime()) / A_MIN;
+
+}
+
+export function isOnlineUser(user?: Partial<UserProfile>): boolean {
+    if (!user || !user.lastSeen) {
+        return false;
+    }
+
+    return lastOnlineInMinutes(user) < ONLINE_PERIOD;
 }

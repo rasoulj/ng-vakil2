@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UserProfile } from '../../models/user-profile.model';
-import { getDisplayName } from '../../utils/utils';
+import { UserProfile, getDisplayName, isOnlineUser } from '../../models/user-profile.model';
 import { BASE_URL } from '../../config/consts';
 
 const SAT = '48.75%';
@@ -70,4 +69,6 @@ export class AvatarComponent implements OnInit {
     else return `${BASE_URL}static/${avatar}`;
   }
 
+
 }
+

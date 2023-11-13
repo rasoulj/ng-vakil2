@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { PersianPipe } from 'src/app/_modules/pipes/persian.pipe';
 import { ToolBarButton } from 'src/app/_modules/shared/components/tool-bar-button/toolbar-button.model';
-import { UserProfile } from 'src/app/_modules/shared/models/user-profile.model';
+import { UserProfile, getDisplayName, isOnlineUser } from 'src/app/_modules/shared/models/user-profile.model';
 import { PickerService } from 'src/app/_modules/shared/services/picker.service';
-import { getDisplayName, limitDots } from 'src/app/_modules/shared/utils/utils';
+import { limitDots } from 'src/app/_modules/shared/utils/utils';
 import { stdViewPhone } from 'src/app/_modules/shared/validators/mobile.validator';
 
 @Component({
@@ -60,4 +60,7 @@ export class LawyerViewComponent {
   onAction(action: string) {
     this.action.emit(action);
   }
+
+  
+
 }

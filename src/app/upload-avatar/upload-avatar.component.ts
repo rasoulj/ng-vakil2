@@ -35,7 +35,7 @@ export class UploadAvatarComponent {
           duration: 3000
         });
 
-        
+
         // this.file = undefined;
       },
       error: err => {
@@ -79,9 +79,7 @@ export class UploadAvatarComponent {
   file?: File;
 
   onFileSelected(event: any) {
-    console.log(event);
     this.file = event.target.files[0];
-
   }
 
 }

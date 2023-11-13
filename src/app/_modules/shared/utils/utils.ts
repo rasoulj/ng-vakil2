@@ -13,16 +13,6 @@ export function getItem(key: string, value?: string): string | null {
     return localStorage.getItem(key);
 }
 
-export function getDisplayName(user?: { firstName?: string, lastName?: string, phone?: string }): string | undefined {
-    if (!user) return undefined;
-    const fn = `${user.firstName} ${user.lastName}`;
-    if (fn === ' ') {
-        return stdViewPhone(user.phone);
-    } else {
-        return fn;
-    }
-}
-
 export function limitDots(text?: string | null, limit?: number): string {
     if (!text) return '';
     const len = limit ?? 25;
