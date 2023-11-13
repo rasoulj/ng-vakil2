@@ -52,7 +52,7 @@ export interface UserProfile {
     email?: string,
     gender: GenderEnum,
     lastSeen: Date,
-    avatar?: string,
+    avatar?: string | null,
 
     // Lawyer specific properties
     lawyerDocId?: string

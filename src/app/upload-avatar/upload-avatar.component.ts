@@ -11,6 +11,7 @@ import { PersianPipe } from '../_modules/pipes/persian.pipe';
   styleUrls: ['./upload-avatar.component.css']
 })
 export class UploadAvatarComponent {
+
   constructor(
     private authService: AuthService,
     private snackBar: MatSnackBar,
@@ -22,19 +23,20 @@ export class UploadAvatarComponent {
     return this.authService?.getUser();
   }
 
-  get avatar(): string | undefined {
+  get avatar(): string | null | undefined {
     return this.authService?.getUser()?.avatar;
   }
 
-  uploaded = true;
-
-  setAvatar(avatar: string) {
+  setAvatar(avatar: string | null) {
 
     this.authService.setUser({ avatar }).subscribe({
       next: () => {
         this.snackBar.open(PersianPipe.toPersian('Avatar uploaded successfully'), PersianPipe.toPersian('Close'), {
           duration: 3000
         });
+
+        
+        // this.file = undefined;
       },
       error: err => {
         this.snackBar.open(err.error, PersianPipe.toPersian('Close'), {
@@ -46,17 +48,17 @@ export class UploadAvatarComponent {
 
   upload() {
     if (this.file) {
-      this.uploaded = true;
 
       const formData = new FormData();
 
       formData.append("file", this.file);
 
-      const upload$ = this.http.post(BASE_URL + "upload", formData);
+      const upload$ = this.http.post(`${BASE_URL}upload`, formData);
 
       upload$.subscribe({
         next: (value: any) => {
           this.setAvatar(value.fileName);
+          this.file = undefined;
         },
         error: (err) => {
           this.snackBar.open(err.error, PersianPipe.toPersian('Close'), {
@@ -77,9 +79,8 @@ export class UploadAvatarComponent {
   file?: File;
 
   onFileSelected(event: any) {
-
+    console.log(event);
     this.file = event.target.files[0];
-    this.uploaded = false;
 
   }
 

@@ -149,8 +149,9 @@ export const fa: any = {
     "no-data": "داده ای برای نمایش وجود ندارد",
     "any-error": "خطایی رخ داده است",
 
-    "No file uploaded yet": "فایلی بارگذاری نشده است",
+    "No file uploaded yet": "فایلی انتخاب نشده است",
     "Upload": "بارگذاری",
     "Avatar uploaded successfully": "آواتار با موفقیت بارگذاری شد",
     "Close": "بستن",
+    "Remove Avatar": "حذف آواتار",
 }
