@@ -24,8 +24,8 @@
     <!-- {{phone}} -->
     <small>{{province | async}} - {{city | async}}</small>
     <small>{{graduationType}} - {{lawyerType}}</small>
-    <span>{{expertise1 | async}}</span>
-    <span>{{expertise2 | async}}</span>
+    <span>{{_limitDots(expertise1 | async)}}</span>
+    <span>{{_limitDots(expertise2 | async)}}</span>
     <!-- <span>
         <button *ngFor="let action of actions" mat-icon-button>
             <mat-icon>{{action}}</mat-icon>

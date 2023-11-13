@@ -1,8 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
 import { UserProfile } from '../../models/user-profile.model';
-import { stdViewPhone } from '../../validators/mobile.validator';
 import { getDisplayName } from '../../utils/utils';
+import { BASE_URL } from '../../config/consts';
 
 const SAT = '48.75%';
 const LUM = '53.333%';
@@ -45,7 +44,7 @@ export class AvatarComponent implements OnInit {
   }
 
   get style(): string {
-    return `width: ${this.height}rem; height: ${this.height}rem; background-color: ${this.color}; font-size: ${this.height / 3}rem`;
+    return `object-fit: cover; width: ${this.height}rem; height: ${this.height}rem; background-color: ${this.color}; font-size: ${this.height / 3}rem`;
   }
 
   get color(): string {
@@ -65,5 +64,10 @@ export class AvatarComponent implements OnInit {
   }
 
 
+  get avatar(): string | undefined {
+    const avatar = this.user?.avatar;
+    if (!avatar) return undefined;
+    else return `${BASE_URL}static/${avatar}`;
+  }
 
 }

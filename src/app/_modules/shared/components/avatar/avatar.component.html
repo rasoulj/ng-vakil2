@@ -1,9 +1,11 @@
-<a routerLink="/profile">
-    <div *ngIf="isLogged else logo" class="avatar" [style]="style">
+<a routerLink="/signin">
+    <img *ngIf="!isLogged " class="avatar" [style]="style" src="assets/images/logo.jpeg" alt="Avatar">
+</a>
+<a *ngIf="isLogged" routerLink="/upload-avatar">
+
+    <div *ngIf="!avatar" class="avatar" [style]="style">
         {{name}}
     </div>
-</a>
 
-<ng-template #logo>
-    <img class="avatar" [style]="style" src="assets/images/logo.jpeg" alt="Avatar">
-</ng-template>
+    <img *ngIf="!!avatar" class="avatar" [style]="style" [src]="avatar" alt="Avatar">
+</a>

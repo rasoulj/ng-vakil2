@@ -39,6 +39,7 @@ import { AuthInterceptor } from './_interceptors/auth.interceptor';
 import { VerifyComponent } from './lawyer-register/verify/verify.component';
 import { ConfirmComponent } from './lawyer-register/confirm/confirm.component';
 import { SharedModule } from './_modules/shared/shared.module';
+import { UploadAvatarComponent } from './upload-avatar/upload-avatar.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { SharedModule } from './_modules/shared/shared.module';
     CheckOtpComponent,
     VerifyComponent,
     ConfirmComponent,
+    UploadAvatarComponent,
   ],
   imports: [
     BrowserModule,

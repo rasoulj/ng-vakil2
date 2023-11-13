@@ -148,4 +148,9 @@ export const fa: any = {
     "my-name": "رسول جعفری",
     "no-data": "داده ای برای نمایش وجود ندارد",
     "any-error": "خطایی رخ داده است",
+
+    "No file uploaded yet": "فایلی بارگذاری نشده است",
+    "Upload": "بارگذاری",
+    "Avatar uploaded successfully": "آواتار با موفقیت بارگذاری شد",
+    "Close": "بستن",
 }

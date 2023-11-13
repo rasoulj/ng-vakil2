@@ -3,11 +3,10 @@ import { MobileValidator, normalizePhone } from "../_modules/shared/validators/m
 import { optionalValidator } from "../_modules/shared/validators/optional.validator";
 import { AuthService } from "../_modules/shared/services/auth.service";
 import { Injectable } from "@angular/core";
-import { ILawyer } from "./lawyer-register.model";
 import { Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { BASE_URL } from "../_modules/shared/config/consts";
-import { GenderEnum, GraduationTypeEnum, LawyerTypeEnum } from "../_modules/shared/models/user-profile.model";
+import { GenderEnum, GraduationTypeEnum, LawyerTypeEnum, UserProfile } from "../_modules/shared/models/user-profile.model";
 
 const LAWYER_REGISTER = "lawyer-register";
 
@@ -52,11 +51,11 @@ export class LawyerRegisterService {
 
     c(name: string) { return this.form.get(name) }
 
-    get data(): ILawyer {
+    get data(): Partial<UserProfile> {
         return {
             firstName: this.c("firstName")?.value,
             lastName: this.c("lastName")?.value,
-            phone: normalizePhone(this.c("phone")?.value),
+            phone: normalizePhone(this.c("phone")?.value) ?? "",
             email: this.c("email")?.value,
             lawyerDocId: this.c("lawyerDocId")?.value,
             age: this.c("age")?.value,

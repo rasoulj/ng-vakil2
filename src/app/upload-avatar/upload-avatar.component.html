@@ -1,0 +1,25 @@
+<div style="padding: 2rem;">
+
+
+    <div class="card" style="padding: 1rem;">
+        <app-avatar [user]="user" [height]="15"></app-avatar>
+        <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload>
+
+        <div class="file-upload">
+
+            {{fileName || "No file uploaded yet" | persian}}
+
+            <button mat-mini-fab color="primary" class="upload-btn" (click)="fileUpload.click()">
+                <mat-icon>attach_file</mat-icon>
+            </button>
+        </div>
+
+        <mat-card-actions>
+            <button style="width: 10rem;" color="accent" [disabled]="!file || uploaded" mat-raised-button
+                (click)="upload()" type="button">{{'Upload' |
+                persian}}</button>
+
+        </mat-card-actions>
+
+    </div>
+</div>

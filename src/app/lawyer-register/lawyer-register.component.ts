@@ -23,7 +23,6 @@ export class LawyerRegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    console.warn("NNN", this.lawyerRegService.data);
     this.router.navigate(["lawyer-register", "verify"])
   }
 

@@ -6,8 +6,6 @@ import { UserProfile, UserRole, UserRoles } from '../models/user-profile.model';
 import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
 import { MobileValidator, normalizePhone, stdViewPhone, toLatin } from '../validators/mobile.validator';
 import { removeItem, setItem, getItem, getDisplayName } from '../utils/utils';
-import { ILawyer } from 'src/app/lawyer-register/lawyer-register.model';
-
 
 const BASE = "users/"
 const AUTH = "auth";
@@ -27,6 +25,7 @@ function getUrl(ep: string): string {
   providedIn: 'root'
 })
 export class AuthService {
+
 
   get isLogged(): boolean {
     return !!this.getToken();
@@ -170,4 +169,21 @@ export class AuthService {
     };
   }
 
+
+  setUser(data: Partial<UserProfile>): Observable<any> {
+    const { _id } = this.getUser() || {};
+    if (!_id) return of({});
+    const url = `${BASE_URL}users`;
+    return this.http.put(url, {
+      _id,
+      ...data,
+    }).pipe(
+      tap((value) => {
+        const user = this.getUser();
+        if (user) {
+          this.saveUser({ ...user, ...data });
+        }
+      })
+    );
+  }
 }

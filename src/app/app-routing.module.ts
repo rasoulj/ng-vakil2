@@ -10,8 +10,9 @@ import { LawyerRegisterComponent } from './lawyer-register/lawyer-register.compo
 import { CheckOtpComponent } from './check-otp/check-otp.component';
 import { VerifyComponent } from './lawyer-register/verify/verify.component';
 import { ConfirmComponent } from './lawyer-register/confirm/confirm.component';
+import { UploadAvatarComponent } from './upload-avatar/upload-avatar.component';
 
-const isLogged = () => inject(AuthService).isLogged;
+const isLogged: () => boolean = () => inject(AuthService).isLogged;
 const isCustomer = () => inject(AuthService).isCustomer;
 const isLawyer = () => inject(AuthService).isLawyer;
 
@@ -27,6 +28,8 @@ const routes: Routes = [
   { path: "lawyer-register/verify", component: VerifyComponent },
   { path: "lawyer-register/verify/:code", component: ConfirmComponent },
   { path: "otp", component: CheckOtpComponent },
+
+  { path: "upload-avatar", canActivate: [isLogged], component: UploadAvatarComponent },
 
   {
     path: 'profile',

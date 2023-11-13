@@ -3,7 +3,7 @@ import { PersianPipe } from 'src/app/_modules/pipes/persian.pipe';
 import { ToolBarButton } from 'src/app/_modules/shared/components/tool-bar-button/toolbar-button.model';
 import { UserProfile } from 'src/app/_modules/shared/models/user-profile.model';
 import { PickerService } from 'src/app/_modules/shared/services/picker.service';
-import { getDisplayName } from 'src/app/_modules/shared/utils/utils';
+import { getDisplayName, limitDots } from 'src/app/_modules/shared/utils/utils';
 import { stdViewPhone } from 'src/app/_modules/shared/validators/mobile.validator';
 
 @Component({
@@ -51,6 +51,10 @@ export class LawyerViewComponent {
 
   get expertise2() {
     return this.picker.getExpertiseName(this.user.expertise2);
+  }
+
+  _limitDots(str: string | null) {
+    return limitDots(str, 30);
   }
 
   onAction(action: string) {

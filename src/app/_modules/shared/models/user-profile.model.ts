@@ -40,6 +40,7 @@ export interface EventType {
 }
 
 export interface UserProfile {
+    _id?: string,
     //Common Properties
     phone: string
     password?: string
@@ -51,6 +52,7 @@ export interface UserProfile {
     email?: string,
     gender: GenderEnum,
     lastSeen: Date,
+    avatar?: string,
 
     // Lawyer specific properties
     lawyerDocId?: string

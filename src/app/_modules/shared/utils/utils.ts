@@ -22,3 +22,11 @@ export function getDisplayName(user?: { firstName?: string, lastName?: string, p
         return fn;
     }
 }
+
+export function limitDots(text?: string | null, limit?: number): string {
+    if (!text) return '';
+    const len = limit ?? 25;
+    if (text.length <= len) return text;
+    return text.substring(0, len) + '...';
+
+}
