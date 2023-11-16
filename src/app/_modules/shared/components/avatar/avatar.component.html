@@ -1,11 +1,11 @@
 <a routerLink="/signin">
-    <img *ngIf="!isLogged " class="avatar" [style]="style" src="assets/images/logo.jpeg" alt="Avatar">
+    <img *ngIf="!isLogged " class="avatar" [style]="moreStyle" src="assets/images/logo.jpeg" alt="Avatar">
 </a>
 <a *ngIf="isLogged" routerLink="/upload-avatar">
 
-    <div *ngIf="!avatar" class="avatar" [style]="style">
+    <div *ngIf="!avatar" class="avatar" [style]="moreStyle">
         {{name}}
     </div>
 
-    <img *ngIf="!!avatar" class="avatar" [style]="style" [src]="avatar" alt="Avatar">
+    <img *ngIf="!!avatar" class="avatar" [style]="moreStyle" [src]="avatar" alt="Avatar">
 </a>

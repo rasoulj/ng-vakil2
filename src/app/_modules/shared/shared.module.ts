@@ -12,8 +12,6 @@ import { MatCardModule } from '@angular/material/card';
 import { ErrorMessageComponent } from './components/error-message/error-message.component';
 import { NoDataComponent } from './components/no-data/no-data.component';
 
-
-
 @NgModule({
   declarations: [
     LogoutComponent,

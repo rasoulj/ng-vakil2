@@ -33,7 +33,7 @@ export class LawyerRegisterService {
 
         email: ['rasoulj@gmail.com', [optionalValidator([Validators.email])]],
         lawyerDocId: ['EE-234', Validators.required],
-        age: [45, [Validators.required, Validators.max(100), Validators.min(20)]],
+        birthYear: [undefined, [Validators.required, Validators.max(1384), Validators.min(1300)]],
 
         expertise1: [5, Validators.required],
         expertise2: [10, Validators.required],
@@ -58,7 +58,7 @@ export class LawyerRegisterService {
             phone: normalizePhone(this.c("phone")?.value) ?? "",
             email: this.c("email")?.value,
             lawyerDocId: this.c("lawyerDocId")?.value,
-            age: this.c("age")?.value,
+            birthYear: this.c("birthYear")?.value,
             expertise1: this.c("expertise1")?.value,
             expertise2: this.c("expertise2")?.value,
             lawyerType: this.c("lawyerType")?.value,

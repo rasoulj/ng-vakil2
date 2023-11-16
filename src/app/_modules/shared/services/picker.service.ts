@@ -75,6 +75,16 @@ export class PickerService {
         );
     }
 
+    getBirthYears(): number[] {
+        const now = new Date();
+        const baseYear = now.getFullYear() - 638;
+        const years = [];
+        for (let i = 0; i < 100; i++) {
+            years.push(baseYear - i);
+        }
+        return years;
+    }
+
     getGraduationType(): GraduationTypeEnum[] {
         return [GraduationTypeEnum.bachelor, GraduationTypeEnum.master, GraduationTypeEnum.phd,];
     }

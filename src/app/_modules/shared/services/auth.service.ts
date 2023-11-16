@@ -171,11 +171,11 @@ export class AuthService {
 
 
   setUser(data: Partial<UserProfile>): Observable<any> {
-    const { _id } = this.getUser() || {};
-    if (!_id) return of({});
+    const { phone } = this.getUser() || {};
+    if (!phone) throw new Error('User not found');
     const url = `${BASE_URL}users`;
     return this.http.put(url, {
-      _id,
+      phone,
       ...data,
     }).pipe(
       tap((value) => {

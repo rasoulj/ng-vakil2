@@ -52,9 +52,14 @@
 
 
             <mat-form-field [class]="className$ | async">
-                <mat-label>{{"age" | persian}}</mat-label>
-                <input style="direction: ltr;" type="number" matInput formControlName="age" placeholder="">
-                <mat-error *ngIf="c('age')?.touched && c('age')?.invalid">
+                <mat-label>{{"birthYear" | persian}}</mat-label>
+                <!-- <input style="direction: ltr;" type="number" matInput formControlName="birthYear" placeholder=""> -->
+                <mat-select formControlName="birthYear" [placeholder]="'birthYear' | persian">
+                    <mat-option class="mat-option" *ngFor="let year of birthYears" [value]="year">
+                        {{year}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="c('birthYear')?.touched && c('birthYear')?.invalid">
                     {{"invalid_age"| persian}}
                 </mat-error>
             </mat-form-field>

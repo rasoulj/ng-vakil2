@@ -77,6 +77,7 @@ export const fa: any = {
     "email": "ایمیل",
     "lawyerDocId": "پروانه وکالت",
     "age": "سن",
+    "birthYear": "سال تولد",
     "expertise1": "تخصص اول",
     "expertise2": "تخصص  دوم",
     "lawyerType": "ثبت نام بعنوان",
@@ -154,4 +155,7 @@ export const fa: any = {
     "Avatar uploaded successfully": "آواتار با موفقیت بارگذاری شد",
     "Close": "بستن",
     "Remove Avatar": "حذف آواتار",
+
+    "logged in successfully": "ورود با موفقیت انجام شد",
+    "logged out successfully": "خروج با موفقیت انجام شد",
 }

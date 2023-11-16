@@ -5,6 +5,7 @@ import { UserRole, UserRoles } from '../shared/models/user-profile.model';
 import { ToolBarButton } from '../shared/components/tool-bar-button/toolbar-button.model';
 import { combineLatest } from 'rxjs';
 import { AuthService } from '../shared/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lawyer',
@@ -16,6 +17,7 @@ export class LawyerComponent implements OnInit {
   constructor(
     private layoutService: LayoutService,
     private authService: AuthService,
+    private router: Router,
   ) { }
 
   links: ToolBarButton[] = [];
@@ -29,4 +31,5 @@ export class LawyerComponent implements OnInit {
       this.links = getToolbarMenu(user?.role);
     });
   }
+
 }
