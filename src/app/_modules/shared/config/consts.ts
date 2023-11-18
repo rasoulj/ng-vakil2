@@ -21,6 +21,8 @@ const LogoutToolBar: ToolBarButton = {
     icon: "logout",
 }
 
+const SearchToolBar = { title: "search-lawyer", link: "/search-lawyer", icon: "search" };
+
 const TODO_TOOLBAR: ToolBarButton[] = [
     HomeToolBar,
     LogoutToolBar,
@@ -39,7 +41,7 @@ const NONE_TOOLBAR: ToolBarButton[] = [
 
 const NONE_SIDE: ToolBarButton[] = [
     { title: "call-lawyer", link: "/call-lawyer", icon: "call" },
-    { title: "text-lawyer", link: "/text-lawyer", icon: "textsms" },
+    { title: "search-lawyer", link: "/search-lawyer", icon: "search" },
     { title: "law-tables", link: "/law-tables", icon: "payment", hasDivider: true },
 
     SignInToolBar,
@@ -56,7 +58,7 @@ const CUSTOMER_TOOLBAR: ToolBarButton[] = [
     { title: "my-questions", link: "/profile/my-questions", icon: "question_answer", hasDivider: true },
 
     { title: "call-lawyer", link: "/call-lawyer", icon: "call" },
-    { title: "text-lawyer", link: "/text-lawyer", icon: "textsms", hasDivider: true },
+    SearchToolBar,
 
     LogoutToolBar,
 ]
@@ -67,7 +69,7 @@ const MANAGER_TOOLBAR: ToolBarButton[] = [
     { title: "registered-lawyers", link: "/manager/registered-lawyers", icon: "home", hasDivider: true },
 
     { title: "call-lawyer", link: "/call-lawyer", icon: "call" },
-    { title: "text-lawyer", link: "/text-lawyer", icon: "textsms", hasDivider: true },
+    { ...SearchToolBar, hasDivider: true },
 
     LogoutToolBar,
 ]
@@ -84,7 +86,7 @@ const LAWYER_TOOLBAR: ToolBarButton[] = [
 
 const CUSTOMER_SIDE: ToolBarButton[] = [
     { title: "call-lawyer", link: "call-lawyer", icon: "call" },
-    { title: "text-lawyer", link: "text-lawyer", icon: "textsms" },
+    SearchToolBar,
     { title: "law-tables", link: "law-tables", icon: "payment" },
 ]
 

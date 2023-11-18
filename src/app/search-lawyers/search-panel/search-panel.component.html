@@ -1,0 +1,31 @@
+<mat-accordion>
+    <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                {{title | persian}}
+                <button mat-icon-button (click)="onClear($event)" *ngIf="value">
+                    <mat-icon color="warn" style="font-size: 0.85rem;">close</mat-icon>
+                </button>
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div>
+            <mat-form-field appearance="outline" class="input-parent">
+                <input matInput style="width: auto" [placeholder]="placeholder | persian" type="text"
+                    [(ngModel)]="filter" (keyup)="onFilterChange()">
+                <button color="gray" mat-icon-button matSuffix aria-label="Clear" [disabled]="!filter"
+                    (click)="filter=''; onFilterChange()">
+                    <mat-icon [class]="filter ? 'gray' : 'tran'">close</mat-icon>
+                </button>
+                <mat-icon matIconPrefix class="my-icon">search</mat-icon>
+            </mat-form-field>
+        </div>
+        <!-- <input matInput style="width: 100%; margin-bottom: 1rem;" placeholder="Salaam" type="text" [(ngModel)]="filter"
+            (keyup)="onFilterChange($event)"> -->
+        <mat-radio-group [value]="value" (change)="onChange($event)">
+            <div *ngFor="let d of allItems">
+                <mat-radio-button [value]="d.id">{{d.name}}</mat-radio-button>
+                <br />
+            </div>
+        </mat-radio-group>
+    </mat-expansion-panel>
+</mat-accordion>

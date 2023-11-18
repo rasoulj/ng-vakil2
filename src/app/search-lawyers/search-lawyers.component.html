@@ -1,0 +1,62 @@
+<div class="main">
+    <div class="search-main-panel">
+
+        <div class="card search-panel">
+            <span [matBadgeHidden]="((filterCount | async) ?? 0) <= 0" [matBadge]="filterCount | async"
+                matBadgePosition="above after" matBadgeColor="warn">
+                {{"filters" |
+                persian}}
+            </span>
+
+            <button [disabled]="((filterCount | async) ?? 0) <= 0" (click)="clearFilters()" type="button" mat-mini-fab
+                color="warn" (click)="clearFilters()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+
+        <app-search-panel [value]="provinceId$ | async" placeholder="search province" title="province"
+            [data]="provinces$" (changed)="provinceChanged($event)">
+        </app-search-panel>
+        <div style="height: 0.2rem;"></div>
+        <app-search-panel [value]="expertiseId$ | async" placeholder="search expertise" title="expertise"
+            [data]="expertise$" (changed)="expertiseChanged($event)"></app-search-panel>
+    </div>
+
+    <div class="main-content-panel">
+
+        <div class="card search-panel" style="position: relative; height: 2.5rem; align-items: center; margin: 0;">
+            <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+                <div>{{'order by' | persian}}:&nbsp;</div>
+
+                <button *ngFor="let ob of orderByTypes" (click)="orderBy = ob;" type="button" mat-button
+                    [color]="orderBy === ob ? 'warn' : ''">
+                    {{'enum.OrderByEnum.'+ob | persian}}
+                </button>
+
+            </div>
+
+            <mat-form-field style="margin: 0; position: absolute; bottom: -0.8rem; left: 0.5rem;" appearance="outline">
+                <input matInput type="text" placeholder="{{'search' | persian}}" [(ngModel)]="searchText"
+                    (keyup)="searchTextChange()">
+                <button color="gray" mat-icon-button matSuffix aria-label="Clear" [disabled]="!searchText"
+                    (click)="searchText=''; searchTextChange()">
+                    <mat-icon [class]="searchText ? 'gray' : 'tran'">close</mat-icon>
+                </button>
+                <button matIconPrefix mat-icon-button type="button">
+                    <mat-icon class="my-icon">search</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+
+        <div class="lawyers-panel">
+            <div *ngFor="let lawyer of lawyers">
+                <app-lawyer-view [actions]="actions" (action)="onAction($event, lawyer)"
+                    [user]="lawyer"></app-lawyer-view>
+            </div>
+        </div>
+
+        <app-error-message [length]="lawyers.length"></app-error-message>
+
+    </div>
+
+</div>

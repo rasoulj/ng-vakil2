@@ -17,6 +17,7 @@ export const fa: any = {
     "main-subtitle": "سوالات حقوقی خود را به صورت تلفنی و یا متنی از وکلا و کارشناسان آنلاین ما بپرسید",
     "call-lawyer": "مشاوره تلفنی",
     "text-lawyer": "مشاوره متنی",
+    "search-lawyer": "جستجوی وکیل",
     "set-a-complain": "تنظیم دادخواست و شکواییه",
     "new": "جدید",
     "search": "جستجو",
@@ -78,6 +79,7 @@ export const fa: any = {
     "lawyerDocId": "پروانه وکالت",
     "age": "سن",
     "birthYear": "سال تولد",
+    "expertise": "تخصص وکیل",
     "expertise1": "تخصص اول",
     "expertise2": "تخصص  دوم",
     "lawyerType": "ثبت نام بعنوان",
@@ -158,4 +160,12 @@ export const fa: any = {
 
     "logged in successfully": "ورود با موفقیت انجام شد",
     "logged out successfully": "خروج با موفقیت انجام شد",
+    "search province": "جستجوی استان",
+    "search expertise": "جستجوی تخصص",
+    "filters": "فیلترها",
+    "remove filters": "حذف فیلترها",
+
+    "order by": "مرتب سازی",
+    "enum.OrderByEnum.lastSeen": "آخرین بازدید",
+    "enum.OrderByEnum.rating": "بیشترین امتیاز",
 }

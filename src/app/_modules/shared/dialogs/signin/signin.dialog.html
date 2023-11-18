@@ -22,8 +22,8 @@
 
         </mat-card-content>
         <mat-card-actions>
-            <button style="width: 100%;" [class.spinner]="loading | async" [disabled]="loading | async"
-                [disabled]="form.invalid" type="submit" mat-raised-button color="accent">
+            <button style="width: 100%;" [class.spinner]="loading | async"
+                [disabled]="form.invalid || (loading | async)" type="submit" mat-raised-button color="accent">
                 {{"continue" | persian}}
             </button>
         </mat-card-actions>
@@ -46,7 +46,7 @@
             </mat-card-title>
             <br />
         </mat-card-header>
-        <mat-card-content *ngIf="phone" style="text-align: start;">
+        <mat-card-content *ngIf="phoneOtp" style="text-align: start;">
             {{"verify-otp-2" | persian: phoneOtp }}
         </mat-card-content>
 
@@ -64,20 +64,20 @@
         </mat-card-content>
 
         <mat-card-content style="height: 2rem;">
-            <span *ngIf="count > 0 && phone">{{"resend-otp-2" | persian: formattedTime}}</span>
+            <span *ngIf="count > 0 && phoneOtp">{{"resend-otp-2" | persian: formattedTime}}</span>
         </mat-card-content>
 
         <mat-card-actions>
-            <button [class.spinner]="loading | async" [disabled]="loading | async" style="width: 100%;"
-                [disabled]="(form.invalid && !invalidOtp) || count <= 0 || !phone" type="submit" mat-raised-button
-                color="accent">
+            <button [class.spinner]="loading | async" style="width: 100%;"
+                [disabled]="(formOtp.invalid && !invalidOtp) || count <= 0 || !phoneOtp || (loading | async)"
+                type="submit" mat-raised-button color="accent">
                 {{"continue" | persian}}
             </button>
         </mat-card-actions>
         <button style="padding-top: 1rem; padding-bottom: 1rem;" mat-flat-button (click)="changePhone()" type="button">
             {{"modify-number" | persian}}
         </button>
-        <button (click)="reSendOtp()" *ngIf="count == 0 && phone else ph" type="button" mat-flat-button>
+        <button (click)="reSendOtp()" *ngIf="count == 0 && phoneOtp else ph" type="button" mat-flat-button>
             {{"resend-otp" | persian}}
         </button>
 
