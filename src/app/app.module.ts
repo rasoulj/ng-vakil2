@@ -45,6 +45,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { SearchPanelComponent } from './search-lawyers/search-panel/search-panel.component';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginatorIntlCro } from './_providers/paginator.provider';
 
 @NgModule({
   declarations: [
@@ -71,6 +73,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     BrowserAnimationsModule,
     HttpClientModule,
 
+    MatPaginatorModule,
     MatButtonToggleModule,
     MatBadgeModule,
     MatExpansionModule,
@@ -96,6 +99,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: MatPaginatorIntl, useClass: MatPaginatorIntlCro }
   ],
   bootstrap: [AppComponent]
 })

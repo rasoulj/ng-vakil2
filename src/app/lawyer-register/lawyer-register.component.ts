@@ -4,6 +4,7 @@ import { BehaviorSubject, map } from 'rxjs';
 import { PickerService, PickedValue } from '../_modules/shared/services/picker.service';
 import { Router } from '@angular/router';
 import { LawyerRegisterService } from './lawyer-register.service';
+import { LoadingService } from '../_modules/shared/services/loading.service';
 
 @Component({
   selector: 'app-lawyer-register',
@@ -31,9 +32,13 @@ export class LawyerRegisterComponent implements OnInit {
     private picker: PickerService,
     private router: Router,
     public lawyerRegService: LawyerRegisterService,
+    private loadingService: LoadingService,
   ) {
   }
 
+  get loading() {
+    return this.loadingService.isLoading$;
+  }
 
   ngOnInit(): void {
     const provinceId = this.lawyerRegService.data.provinceId;

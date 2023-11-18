@@ -28,14 +28,14 @@
             <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
                 <div>{{'order by' | persian}}:&nbsp;</div>
 
-                <button *ngFor="let ob of orderByTypes" (click)="orderBy = ob;" type="button" mat-button
+                <button *ngFor="let ob of orderByTypes" (click)="setOrderBy(ob)" type="button" mat-button
                     [color]="orderBy === ob ? 'warn' : ''">
                     {{'enum.OrderByEnum.'+ob | persian}}
                 </button>
 
             </div>
 
-            <mat-form-field style="margin: 0; position: absolute; bottom: -0.8rem; left: 0.5rem;" appearance="outline">
+            <mat-form-field style="margin: 0; position: absolute; bottom: -0.9rem; left: 0.5rem;" appearance="outline">
                 <input matInput type="text" placeholder="{{'search' | persian}}" [(ngModel)]="searchText"
                     (keyup)="searchTextChange()">
                 <button color="gray" mat-icon-button matSuffix aria-label="Clear" [disabled]="!searchText"
@@ -48,15 +48,25 @@
             </mat-form-field>
         </div>
 
-        <div class="lawyers-panel">
-            <div *ngFor="let lawyer of lawyers">
-                <app-lawyer-view [actions]="actions" (action)="onAction($event, lawyer)"
-                    [user]="lawyer"></app-lawyer-view>
+        <div>
+            <div class="card" style="margin-top: 0.5rem;">
+                <mat-paginator showFirstLastButtons [pageIndex]="pageIndex$ | async" [pageSize]="pageSize$ | async"
+                    [disabled]="lawyers.length <= ((pageSize$ | async) ?? 0)" (page)="handlePageEvent($event)"
+                    [length]="lawyers.length" [pageSize]="defaultPageSize" [pageSizeOptions]="[6, 9, 27, 54]">
+                </mat-paginator>
             </div>
+            <div class="lawyers-panel">
+                <br>
+                <div *ngFor="let lawyer of lawyers.data">
+                    <app-lawyer-view [actions]="actions" (action)="onAction($event, lawyer)"
+                        [user]="lawyer"></app-lawyer-view>
+                </div>
+
+            </div>
+
+            <app-error-message [length]="lawyers.length"></app-error-message>
+
         </div>
-
-        <app-error-message [length]="lawyers.length"></app-error-message>
-
     </div>
 
 </div>

@@ -105,7 +105,7 @@ export class SigninDialog {
   }
 
   form = new FormGroup({
-    phone: new FormControl('', [Validators.required, MobileValidator.mobileValidator]),
+    phone: new FormControl('09133834195', [Validators.required, MobileValidator.mobileValidator]),
     //password: new FormControl('', [Validators.required]),
   })
 
@@ -149,7 +149,7 @@ export class SigninDialog {
   }
 
   formOtp = new FormGroup({
-    otp: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(5)]),
+    otp: new FormControl('25374', [Validators.required, Validators.minLength(5), Validators.maxLength(5)]),
   })
 
   get otp() { return this.formOtp.get('otp') }

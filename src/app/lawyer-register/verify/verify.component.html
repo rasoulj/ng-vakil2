@@ -8,7 +8,7 @@
         <h3>{{ "admit this data?" | persian }}</h3>
     </mat-card-content>
     <mat-card-actions>
-        <button (click)="submit()" mat-raised-button color="accent">{{"ok" | persian}}</button>
+        <button [class.spinner]="loading | async" (click)="submit()" mat-raised-button color="accent">{{"ok" | persian}}</button>
         &nbsp;
         <button (click)="cancel()" mat-raised-button>{{"modify" | persian}}</button>
     </mat-card-actions>

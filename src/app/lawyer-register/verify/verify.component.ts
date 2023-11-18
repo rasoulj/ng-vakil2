@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { GenderEnum, GraduationTypeEnum, LawyerTypeEnum } from 'src/app/_modules/shared/models/user-profile.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { LoadingService } from 'src/app/_modules/shared/services/loading.service';
 
 
 interface IContext {
@@ -28,7 +29,13 @@ export class VerifyComponent {
     private router: Router,
     private location: Location,
     private snackBar: MatSnackBar,
-  ) { }
+    private loadingService: LoadingService,
+  ) {
+  }
+
+  get loading() {
+    return this.loadingService.isLoading$;
+  }
 
   data = this.lawyerRegService.data;
 

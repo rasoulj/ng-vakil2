@@ -21,6 +21,6 @@ export class LawyerOnlineViewComponent implements OnInit {
   }
 
   calcOnlineStyle(): string {
-    return isOnlineUser(this.user) ? "color: red" : "color: gray";
+    return isOnlineUser(this.user) ? "color: rgb(34 197 94)" : "color: gray";
   }
 }

@@ -164,7 +164,8 @@
                 </mat-error>
             </mat-form-field>
 
-            <button style="width: 33%;" [disabled]="form.invalid" type="submit" mat-raised-button color="accent">
+            <button style="width: 33%;" [class.spinner]="loading | async" [disabled]="form.invalid" type="submit"
+                mat-raised-button color="accent">
                 {{"continue" | persian}}
             </button>
         </mat-card-content>

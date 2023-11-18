@@ -4,8 +4,14 @@ import { BehaviorSubject, Observable, combineLatest, combineLatestAll, concat, c
 import { HttpClient } from '@angular/common/http';
 import { BASE_URL } from '../_modules/shared/config/consts';
 import { UserProfile } from '../_modules/shared/models/user-profile.model';
+import { PageEvent } from '@angular/material/paginator';
 
 const URL = `${BASE_URL}users/search-lawyer`;
+
+interface SearchLawyer {
+  data: UserProfile[],
+  length: number,
+}
 
 enum OrderByEnum {
   lastSeen = "lastSeen",
@@ -20,17 +26,17 @@ enum OrderByEnum {
 export class SearchLawyersComponent implements OnInit {
 
   searchText$ = new BehaviorSubject<string>("");
+  orderBy$ = new BehaviorSubject<OrderByEnum>(OrderByEnum.lastSeen);
   searchText: string = "";
 
   orderByTypes = [OrderByEnum.lastSeen, OrderByEnum.rating];
 
-  _orderBy: OrderByEnum = OrderByEnum.lastSeen;
-  set orderBy(value: OrderByEnum) {
-    this._orderBy = value;
+  setOrderBy(orderBy: OrderByEnum) {
+    this.orderBy$.next(orderBy);
   }
-  get orderBy(): string {
-    return this._orderBy;
-  }
+
+
+  orderBy = OrderByEnum.lastSeen;
 
 
   constructor(
@@ -42,13 +48,18 @@ export class SearchLawyersComponent implements OnInit {
 
   provinceChanged(id: number) {
     this.provinceId$.next(id);
+    this.pageIndex$.next(0);
   }
   expertiseChanged(id: number) {
     this.expertiseId$.next(id);
+    this.pageIndex$.next(0);
   }
 
+  defaultPageSize = 9;
   provinceId$ = new BehaviorSubject<number>(0);
   expertiseId$ = new BehaviorSubject<number>(0);
+  pageIndex$ = new BehaviorSubject<number>(0);
+  pageSize$ = new BehaviorSubject<number>(this.defaultPageSize);
 
   get filterCount(): Observable<number> {
     return combineLatest([this.provinceId$, this.expertiseId$]).pipe(
@@ -73,6 +84,7 @@ export class SearchLawyersComponent implements OnInit {
   clearFilters() {
     this.provinceId$.next(0);
     this.expertiseId$.next(0);
+    this.pageIndex$.next(0);
   }
 
   actions = [];
@@ -84,29 +96,59 @@ export class SearchLawyersComponent implements OnInit {
     debounce(i => interval(1000))
   );
 
-  lawyers$ = combineLatest([this.q$, this.provinceId$, this.expertiseId$]).pipe(
+  lawyers$ = combineLatest([
+    this.q$,
+    this.provinceId$,
+    this.expertiseId$,
+    this.pageIndex$,
+    this.pageSize$,
+    this.orderBy$
+  ]).pipe(
     debounce(i => interval(500)),
-    concatMap(([q, provinceId, expertiseId]) => {
+    concatMap(([
+      q,
+      provinceId,
+      expertiseId,
+      pageIndex,
+      pageSize,
+      orderBy,
+    ]) => {
       return this.http.get(URL, {
         params: {
           q,
           provinceId,
           expertiseId,
+          pageIndex,
+          pageSize,
+          orderBy,
         }
-      }) as Observable<UserProfile[]>
+      }) as Observable<SearchLawyer>
     })
   );
 
-  lawyers: UserProfile[] = [];
+  lawyers: SearchLawyer = {
+    data: [],
+    length: 0
+  };
 
   ngOnInit(): void {
     this.lawyers$.subscribe(lawyers => {
       this.lawyers = lawyers;
+    });
+
+    this.orderBy$.subscribe(orderBy => {
+      this.orderBy = orderBy;
     })
   }
 
   searchTextChange() {
     this.searchText$.next(this.searchText);
+    this.pageIndex$.next(0);
+  }
+
+  handlePageEvent(e: PageEvent) {
+    this.pageIndex$.next(e.pageIndex);
+    this.pageSize$.next(e.pageSize);
   }
 
 

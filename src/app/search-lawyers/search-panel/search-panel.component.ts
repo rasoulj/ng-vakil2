@@ -24,7 +24,6 @@ export class SearchPanelComponent implements OnInit {
   filter = "";
 
   ngOnInit(): void {
-    // fromEvent(this.filterElm.nativeElement, 'changed').subscribe(value => console.log(value));
     combineLatest([this.data, this.filter$]).subscribe(([data, filter]) => {
       this.allItems = data.filter(d => d.name.includes(filter))
     });
@@ -38,7 +37,6 @@ export class SearchPanelComponent implements OnInit {
 
   onFilterChange() {
     this.filter$.next(this.filter);
-    console.log(this.filter);
   }
 
   onClear(e: MouseEvent) {

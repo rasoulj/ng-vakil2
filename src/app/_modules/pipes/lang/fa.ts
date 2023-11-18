@@ -168,4 +168,7 @@ export const fa: any = {
     "order by": "مرتب سازی",
     "enum.OrderByEnum.lastSeen": "آخرین بازدید",
     "enum.OrderByEnum.rating": "بیشترین امتیاز",
+
+    "items per page": "تعداد نمایش در هر صفحه",
+    "of": "از",
 }
