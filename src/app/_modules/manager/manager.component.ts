@@ -4,6 +4,7 @@ import { ToolBarButton } from '../shared/components/tool-bar-button/toolbar-butt
 import { getToolbarMenu } from '../shared/config/consts';
 import { AuthService } from '../shared/services/auth.service';
 import { LayoutService } from '../shared/services/layout.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-manager',
@@ -15,6 +16,7 @@ export class ManagerComponent implements OnInit {
   constructor(
     private layoutService: LayoutService,
     private authService: AuthService,
+    private router: Router,
   ) { }
 
   links: ToolBarButton[] = [];
@@ -28,4 +30,5 @@ export class ManagerComponent implements OnInit {
       this.links = getToolbarMenu(user?.role);
     });
   }
+
 }

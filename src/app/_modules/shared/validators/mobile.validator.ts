@@ -46,11 +46,11 @@ export function validatePhone(phone: string) {
     return true;
 }
 
-export function stdViewPhone(phone?: string) {
+export function stdViewPhone(phone?: string, sep: string = "") {
     if (!phone || phone.length <= 10) return phone;
 
     if (phone.startsWith("+98")) phone = phone.replaceAll("+98", "0");
-    return phone;
+    return phone.substring(0, 4) + sep + phone.substring(4, 7) + sep + phone.substring(7);
 }
 
 export function normalizePhone(phone: string): string | undefined {

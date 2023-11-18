@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient } from '@angular/common/http';
 import { BASE_URL } from '../_modules/shared/config/consts';
 import { PersianPipe } from '../_modules/pipes/persian.pipe';
+import { LoadingService } from '../_modules/shared/services/loading.service';
 
 @Component({
   selector: 'app-upload-avatar',
@@ -16,8 +17,12 @@ export class UploadAvatarComponent {
     private authService: AuthService,
     private snackBar: MatSnackBar,
     private http: HttpClient,
+    private loadingService: LoadingService,
   ) { }
 
+  get loading() {
+    return this.loadingService.isLoading$;
+  }
 
   get user() {
     return this.authService?.getUser();
@@ -28,6 +33,9 @@ export class UploadAvatarComponent {
   }
 
   setAvatar(avatar: string | null) {
+    if (!avatar) {
+      this.command = "setAvatar";
+    }
 
     this.authService.setUser({ avatar }).subscribe({
       next: () => {
@@ -46,7 +54,11 @@ export class UploadAvatarComponent {
     });
   }
 
+  command = "";
+
   upload() {
+    this.command = "upload";
+
     if (this.file) {
 
       const formData = new FormData();

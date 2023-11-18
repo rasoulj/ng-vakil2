@@ -1,0 +1,11 @@
+.tran {
+    color: transparent;
+}
+
+.gray {
+    color: gray
+}
+
+.input-parent {
+    @include mat.form-field-density(-5);
+}

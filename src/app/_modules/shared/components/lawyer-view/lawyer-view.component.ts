@@ -26,7 +26,7 @@ export class LawyerViewComponent {
   }
 
   get phone() {
-    return stdViewPhone(this.user.phone);
+    return stdViewPhone(this.user.phone, " ");
   }
 
   get province() {
@@ -61,6 +61,6 @@ export class LawyerViewComponent {
     this.action.emit(action);
   }
 
-  
+
 
 }

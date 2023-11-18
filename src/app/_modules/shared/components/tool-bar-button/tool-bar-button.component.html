@@ -1,5 +1,11 @@
-<button (click)="onClick()" style="width: 100%; display: flex; justify-content: flex-start;" [routerLink]="data.link"
-    mat-button routerLinkActive="active">
+<button *ngIf="data.title != 'logout'" (click)="onClick()"
+    style="width: 100%; display: flex; justify-content: flex-start;" [routerLink]="data.link" mat-button
+    routerLinkActive="active">
+    <mat-icon style="margin-left: 10px;">{{data.icon}}</mat-icon>
+    {{data.title | persian}}
+</button>
+<button *ngIf="data.title == 'logout'" (click)="onSignOut()"
+    style="width: 100%; display: flex; justify-content: flex-start;" mat-button routerLinkActive="active">
     <mat-icon style="margin-left: 10px;">{{data.icon}}</mat-icon>
     {{data.title | persian}}
 </button>

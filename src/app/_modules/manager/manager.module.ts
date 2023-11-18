@@ -7,7 +7,7 @@ import { InitLawyersComponent } from './init-lawyers/init-lawyers.component';
 import { SharedModule } from '../shared/shared.module';
 import { ManagerHomeComponent } from './manager-home/manager-home.component';
 import { RegisteredLawyersComponent } from './registered-lawyers/registered-lawyers.component';
-import { LawyerViewComponent } from './_components/lawyer-view/lawyer-view.component';
+import { LawyerViewComponent } from '../shared/components/lawyer-view/lawyer-view.component';
 import { ManagerService } from './_services/manager.service';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -16,7 +16,7 @@ import { PipesModule } from '../pipes/pipes.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { LawyerOnlineViewComponent } from './_components/lawyer-online-view/lawyer-online-view.component';
+import { LawyerOnlineViewComponent } from '../shared/components/lawyer-online-view/lawyer-online-view.component';
 
 
 @NgModule({
@@ -25,8 +25,6 @@ import { LawyerOnlineViewComponent } from './_components/lawyer-online-view/lawy
     InitLawyersComponent,
     ManagerHomeComponent,
     RegisteredLawyersComponent,
-    LawyerViewComponent,
-    LawyerOnlineViewComponent,
   ],
   imports: [
     CommonModule,
@@ -36,7 +34,6 @@ import { LawyerOnlineViewComponent } from './_components/lawyer-online-view/lawy
     MatGridListModule,
     MatButtonModule,
     MatIconModule,
-    MatMenuModule,
 
     PipesModule,
     SharedModule,

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ToolBarButton } from '../tool-bar-button/toolbar-button.model';
 
 @Component({
@@ -7,5 +7,11 @@ import { ToolBarButton } from '../tool-bar-button/toolbar-button.model';
   styleUrls: ['./tool-bar.component.css']
 })
 export class ToolBarComponent {
+
   @Input() links: ToolBarButton[] = [];
+  @Output() signOut: EventEmitter<void> = new EventEmitter<void>();
+
+  onSignOut() {
+    this.signOut.emit();
+  }
 }

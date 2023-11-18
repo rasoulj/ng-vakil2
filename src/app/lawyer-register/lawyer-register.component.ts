@@ -59,6 +59,7 @@ export class LawyerRegisterComponent implements OnInit {
 
   cityIds$ = new BehaviorSubject<PickedValue[]>([]);
 
+  birthYears = this.picker.getBirthYears();
   expertise1$ = this.picker.getExpertise(1);
   expertise2$ = this.picker.getExpertise(2);
   graduationType = this.picker.getGraduationType();

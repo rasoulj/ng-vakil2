@@ -3,6 +3,7 @@ import { AuthService } from './_modules/shared/services/auth.service';
 import { ToolBarButton } from './_modules/shared/components/tool-bar-button/toolbar-button.model';
 import { getSideMenu, getToolbarMenu } from './_modules/shared/config/consts';
 import { UserProfile } from './_modules/shared/models/user-profile.model';
+import { Router } from '@angular/router';
 
 
 
@@ -17,6 +18,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
+    private router: Router,
   ) {
 
   }
@@ -37,6 +39,5 @@ export class AppComponent implements OnInit {
       this.links = getSideMenu(user?.role);
     })
   }
-
 
 }

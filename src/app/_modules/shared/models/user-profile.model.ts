@@ -60,7 +60,7 @@ export interface UserProfile {
 
     // Lawyer specific properties
     lawyerDocId?: string
-    age: number
+    birthYear: number
     expertise1: number
     expertise2: number
     lawyerType: LawyerTypeEnum

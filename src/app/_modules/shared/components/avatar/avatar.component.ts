@@ -23,6 +23,7 @@ function stringToHslColor(str?: string): string {
 export class AvatarComponent implements OnInit {
   @Input() height: number = 2.5;
   @Input() user?: Partial<UserProfile> = {};
+  @Input() style: string = "";
 
   get isLogged(): boolean {
     return !!this.user;
@@ -42,8 +43,8 @@ export class AvatarComponent implements OnInit {
 
   }
 
-  get style(): string {
-    return `object-fit: cover; width: ${this.height}rem; height: ${this.height}rem; background-color: ${this.color}; font-size: ${this.height / 3}rem`;
+  get moreStyle(): string {
+    return `${this.style} object-fit: cover; width: ${this.height}rem; height: ${this.height}rem; background-color: ${this.color}; font-size: ${this.height / 3}rem`;
   }
 
   get color(): string {

@@ -15,12 +15,14 @@
             </div>
 
             <mat-card-actions>
-                <button style="width: 10rem;" color="accent" [disabled]="!file" mat-raised-button (click)="upload()"
-                    type="button">
+                <button style="width: 10rem;" color="accent"
+                    [class.spinner]="(command == 'upload') && (loading | async)" [disabled]="!file || (loading | async)"
+                    mat-raised-button (click)="upload()" type="button">
                     {{'Upload' | persian}}
                 </button>
-                <button style="width: 10rem;" [disabled]="!avatar" color="warn" mat-raised-button
-                    (click)="setAvatar(null)" type="button">
+                <button style="width: 10rem;" [class.spinner]="(command == 'setAvatar') && (loading | async)"
+                    [disabled]="!avatar || (loading | async)" color="warn" mat-raised-button (click)="setAvatar(null)"
+                    type="button">
                     {{'Remove Avatar' | persian}}
                 </button>
             </mat-card-actions>

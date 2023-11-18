@@ -1,0 +1,19 @@
+<mat-card class="center">
+    <button mat-icon-button color="warn" (click)="close()" style="position: absolute; left: 1rem;">
+        <mat-icon>close</mat-icon>
+    </button>
+    <mat-card-header>
+        <mat-card-title class="title">
+            {{"sign-out-title" | persian}}
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <h3>{{"sign-out-desc" | persian}}</h3>
+
+    </mat-card-content>
+    <mat-card-actions>
+        <button style="width: 100%;" type="button" (click)="logout()" mat-raised-button color="accent">
+            {{"logout" | persian}}
+        </button>
+    </mat-card-actions>
+</mat-card>

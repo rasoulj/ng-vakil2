@@ -11,6 +11,7 @@ import { CheckOtpComponent } from './check-otp/check-otp.component';
 import { VerifyComponent } from './lawyer-register/verify/verify.component';
 import { ConfirmComponent } from './lawyer-register/confirm/confirm.component';
 import { UploadAvatarComponent } from './upload-avatar/upload-avatar.component';
+import { SearchLawyersComponent } from './search-lawyers/search-lawyers.component';
 
 const isLogged: () => boolean = () => inject(AuthService).isLogged;
 const isCustomer = () => inject(AuthService).isCustomer;
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: "law-tables", component: LawTablesComponent },
   { path: "call-lawyer", component: CallLawyerComponent },
   { path: "text-lawyer", component: TextLawyerComponent },
+  { path: "search-lawyer", component: SearchLawyersComponent },
   { path: "home", component: HomeComponent },
   { path: "login", component: LoginComponent },
   { path: "lawyer-register", component: LawyerRegisterComponent },

@@ -21,6 +21,8 @@ const LogoutToolBar: ToolBarButton = {
     icon: "logout",
 }
 
+const SearchToolBar = { title: "search-lawyer", link: "/search-lawyer", icon: "search" };
+
 const TODO_TOOLBAR: ToolBarButton[] = [
     HomeToolBar,
     LogoutToolBar,
@@ -39,7 +41,7 @@ const NONE_TOOLBAR: ToolBarButton[] = [
 
 const NONE_SIDE: ToolBarButton[] = [
     { title: "call-lawyer", link: "/call-lawyer", icon: "call" },
-    { title: "text-lawyer", link: "/text-lawyer", icon: "textsms" },
+    { title: "search-lawyer", link: "/search-lawyer", icon: "search" },
     { title: "law-tables", link: "/law-tables", icon: "payment", hasDivider: true },
 
     SignInToolBar,
@@ -56,7 +58,7 @@ const CUSTOMER_TOOLBAR: ToolBarButton[] = [
     { title: "my-questions", link: "/profile/my-questions", icon: "question_answer", hasDivider: true },
 
     { title: "call-lawyer", link: "/call-lawyer", icon: "call" },
-    { title: "text-lawyer", link: "/text-lawyer", icon: "textsms", hasDivider: true },
+    SearchToolBar,
 
     LogoutToolBar,
 ]
@@ -67,7 +69,7 @@ const MANAGER_TOOLBAR: ToolBarButton[] = [
     { title: "registered-lawyers", link: "/manager/registered-lawyers", icon: "home", hasDivider: true },
 
     { title: "call-lawyer", link: "/call-lawyer", icon: "call" },
-    { title: "text-lawyer", link: "/text-lawyer", icon: "textsms", hasDivider: true },
+    { ...SearchToolBar, hasDivider: true },
 
     LogoutToolBar,
 ]
@@ -84,7 +86,7 @@ const LAWYER_TOOLBAR: ToolBarButton[] = [
 
 const CUSTOMER_SIDE: ToolBarButton[] = [
     { title: "call-lawyer", link: "call-lawyer", icon: "call" },
-    { title: "text-lawyer", link: "text-lawyer", icon: "textsms" },
+    SearchToolBar,
     { title: "law-tables", link: "law-tables", icon: "payment" },
 ]
 
@@ -93,7 +95,7 @@ const TOOLBAR = {
     [UserRoles.none]: NONE_TOOLBAR,
     [UserRoles.customer]: CUSTOMER_TOOLBAR,
     [UserRoles.admin]: TODO_TOOLBAR,
-    [UserRoles.init]: TODO_TOOLBAR,
+    [UserRoles.init]: CUSTOMER_TOOLBAR,
     [UserRoles.initLawyer]: LAWYER_TOOLBAR,
     [UserRoles.lawyer]: LAWYER_TOOLBAR,
     [UserRoles.manager]: MANAGER_TOOLBAR,
@@ -113,7 +115,7 @@ const SIDE = {
     [UserRoles.none]: NONE_SIDE,
     [UserRoles.customer]: CUSTOMER_SIDE,
     [UserRoles.admin]: TODO_SIDE,
-    [UserRoles.init]: TODO_SIDE,
+    [UserRoles.init]: CUSTOMER_SIDE,
     [UserRoles.initLawyer]: TODO_SIDE,
     [UserRoles.lawyer]: TODO_SIDE,
     [UserRoles.manager]: TODO_SIDE,
@@ -123,7 +125,7 @@ const LINKS = {
     [UserRoles.none]: ["login"],
     [UserRoles.customer]: ["profile", "profile-home"],
     [UserRoles.admin]: [""],
-    [UserRoles.init]: [""],
+    [UserRoles.init]: ["profile", "profile-home"],
     [UserRoles.initLawyer]: ["lawyer", "lawyer-home"],
     [UserRoles.lawyer]: ["lawyer", "lawyer-home"],
     [UserRoles.manager]: ["manager", "manager-home"],

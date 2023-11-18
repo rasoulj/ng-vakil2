@@ -40,6 +40,11 @@ import { VerifyComponent } from './lawyer-register/verify/verify.component';
 import { ConfirmComponent } from './lawyer-register/confirm/confirm.component';
 import { SharedModule } from './_modules/shared/shared.module';
 import { UploadAvatarComponent } from './upload-avatar/upload-avatar.component';
+import { SearchLawyersComponent } from './search-lawyers/search-lawyers.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { SearchPanelComponent } from './search-lawyers/search-panel/search-panel.component';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [
@@ -57,6 +62,8 @@ import { UploadAvatarComponent } from './upload-avatar/upload-avatar.component';
     VerifyComponent,
     ConfirmComponent,
     UploadAvatarComponent,
+    SearchLawyersComponent,
+    SearchPanelComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,6 +71,9 @@ import { UploadAvatarComponent } from './upload-avatar/upload-avatar.component';
     BrowserAnimationsModule,
     HttpClientModule,
 
+    MatButtonToggleModule,
+    MatBadgeModule,
+    MatExpansionModule,
     MatSidenavModule,
     MatGridListModule,
     MatInputModule,

@@ -1,0 +1,91 @@
+<mat-card *ngIf="stage == 1" class="center">
+    <button mat-icon-button color="warn" (click)="close()" style="position: absolute; left: 1rem;">
+        <mat-icon>close</mat-icon>
+    </button>
+
+    <form class="example-form" [formGroup]="form" (submit)="onSubmit()">
+        <mat-card-header>
+            <mat-card-title class="title">
+                {{"login-and-register" | persian}}
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>{{"phone" | persian}}</mat-label>
+                <input style="direction: ltr;" type="tel" matInput formControlName="phone" placeholder="09123456789">
+                <mat-hint>{{"enter-phone" | persian}}</mat-hint>
+                <mat-error *ngIf="phone?.touched && phone?.invalid">
+                    {{"invalid_phone"| persian}}
+                </mat-error>
+            </mat-form-field>
+
+        </mat-card-content>
+        <mat-card-actions>
+            <button style="width: 100%;" [class.spinner]="loading | async"
+                [disabled]="form.invalid || (loading | async)" type="submit" mat-raised-button color="accent">
+                {{"continue" | persian}}
+            </button>
+        </mat-card-actions>
+        <button style="padding-top: 1rem; padding-bottom: 1rem;" mat-flat-button (click)="registerAsLawyer()">
+            {{"register-as-lawyer" | persian}}
+        </button>
+    </form>
+</mat-card>
+
+
+<mat-card *ngIf="stage == 2" class="center">
+    <button mat-icon-button color="warn" (click)="close()" style="position: absolute; left: 1rem;">
+        <mat-icon>close</mat-icon>
+    </button>
+
+    <form class="example-form" [formGroup]="formOtp" (submit)="onSubmitOtp()">
+        <mat-card-header>
+            <mat-card-title class="title">
+                {{"verify-otp" | persian}}
+            </mat-card-title>
+            <br />
+        </mat-card-header>
+        <mat-card-content *ngIf="phoneOtp" style="text-align: start;">
+            {{"verify-otp-2" | persian: phoneOtp }}
+        </mat-card-content>
+
+        <mat-card-content>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>{{"otp" | persian}}</mat-label>
+                <input style="direction: ltr;" type="tel" matInput formControlName="otp" placeholder="12345">
+                <!-- <mat-hint>{{"enter-otp-2" | persian}}</mat-hint> -->
+                <mat-error *ngIf="otp?.invalid && otp?.value?.length === 5">
+                    {{"invalid_otp"| persian}}
+                </mat-error>
+            </mat-form-field>
+
+        </mat-card-content>
+
+        <mat-card-content style="height: 2rem;">
+            <span *ngIf="count > 0 && phoneOtp">{{"resend-otp-2" | persian: formattedTime}}</span>
+        </mat-card-content>
+
+        <mat-card-actions>
+            <button [class.spinner]="loading | async" style="width: 100%;"
+                [disabled]="(formOtp.invalid && !invalidOtp) || count <= 0 || !phoneOtp || (loading | async)"
+                type="submit" mat-raised-button color="accent">
+                {{"continue" | persian}}
+            </button>
+        </mat-card-actions>
+        <button style="padding-top: 1rem; padding-bottom: 1rem;" mat-flat-button (click)="changePhone()" type="button">
+            {{"modify-number" | persian}}
+        </button>
+        <button (click)="reSendOtp()" *ngIf="count == 0 && phoneOtp else ph" type="button" mat-flat-button>
+            {{"resend-otp" | persian}}
+        </button>
+
+    </form>
+</mat-card>
+
+<ng-template #ph>
+    <span style="color: transparent;">
+        {{"resend-otp" | persian}}
+    </span>
+</ng-template>

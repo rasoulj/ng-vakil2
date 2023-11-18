@@ -5,6 +5,7 @@ import { UserRole, UserRoles } from '../shared/models/user-profile.model';
 import { combineLatest } from 'rxjs';
 import { AuthService } from '../shared/services/auth.service';
 import { ToolBarButton } from '../shared/components/tool-bar-button/toolbar-button.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -12,10 +13,13 @@ import { ToolBarButton } from '../shared/components/tool-bar-button/toolbar-butt
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+
   isHandset = false;
   constructor(
     private layoutService: LayoutService,
     private authService: AuthService,
+    private router: Router,
+
   ) { }
 
   links: ToolBarButton[] = [];
