@@ -19,8 +19,8 @@ import { MatRadioModule } from '@angular/material/radio';
 
 
 import { LawTablesComponent } from './law-tables/law-tables.component';
-import { TextLawyerComponent } from './text-lawyer/text-lawyer.component';
-import { CallLawyerComponent } from './call-lawyer/call-lawyer.component';
+import { TextLawyerComponent } from './lawyers-view/text-lawyer/text-lawyer.component';
+import { CallLawyerComponent } from './lawyers-view/call-lawyer/call-lawyer.component';
 import { HomeComponent } from './home/home.component';
 import { LoginButtonComponent } from './_modules/shared/components/login-button/login-button.component';
 import { LoginComponent } from './login/login.component';
@@ -40,13 +40,15 @@ import { VerifyComponent } from './lawyer-register/verify/verify.component';
 import { ConfirmComponent } from './lawyer-register/confirm/confirm.component';
 import { SharedModule } from './_modules/shared/shared.module';
 import { UploadAvatarComponent } from './upload-avatar/upload-avatar.component';
-import { SearchLawyersComponent } from './search-lawyers/search-lawyers.component';
+import { SearchLawyersComponent } from './lawyers-view/search-lawyers/search-lawyers.component';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { SearchPanelComponent } from './search-lawyers/search-panel/search-panel.component';
+import { SearchPanelComponent } from './lawyers-view/search-panel/search-panel.component';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
 import { MatPaginatorIntlCro } from './_providers/paginator.provider';
+import { LawyersPanelComponent } from './lawyers-view/lawyers-panel/lawyers-panel.component';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -66,6 +68,7 @@ import { MatPaginatorIntlCro } from './_providers/paginator.provider';
     UploadAvatarComponent,
     SearchLawyersComponent,
     SearchPanelComponent,
+    LawyersPanelComponent,
   ],
   imports: [
     BrowserModule,
@@ -74,6 +77,7 @@ import { MatPaginatorIntlCro } from './_providers/paginator.provider';
     HttpClientModule,
 
     MatPaginatorModule,
+    MatChipsModule,
     MatButtonToggleModule,
     MatBadgeModule,
     MatExpansionModule,

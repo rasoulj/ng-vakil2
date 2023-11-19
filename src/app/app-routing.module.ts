@@ -1,8 +1,8 @@
 import { NgModule, inject } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LawTablesComponent } from './law-tables/law-tables.component';
-import { CallLawyerComponent } from './call-lawyer/call-lawyer.component';
-import { TextLawyerComponent } from './text-lawyer/text-lawyer.component';
+import { CallLawyerComponent } from './lawyers-view/call-lawyer/call-lawyer.component';
+import { TextLawyerComponent } from './lawyers-view/text-lawyer/text-lawyer.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './_modules/shared/services/auth.service';
@@ -11,7 +11,7 @@ import { CheckOtpComponent } from './check-otp/check-otp.component';
 import { VerifyComponent } from './lawyer-register/verify/verify.component';
 import { ConfirmComponent } from './lawyer-register/confirm/confirm.component';
 import { UploadAvatarComponent } from './upload-avatar/upload-avatar.component';
-import { SearchLawyersComponent } from './search-lawyers/search-lawyers.component';
+import { SearchLawyersComponent } from './lawyers-view/search-lawyers/search-lawyers.component';
 
 const isLogged: () => boolean = () => inject(AuthService).isLogged;
 const isCustomer = () => inject(AuthService).isCustomer;

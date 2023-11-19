@@ -1,0 +1,43 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 15px;
+    height: 15px;
+    margin-left: 1rem;
+}
+
+.gray {
+    background: rgb(137 137 137);
+    border-radius: 50%;
+    border: 2px solid rgb(200 200 200);
+    width: 12px;
+    height: 12px;
+}
+
+.ping {
+    background: rgb(34 197 94);
+    border-radius: 50%;
+    border: 2px solid rgb(134 239 172);
+    width: 12px;
+    height: 12px;
+    animation: load 0.8s ease-out infinite;
+}
+
+@keyframes load {
+    0% {
+        background: rgb(34 197 94);
+        border: 0px solid #fff;
+    }
+
+    50% {
+        background: rgb(34 197 94);
+        border: 2px solid rgb(134 239 172);
+    }
+
+    100% {
+        background: rgb(34 197 94);
+        border: 0px solid rgb(134 239 172);
+    }
+}

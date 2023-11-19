@@ -171,4 +171,6 @@ export const fa: any = {
 
     "items per page": "تعداد نمایش در هر صفحه",
     "of": "از",
+    "consultant-topic": "موضوع مشاوره",
+    "all": "همه",
 }

@@ -1,0 +1,24 @@
+
+.search-panel {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem;
+    margin: 0;
+    margin-bottom: 0.5rem;
+}
+
+
+.lawyers-panel {
+    margin-top: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tran {
+    color: transparent;
+}
+
+.gray {
+    color: gray
+}

@@ -1,0 +1,9 @@
+<div style="padding: 1rem;">
+    <span>{{"consultant-topic" | persian}}: </span>
+    <mat-chip-listbox [value]="expertise.name" (change)="expertiseChanged($event)">
+        <mat-chip-option *ngFor="let expertise of allExpertise" color="accent">
+            <span>{{expertise.name | persian}}</span>
+        </mat-chip-option>
+    </mat-chip-listbox>
+</div>
+<app-lawyers-panel [pageSize]="10" [provinceId]="0" [expertiseId]="expertise.id"></app-lawyers-panel>
