@@ -6,4 +6,5 @@
         </mat-chip-option>
     </mat-chip-listbox>
 </div>
-<app-lawyers-panel [pageSize]="10" [provinceId]="0" [expertiseId]="expertise.id"></app-lawyers-panel>
+<app-users-panel role="lawyer" [pageSizeOptions]="[5, 10, 25, 50]" [provinceId]="0"
+    [expertiseId]="expertise.id"></app-users-panel>

@@ -11,31 +11,11 @@ import { ToolBarButton } from '../../shared/components/tool-bar-button/toolbar-b
   templateUrl: './init-lawyers.component.html',
   styleUrls: ['./init-lawyers.component.css']
 })
-export class InitLawyersComponent implements OnInit {
+export class InitLawyersComponent {
   constructor(
     private manager: ManagerService,
     private snackBar: MatSnackBar,
   ) { }
-
-  data: UserProfile[] = [];
-
-
-  get initLawyers(): Observable<UserProfile[]> {
-    return this.manager.getUserRole(UserRoles.initLawyer as UserRole) as Observable<UserProfile[]>;
-  }
-
-  ngOnInit(): void {
-    this.loadData();
-  }
-
-  loadData() {
-    this.manager.getUserRole(UserRoles.initLawyer as UserRole).subscribe({
-      next: res => {
-        this.data = res;
-      },
-      error: err => this.handleError(err),
-    });
-  }
 
   handleError(err: any) {
     this.snackBar.open(err.message, 'Close', {
@@ -49,10 +29,15 @@ export class InitLawyersComponent implements OnInit {
     { title: "reject", link: "reject", icon: "close" },
     { title: "detail", link: "detail", icon: "more_horiz" }
   ];
-  //["check", "close", "more_horiz"];
 
-  onAction(action: string, user: UserProfile) {
-    this.manager.editUserRole(user, UserRoles.lawyer).subscribe({
+  reloadToggle = false;
+  loadData() {
+    this.reloadToggle = !this.reloadToggle;
+  }
+
+  onAction(act: { action: string, user: UserProfile }) {
+    //user = { ...user, process: true };
+    this.manager.editUserRole(act.user, UserRoles.lawyer).subscribe({
       next: () => this.loadData(),
       error: err => this.snackBar.open(err.error, PersianPipe.toPersian("ok"), {
         duration: 3000,

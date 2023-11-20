@@ -1,4 +1,3 @@
-
 .search-panel {
     display: flex;
     flex-direction: row;
@@ -21,4 +20,8 @@
 
 .gray {
     color: gray
+}
+
+.progress {
+    background-color: red;
 }

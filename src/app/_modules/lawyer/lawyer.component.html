@@ -1,9 +1,8 @@
 <div style="display: flex; flex-direction: row;">
-    <div *ngIf="isHandset"
-        style="flex: 1; background-color: white; margin: 20px; margin-left: 0; padding: 1rem; border-radius: 10px;">
+    <div *ngIf="isHandset" class="side-toolbar-card">
         <app-tool-bar [links]="links"></app-tool-bar>
     </div>
-    <div style="flex: 4; background-color: white; margin: 20px; padding: 1rem; border-radius: 10px;">
+    <div class="content-card">
         <router-outlet></router-outlet>
     </div>
 </div>

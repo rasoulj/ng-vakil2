@@ -3,7 +3,7 @@ const ONLINE_PERIOD = 8;
 
 import { stdViewPhone } from "../validators/mobile.validator";
 
-export type UserRole = "init" | "admin" | "manager" | "lawyer" | "customer" | undefined;
+export type UserRole = "none" | "initLawyer" | "init" | "admin" | "manager" | "lawyer" | "customer" | undefined;
 
 export const UserRoles = {
     none: "none",
@@ -70,6 +70,8 @@ export interface UserProfile {
 
     accessToken?: string,
     refreshToken?: string,
+
+    progress?: boolean,
 }
 
 export function getDisplayName(user?: { firstName?: string, lastName?: string, phone?: string }): string | undefined {

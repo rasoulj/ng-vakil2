@@ -27,4 +27,7 @@ button {
 
 .progress {
     height: 3px;
+    position: sticky;
+    z-index: 100;
+    top: 4rem;
 }

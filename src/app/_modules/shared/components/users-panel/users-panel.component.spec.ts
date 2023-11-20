@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LawyersPanelComponent } from './lawyers-panel.component';
+import { UsersPanelComponent } from './users-panel.component';
 
 describe('LawyersPanelComponent', () => {
-  let component: LawyersPanelComponent;
-  let fixture: ComponentFixture<LawyersPanelComponent>;
+  let component: UsersPanelComponent;
+  let fixture: ComponentFixture<UsersPanelComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [LawyersPanelComponent]
+      declarations: [UsersPanelComponent]
     });
-    fixture = TestBed.createComponent(LawyersPanelComponent);
+    fixture = TestBed.createComponent(UsersPanelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -18,3 +18,7 @@
     justify-content: space-between;
     align-items: baseline;
 }
+
+.progress {
+    background-color: #eee;
+}

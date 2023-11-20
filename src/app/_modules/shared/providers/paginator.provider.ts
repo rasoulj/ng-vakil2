@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatPaginatorIntl } from '@angular/material/paginator';
-import { PersianPipe } from '../_modules/pipes/persian.pipe';
+import { PersianPipe } from '../../pipes/persian.pipe';
 
 @Injectable()
 export class MatPaginatorIntlCro extends MatPaginatorIntl {

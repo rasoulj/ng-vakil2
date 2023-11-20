@@ -1,14 +1,14 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatChipListboxChange } from '@angular/material/chips';
 import { PageEvent } from '@angular/material/paginator';
 import { BehaviorSubject, Observable, combineLatest, concatMap, debounce, interval } from 'rxjs';
 import { PersianPipe } from 'src/app/_modules/pipes/persian.pipe';
 import { BASE_URL } from 'src/app/_modules/shared/config/consts';
-import { UserProfile } from 'src/app/_modules/shared/models/user-profile.model';
-import { PickedValue } from 'src/app/_modules/shared/services/picker.service';
+import { UserProfile, UserRole, UserRoles } from 'src/app/_modules/shared/models/user-profile.model';
+import { ToolBarButton } from '../tool-bar-button/toolbar-button.model';
 
-const URL = `${BASE_URL}users/search-lawyer`;
+const URL = `${BASE_URL}users/search`;
 
 
 interface SearchLawyer {
@@ -29,16 +29,42 @@ interface KeyValue {
 
 
 @Component({
-  selector: 'app-lawyers-panel',
-  templateUrl: './lawyers-panel.component.html',
-  styleUrls: ['./lawyers-panel.component.css']
+  selector: 'app-users-panel',
+  templateUrl: './users-panel.component.html',
+  styleUrls: ['./users-panel.component.css']
 })
-export class LawyersPanelComponent implements OnInit {
+export class UsersPanelComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
   ) { }
 
+  @Input() role: UserRole = "customer";
+  @Input() actions: ToolBarButton[] = [];
+
+  _pageSizeOptions = [6, 9, 27, 54];
+  @Input() set pageSizeOptions(value: number[]) {
+    // this._pageSize = id;
+    if (value.length >= 2) {
+      this._pageSizeOptions = value;
+      this.pageSize$.next(value[1]);
+      this.pageIndex$.next(0);
+    }
+  }
+  get pageSizeOptions() {
+    return this._pageSizeOptions;
+  }
+
+
+  _reloadToggle: boolean = false;
+  @Input() set reloadToggle(value: boolean) {
+    this._reloadToggle = value;
+    this.reloadToggle$.next(value);
+  }
+  reloadToggle$ = new BehaviorSubject<boolean>(this._reloadToggle);
+
+
+  @Output() action = new EventEmitter<{ action: string, user: UserProfile }>();
 
   _provinceId: number = 0;
   @Input() set provinceId(id: number) {
@@ -47,17 +73,6 @@ export class LawyersPanelComponent implements OnInit {
     this.pageIndex$.next(0);
   }
   get provinceId() { return this._provinceId; };
-
-
-  _pageSize: number = 9;
-  @Input() set pageSize(id: number) {
-    this._pageSize = id;
-    this.pageSize$.next(id);
-    this.pageIndex$.next(0);
-    this.pageSizeOptions = id == 9 ? [6, 9, 27, 54] : [5, 10, 25, 50];
-  }
-  get pageSize() { return this._pageSize; };
-
 
   _expertiseId: number = 0;
   @Input() set expertiseId(id: number) {
@@ -82,12 +97,9 @@ export class LawyersPanelComponent implements OnInit {
   provinceId$ = new BehaviorSubject<number>(0);
   expertiseId$ = new BehaviorSubject<number>(0);
   pageIndex$ = new BehaviorSubject<number>(0);
-  pageSize$ = new BehaviorSubject<number>(9);
+  pageSize$ = new BehaviorSubject<number>((this.pageSizeOptions?.length) >= 2 ? this.pageSizeOptions[1] : 9);
 
 
-  actions = [];
-
-  pageSizeOptions = [6, 9, 27, 54];
 
   searchTextChange() {
     this.searchText$.next(this.searchText);
@@ -104,21 +116,27 @@ export class LawyersPanelComponent implements OnInit {
   }
 
   onAction(action: string, user: UserProfile) {
+    const index = this.lawyers.data.findIndex(u => u.phone === user.phone);
+
+    this.lawyers.data[index].progress = true;
+
+    this.action.emit({ action, user });
   }
 
-  q$ = this.searchText$.pipe(
-    debounce(i => interval(1000))
-  );
-
   lawyers$ = combineLatest([
-    this.q$,
+    this.searchText$.pipe(
+      debounce(i => interval(1000))
+    ),
     this.provinceId$,
     this.expertiseId$,
-    this.pageIndex$,
+    this.pageIndex$.pipe(
+      debounce(i => interval(500)),
+    ),
     this.pageSize$,
-    this.orderBy$
+    this.orderBy$,
+    this.reloadToggle$,
   ]).pipe(
-    debounce(i => interval(500)),
+    //debounce(i => interval(500)),
     concatMap(([
       q,
       provinceId,
@@ -126,9 +144,11 @@ export class LawyersPanelComponent implements OnInit {
       pageIndex,
       pageSize,
       orderBy,
+      reloadToggle,
     ]) => {
       return this.http.get(URL, {
         params: {
+          role: this.role ?? UserRoles.customer,
           q,
           provinceId,
           expertiseId,

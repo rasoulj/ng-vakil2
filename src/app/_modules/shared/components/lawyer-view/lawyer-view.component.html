@@ -2,10 +2,11 @@
     <div style="height: 4rem;">
         <app-avatar style="position: absolute; top: 0rem; left: 2.2rem" [height]="8" [user]="user"></app-avatar>
     </div>
-    <div class="parent">
+    <div class="parent" [class.progress]="user.progress">
         <div style="height: 0.75rem;"></div>
         <div class="title-row">
-            <button mat-icon-button [matMenuTriggerFor]="menu">
+            <button *ngIf="actions.length else ph" mat-icon-button [matMenuTriggerFor]="menu"
+                [disabled]="user.progress">
                 <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
@@ -14,11 +15,13 @@
                     <span>{{action.title | persian}}</span>
                 </button>
             </mat-menu>
-            <span>{{displayName}}</span>
+            <strong>{{displayName}}</strong>
             <app-lawyer-online-view [user]="user"></app-lawyer-online-view>
 
         </div>
-        <hr style="width: 90%; background-color: #f1f1f1; ">
+
+        <mat-progress-bar [mode]="user.progress ? 'indeterminate' : 'determinate'"></mat-progress-bar>
+        <!-- <hr style="width: 90%; background-color: #f1f1f1; "> -->
         <span style="direction: ltr;">{{phone}}</span>
         <small>{{province | async}} - {{city | async}}</small>
         <small>{{graduationType}} - {{lawyerType}}</small>
@@ -27,3 +30,9 @@
     </div>
 
 </div>
+
+<ng-template #ph>
+    <button mat-icon-button [matMenuTriggerFor]="menu" [disabled]="true" style="color: transparent">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+</ng-template>

@@ -17,26 +17,6 @@ export class RegisteredLawyersComponent {
     private snackBar: MatSnackBar,
   ) { }
 
-  data: UserProfile[] = [];
-
-
-  get initLawyers(): Observable<UserProfile[]> {
-    return this.manager.getUserRole(UserRoles.lawyer as UserRole) as Observable<UserProfile[]>;
-  }
-
-  ngOnInit(): void {
-    this.loadData();
-  }
-
-  loadData() {
-    this.manager.getUserRole(UserRoles.lawyer as UserRole).subscribe({
-      next: res => {
-        this.data = res;
-      },
-      error: err => this.handleError(err),
-    });
-  }
-
   handleError(err: any) {
     this.snackBar.open(err.message, 'Close', {
       duration: 3000
@@ -49,10 +29,14 @@ export class RegisteredLawyersComponent {
     { title: "reject", link: "reject", icon: "close" },
     { title: "detail", link: "detail", icon: "more_horiz" }
   ];
-  //["check", "close", "more_horiz"];
 
-  onAction(action: string, user: UserProfile) {
-    this.manager.editUserRole(user, UserRoles.initLawyer).subscribe({
+  reloadToggle = false;
+  loadData() {
+    this.reloadToggle = !this.reloadToggle;
+  }
+
+  onAction(act: { action: string, user: UserProfile }) {
+    this.manager.editUserRole(act.user, UserRoles.initLawyer).subscribe({
       next: () => this.loadData(),
       error: err => this.snackBar.open(err.error, PersianPipe.toPersian("ok"), {
         duration: 3000,

@@ -45,9 +45,6 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { SearchPanelComponent } from './lawyers-view/search-panel/search-panel.component';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
-import { MatPaginatorIntlCro } from './_providers/paginator.provider';
-import { LawyersPanelComponent } from './lawyers-view/lawyers-panel/lawyers-panel.component';
 import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
@@ -68,7 +65,6 @@ import { MatChipsModule } from '@angular/material/chips';
     UploadAvatarComponent,
     SearchLawyersComponent,
     SearchPanelComponent,
-    LawyersPanelComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,7 +72,6 @@ import { MatChipsModule } from '@angular/material/chips';
     BrowserAnimationsModule,
     HttpClientModule,
 
-    MatPaginatorModule,
     MatChipsModule,
     MatButtonToggleModule,
     MatBadgeModule,
@@ -103,7 +98,6 @@ import { MatChipsModule } from '@angular/material/chips';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    { provide: MatPaginatorIntl, useClass: MatPaginatorIntlCro }
   ],
   bootstrap: [AppComponent]
 })

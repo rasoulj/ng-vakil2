@@ -1,4 +1,4 @@
-<mat-toolbar dir="rtl" color="primary">
+<mat-toolbar style="position: sticky; top: 0; z-index: 100;" dir="rtl" color="primary">
     <button *ngIf="!isHandset; else avatar" (click)="onClick()" type="button" mat-icon-button class="example-icon"
         aria-label="Example icon-button with menu icon">
         <mat-icon>menu</mat-icon>
@@ -19,7 +19,7 @@
     mode="indeterminate"></mat-progress-bar>
 
 <ng-template #progressHolder>
-    <div class="progress"></div>
+    <div style="background-color: transparent;" class="progress"></div>
 </ng-template>
 
 <ng-template #avatar>

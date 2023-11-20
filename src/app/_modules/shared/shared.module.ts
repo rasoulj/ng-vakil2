@@ -14,6 +14,15 @@ import { NoDataComponent } from './components/no-data/no-data.component';
 import { LawyerOnlineViewComponent } from './components/lawyer-online-view/lawyer-online-view.component';
 import { LawyerViewComponent } from './components/lawyer-view/lawyer-view.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { UsersPanelComponent } from './components/users-panel/users-panel.component';
+import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginatorIntlCro } from './providers/paginator.provider';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatChipsModule } from '@angular/material/chips';
+import { FormsModule } from '@angular/forms';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +34,7 @@ import { MatMenuModule } from '@angular/material/menu';
     NoDataComponent,
     LawyerOnlineViewComponent,
     LawyerViewComponent,
-
+    UsersPanelComponent,
   ],
   imports: [
     CommonModule,
@@ -35,7 +44,12 @@ import { MatMenuModule } from '@angular/material/menu';
     RouterModule,
     MatCardModule,
     MatMenuModule,
-
+    MatPaginatorModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatChipsModule,
+    FormsModule,
+    MatProgressBarModule,
   ],
   exports: [
     LogoutComponent,
@@ -46,7 +60,10 @@ import { MatMenuModule } from '@angular/material/menu';
     NoDataComponent,
     LawyerOnlineViewComponent,
     LawyerViewComponent,
-
+    UsersPanelComponent,
+  ],
+  providers: [
+    { provide: MatPaginatorIntl, useClass: MatPaginatorIntlCro }
   ]
 })
 export class SharedModule { }
