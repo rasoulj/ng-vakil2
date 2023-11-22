@@ -14,7 +14,7 @@ export const fa: any = {
 
     "about": "درباره",
     "main-title": "مشاوره حقوقی آنلاین ",
-    "main-subtitle": "سوالات حقوقی خود را به صورت تلفنی و یا متنی از وکلا و کارشناسان آنلاین ما بپرسید",
+    "main-subtitle": "پرسشهای حقوقی خود را به صورت تلفنی و یا متنی از وکلا و کارشناسان آنلاین ما بپرسید",
     "call-lawyer": "مشاوره تلفنی",
     "text-lawyer": "مشاوره متنی",
     "search-lawyer": "جستجوی وکیل",
@@ -27,7 +27,7 @@ export const fa: any = {
     "favorite-lawyers": "وکلای مورد علاقه",
     "legal-requests": "درخواست های حقوقی",
     "pending-payments": "در انتظار پرداخت",
-    "my-questions": "سولات من",
+    "my-questions": "سوالات من",
     "my-calls": "تماسهای من",
     "phone": "شماره موبایل",
     "login": "ورود",
@@ -126,8 +126,8 @@ export const fa: any = {
 
     "mobile": "همراه",
     "contact-us": "تماس با ما",
-    "question-bank": "بانک سوال",
-    "faq": "سوالات متداول",
+    "question-bank": "بانک پرسش",
+    "faq": "پرسشهای متداول",
     "users-conditions": "قوانین کاربران",
     "lawyers-conditions": "قوانین وکلا",
 
@@ -173,4 +173,46 @@ export const fa: any = {
     "of": "از",
     "consultant-topic": "موضوع مشاوره",
     "all": "همه",
+    "call": "تماس",
+    "question": "پرسش",
+    "Not implemented": "هنوز پیاده سازی نشده است",
+
+    "is_private": "پرسش محرمانه",
+    "is_private_hint": "کاربر محترم چنانچه میخواهید پرسش شما در سایت نمایش داده نشود این گزینه را فعال کنید.",
+
+    "question body": "متن پرسش",
+    "question body hint": "متن پرسش خود را وارد کنید",
+    "question title": "عنوان پرسش",
+    "question title hint": "عنوان پرسش خود را وارد کنید",
+
+    "answer body": "متن پاسخ",
+    "answer body hint": "متن پاسخ خود را وارد کنید",
+    "answer title": "عنوان پاسخ",
+    "answer title hint": "عنوان پاسخ خود را وارد کنید",
+
+    "expertise category": "دسته بندی",
+    "expertise category error": "دسته بندی مربوط به پرسش انتخاب نشده است",
+    "expertise category hint": "لطفا دسته بندی مربوط به پرسش خود را انتخاب کنید",
+    "question title cannot be empty": "عنوان پرسش نمیتواند خالی باشد",
+    "question body cannot be empty": "متن پرسش نمیتواند خالی باشد",
+    "answer body cannot be empty": "متن پاسخ نمیتواند خالی باشد",
+
+    "send question": "ارسال پرسش",
+    "send answer": "ارسال پاسخ",
+    "back": "بازگشت",
+    "question created successfully": "پرسش با موفقیت ایجاد شد",
+    "my questions": "پرسشهای من",
+
+    "askedMe": "پرسش از شما",
+    "complete question": "اتمام پرسش",
+
+    "questions category": "دسته بندی سوالات",
+    "questions.all": "همه پرسشها",
+    "questions.init": "پرسشهای جدید",
+    "questions.answered": "پرسشهای جاری",
+    "questions.completed": "پرسشهای تکمیل شده",
+
+    "subject.all": "همه",
+    "subject.you": "پرسش از شما",
+    "subject.other": "پرسشهای شما",
 }

@@ -1,0 +1,41 @@
+<div class="page-content">
+    <mat-card style="min-width: 44rem; padding: 1rem;">
+        <mat-card-content>
+            <p style="font-size: 1.5rem; font-weight: 500;">{{question.title}}</p>
+            <p style="padding: 1rem;">{{question.question}}</p>
+        </mat-card-content>
+        <mat-card-content *ngIf="question.answers.length > 0">
+            <p *ngFor="let answer of question.answers">
+                {{answer.text}}
+            </p>
+        </mat-card-content>
+        <mat-card-content *ngIf="!completed">
+            <form (submit)="onSend()" [formGroup]="form">
+                <mat-form-field appearance="outline" class="full">
+                    <mat-label>{{"answer body" | persian}}</mat-label>
+                    <textarea appearance="outline" matInput formControlName="answer"
+                        placeholder="{{'answer body' | persian}}" rows="5"></textarea>
+                    <mat-hint>{{'answer body hint' | persian}}</mat-hint>
+                    <mat-error *ngIf="answer?.touched && answer?.invalid">
+                        {{"answer body cannot be empty" | persian}}
+                    </mat-error>
+                </mat-form-field>
+            </form>
+        </mat-card-content>
+        <mat-card-actions class="buttons">
+            <button *ngIf="!completed" [class.spinner]="loading | async" (click)="onSend()" [disabled]="form.invalid"
+                color="primary" mat-raised-button>
+                {{"send answer" | persian}}
+                <mat-icon iconPositionEnd style="transform: rotate(180deg);">send</mat-icon>
+            </button>
+            <button [class.spinner]="loading | async" (click)="onBack()" mat-raised-button>
+                {{"back" | persian}}
+                <mat-icon iconPositionEnd>chevron_left</mat-icon>
+            </button>
+            <button *ngIf="!completed" (click)="onComplete()" color="accent" mat-raised-button>
+                {{"complete question" | persian}}
+                <mat-icon iconPositionEnd>check</mat-icon>
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>

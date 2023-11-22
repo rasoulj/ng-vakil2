@@ -71,10 +71,26 @@ export interface UserProfile {
     accessToken?: string,
     refreshToken?: string,
 
+    favorites?: string[],
+
     progress?: boolean,
 }
 
-export function getDisplayName(user?: { firstName?: string, lastName?: string, phone?: string }): string | undefined {
+export const EMPTY_USER: UserProfile = {
+    phone: "",
+    role: undefined,
+    provinceId: 0,
+    cityId: 0,
+    gender: GenderEnum.na,
+    lastSeen: new Date(),
+    birthYear: 0,
+    expertise1: 0,
+    expertise2: 0,
+    lawyerType: LawyerTypeEnum.na,
+    graduationType: GraduationTypeEnum.na
+}
+
+export function getDisplayName(user?: { firstName?: string, lastName?: string, phone?: string } | null): string | undefined {
     if (!user) return undefined;
     const fn = `${user.firstName} ${user.lastName}`;
     if (fn === ' ') {

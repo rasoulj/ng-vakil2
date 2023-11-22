@@ -6,5 +6,5 @@
         </mat-chip-option>
     </mat-chip-listbox>
 </div>
-<app-users-panel role="lawyer" [pageSizeOptions]="[5, 10, 25, 50]" [provinceId]="0"
-    [expertiseId]="expertise.id"></app-users-panel>
+<app-users-panel [expertiseId]="expertise.id" [config]="config" [pageSizeOptions]="[5, 10, 25, 50]"
+    (action)="onAction($event)"></app-users-panel>

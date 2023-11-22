@@ -1,16 +1,17 @@
-<div style="position: relative;">
+<div style="position: relative; padding-bottom: 2.2rem; padding-left: 1rem;">
     <div style="height: 4rem;">
-        <app-avatar style="position: absolute; top: 0rem; left: 2.2rem" [height]="8" [user]="user"></app-avatar>
+        <app-avatar [link]="link" style="position: absolute; top: 0rem; left: 2.2rem" [height]="8"
+            [user]="user"></app-avatar>
     </div>
     <div class="parent" [class.progress]="user.progress">
-        <div style="height: 0.75rem;"></div>
+        <div style="height: 1rem;"></div>
         <div class="title-row">
-            <button *ngIf="actions.length else ph" mat-icon-button [matMenuTriggerFor]="menu"
+            <button *ngIf="config.moreActions?.length else ph" mat-icon-button [matMenuTriggerFor]="menu"
                 [disabled]="user.progress">
                 <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-                <button *ngFor="let action of actions" mat-menu-item (click)="onAction(action.link)">
+                <button *ngFor="let action of config.moreActions" mat-menu-item (click)="onAction(action.link)">
                     <mat-icon>{{action.icon}}</mat-icon>
                     <span>{{action.title | persian}}</span>
                 </button>
@@ -22,14 +23,46 @@
 
         <mat-progress-bar [mode]="user.progress ? 'indeterminate' : 'determinate'"></mat-progress-bar>
         <!-- <hr style="width: 90%; background-color: #f1f1f1; "> -->
-        <span style="direction: ltr;">{{phone}}</span>
-        <small>{{province | async}} - {{city | async}}</small>
-        <small>{{graduationType}} - {{lawyerType}}</small>
-        <span>{{_limitDots(expertise1 | async)}}</span>
-        <span>{{_limitDots(expertise2 | async)}}</span>
-    </div>
 
+        <div
+            style="margin: 0.2rem; align-self: flex-start; padding-right: 0.4rem; padding-top: 0.4rem; padding-bottom: 0.4rem; position: relative; width: 95%; background-color: #f8f8f8; border-radius: 0.2rem;">
+
+            <button [disabled]="user.progress" (click)="setFavorite(!favorite)" [color]="isLogged ? 'accent' : 'gray'"
+                style="position: absolute; left: 0; top: 0" mat-icon-button type="button">
+                <mat-icon>{{favorite ? 'favorite' : 'favorite_outline' }}</mat-icon>
+            </button>
+
+            <div class="item" *ngIf="config.showPhone">
+                <mat-icon class="item-icon">phone</mat-icon>
+                <span style="direction: ltr; padding-right: 0.5rem;">{{phone}}</span>
+            </div>
+            <div class="item" *ngIf="!config.hideLocation">
+                <mat-icon class="item-icon">place</mat-icon>
+                <small>{{province | async}} - {{city | async}}</small>
+            </div>
+            <div class="item" *ngIf="!config.hideGraduation">
+                <mat-icon class="item-icon">school</mat-icon>
+                <small>{{graduationType}} - {{lawyerType}}</small>
+            </div>
+            <div class="item" *ngIf="!config.hideExpertise1">
+                <mat-icon class="item-icon">policy</mat-icon>
+                <small>{{_limitDots(expertise1 | async)}}</small>
+            </div>
+            <div class="item" *ngIf="config.showExpertise2">
+                <mat-icon class="item-icon">local_police</mat-icon>
+                <small>{{_limitDots(expertise2 | async)}}</small>
+            </div>
+        </div>
+        <div>
+            <button *ngFor="let act of config?.actions" [disabled]="user.progress" (click)="onAction(act.link)"
+                mat-stroked-button type="button" [color]="act.color">
+                <span>{{act.title| persian}}</span><br>
+                <!-- <mat-icon>{{act.icon}}</mat-icon> -->
+            </button>
+        </div>
+    </div>
 </div>
+
 
 <ng-template #ph>
     <button mat-icon-button [matMenuTriggerFor]="menu" [disabled]="true" style="color: transparent">

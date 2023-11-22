@@ -9,7 +9,7 @@ import { BASE_URL } from '../../shared/config/consts';
 @Injectable()
 export class ManagerService {
   editUserRole(user: UserProfile, action: string): Observable<any> {
-    const url = `${BASE_URL}users/${user.phone}`;
+    const url = `${BASE_URL}users/id/${user._id}`;
     return this.http.put(url, {
       role: action,
     });

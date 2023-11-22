@@ -46,6 +46,10 @@ import { SearchPanelComponent } from './lawyers-view/search-panel/search-panel.c
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatChipsModule } from '@angular/material/chips';
+import { ViewLawyerComponent } from './view-lawyer/view-lawyer.component';
+import { QuestionComponent } from './view-lawyer/question/question.component';
+import { CallComponent } from './view-lawyer/call/call.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -65,6 +69,9 @@ import { MatChipsModule } from '@angular/material/chips';
     UploadAvatarComponent,
     SearchLawyersComponent,
     SearchPanelComponent,
+    ViewLawyerComponent,
+    QuestionComponent,
+    CallComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,6 +79,7 @@ import { MatChipsModule } from '@angular/material/chips';
     BrowserAnimationsModule,
     HttpClientModule,
 
+    MatCheckboxModule,
     MatChipsModule,
     MatButtonToggleModule,
     MatBadgeModule,

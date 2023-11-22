@@ -3,5 +3,6 @@ export interface ToolBarButton {
     link: string,
     icon: string,
     hasDivider?: boolean,
+    color?: string,
 }
 //

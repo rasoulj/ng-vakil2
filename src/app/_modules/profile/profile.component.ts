@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LayoutService } from '../shared/services/layout.service';
 import { getToolbarMenu } from '../shared/config/consts';
-import { UserRole, UserRoles } from '../shared/models/user-profile.model';
 import { combineLatest } from 'rxjs';
 import { AuthService } from '../shared/services/auth.service';
 import { ToolBarButton } from '../shared/components/tool-bar-button/toolbar-button.model';

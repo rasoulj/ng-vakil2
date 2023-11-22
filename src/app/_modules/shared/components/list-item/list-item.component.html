@@ -1,0 +1,14 @@
+<div matRipple (click)="onClick()" class="{{'card '+class}}"
+    style="flex-direction: row; margin-bottom: 0.5rem; justify-content: space-between; padding: 0.7rem;">
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <ng-content></ng-content>
+        <div style="display: flex; flex-direction: column; justify-content: center; margin-right: 0.7rem;">
+            <p style="font-size: 1.2rem; font-weight: 500;">{{limitDots(title)}}</p>
+            <small>{{limitDots(subtitle, 50)}}</small>
+            <small style="color: gray; font-size: 0.7rem;">{{limitDots(subSubtitle)}}</small>
+        </div>
+    </div>
+    <div>
+        <mat-icon style="color: gray;">{{leadingIcon}}</mat-icon>
+    </div>
+</div>

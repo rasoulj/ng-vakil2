@@ -12,6 +12,12 @@ import { VerifyComponent } from './lawyer-register/verify/verify.component';
 import { ConfirmComponent } from './lawyer-register/confirm/confirm.component';
 import { UploadAvatarComponent } from './upload-avatar/upload-avatar.component';
 import { SearchLawyersComponent } from './lawyers-view/search-lawyers/search-lawyers.component';
+import { FavoriteLawyersComponent } from './_modules/shared/components/favorite-lawyers/favorite-lawyers.component';
+import { ViewLawyerComponent } from './view-lawyer/view-lawyer.component';
+import { QuestionComponent } from './view-lawyer/question/question.component';
+import { CallComponent } from './view-lawyer/call/call.component';
+import { MyQuestionsComponent } from './_modules/shared/components/my-questions/my-questions.component';
+import { ViewQuestionComponent } from './_modules/shared/components/my-questions/view-question/view-question.component';
 
 const isLogged: () => boolean = () => inject(AuthService).isLogged;
 const isCustomer = () => inject(AuthService).isCustomer;
@@ -26,12 +32,20 @@ const routes: Routes = [
   { path: "search-lawyer", component: SearchLawyersComponent },
   { path: "home", component: HomeComponent },
   { path: "login", component: LoginComponent },
+  { path: "favorite-lawyers", canActivate: [isLogged], component: FavoriteLawyersComponent },
   { path: "lawyer-register", component: LawyerRegisterComponent },
   { path: "lawyer-register/verify", component: VerifyComponent },
   { path: "lawyer-register/verify/:code", component: ConfirmComponent },
   { path: "otp", component: CheckOtpComponent },
 
   { path: "upload-avatar", canActivate: [isLogged], component: UploadAvatarComponent },
+  { path: "view-lawyer/:id", component: ViewLawyerComponent },
+  { path: "view-lawyer/:id/question", component: QuestionComponent },
+  { path: "view-lawyer/:id/call", component: CallComponent },
+
+  { path: 'my-questions', component: MyQuestionsComponent },
+  { path: 'my-questions/:questionId', component: ViewQuestionComponent },
+
 
   {
     path: 'profile',

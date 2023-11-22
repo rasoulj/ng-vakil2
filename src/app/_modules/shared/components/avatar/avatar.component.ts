@@ -22,8 +22,9 @@ function stringToHslColor(str?: string): string {
 })
 export class AvatarComponent implements OnInit {
   @Input() height: number = 2.5;
-  @Input() user?: Partial<UserProfile> = {};
+  @Input() user?: Partial<UserProfile> | null = {};
   @Input() style: string = "";
+  @Input() link: string | undefined = undefined;
 
   get isLogged(): boolean {
     return !!this.user;
@@ -69,7 +70,6 @@ export class AvatarComponent implements OnInit {
     if (!avatar) return undefined;
     else return `${BASE_URL}static/${avatar}`;
   }
-
 
 }
 

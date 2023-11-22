@@ -1,0 +1,16 @@
+.item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex: 1;
+    padding-bottom: 0.5rem;
+}
+
+.item-icon {
+    font-size: 1.5rem;
+    margin-left: 0.8rem;
+}
+
+.item-text {
+    font-size: 1rem;
+}

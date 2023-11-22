@@ -20,8 +20,16 @@ import { MatPaginatorIntlCro } from './providers/paginator.provider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatChipsModule } from '@angular/material/chips';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { FavoriteLawyersComponent } from './components/favorite-lawyers/favorite-lawyers.component';
+import { MyQuestionsComponent } from './components/my-questions/my-questions.component';
+import { ListItemComponent } from './components/list-item/list-item.component';
+import { QuestionRowComponent } from './components/my-questions/question-row/question-row.component';
+import { MatRippleModule } from '@angular/material/core';
+import { ViewQuestionComponent } from './components/my-questions/view-question/view-question.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { ViewAnswerComponent } from './components/my-questions/view-question/view-answer/view-answer.component';
 
 
 @NgModule({
@@ -35,6 +43,12 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     LawyerOnlineViewComponent,
     LawyerViewComponent,
     UsersPanelComponent,
+    FavoriteLawyersComponent,
+    MyQuestionsComponent,
+    ListItemComponent,
+    QuestionRowComponent,
+    ViewQuestionComponent,
+    ViewAnswerComponent,
   ],
   imports: [
     CommonModule,
@@ -50,6 +64,11 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatChipsModule,
     FormsModule,
     MatProgressBarModule,
+    MatRippleModule,
+    MatGridListModule,
+    FormsModule,
+    ReactiveFormsModule,
+
   ],
   exports: [
     LogoutComponent,
@@ -61,6 +80,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     LawyerOnlineViewComponent,
     LawyerViewComponent,
     UsersPanelComponent,
+    FavoriteLawyersComponent,
+    ViewQuestionComponent,
   ],
   providers: [
     { provide: MatPaginatorIntl, useClass: MatPaginatorIntlCro }

@@ -1,7 +1,7 @@
 <a routerLink="/signin">
     <img *ngIf="!isLogged " class="avatar" [style]="moreStyle" src="assets/images/logo.jpeg" alt="Avatar">
 </a>
-<a *ngIf="isLogged" routerLink="/upload-avatar">
+<a *ngIf="isLogged" [routerLink]="link">
 
     <div *ngIf="!avatar" class="avatar" [style]="moreStyle">
         {{name}}

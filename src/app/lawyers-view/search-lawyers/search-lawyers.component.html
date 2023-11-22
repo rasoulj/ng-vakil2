@@ -22,7 +22,8 @@
             (changed)="expertiseChanged($event)"></app-search-panel>
     </div>
     <div style="flex: 4; margin-right: 0.5rem;">
-        <app-users-panel role="lawyer" [provinceId]="provinceId" [expertiseId]="expertiseId"></app-users-panel>
+        <app-users-panel [provinceId]="provinceId" [expertiseId]="expertiseId" [config]="config"
+            (action)="onAction($event)"></app-users-panel>
 
     </div>
 

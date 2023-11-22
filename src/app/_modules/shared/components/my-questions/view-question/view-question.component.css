@@ -1,0 +1,13 @@
+.full {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+button {
+    width: 30%;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}

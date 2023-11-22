@@ -21,6 +21,15 @@ const LogoutToolBar: ToolBarButton = {
     icon: "logout",
 }
 
+function getFavToolbar(role: string, hasDivider?: boolean): ToolBarButton {
+    return { title: "favorite-lawyers", link: `/${role}/favorite-lawyers`, icon: "favorite", hasDivider };
+}
+
+function getMyQuestionToolbar(hasDivider?: boolean): ToolBarButton {
+    return { title: "my-questions", link: `/my-questions`, icon: "contact_support", hasDivider };
+}
+
+
 const SearchToolBar = { title: "search-lawyer", link: "/search-lawyer", icon: "search" };
 
 const TODO_TOOLBAR: ToolBarButton[] = [
@@ -51,11 +60,11 @@ const NONE_SIDE: ToolBarButton[] = [
 
 const CUSTOMER_TOOLBAR: ToolBarButton[] = [
     { title: "my-home", link: "/profile/profile-home", icon: "home" },
-    { title: "favorite-lawyers", link: "/profile/favorite-lawyers", icon: "favorite" },
+    getFavToolbar('profile'),
     { title: "legal-requests", link: "/profile/legal-requests", icon: "assignment" },
     { title: "pending-payments", link: "/profile/pending-payments", icon: "payment" },
     { title: "my-calls", link: "/profile/my-calls", icon: "call" },
-    { title: "my-questions", link: "/profile/my-questions", icon: "question_answer", hasDivider: true },
+    getMyQuestionToolbar(true),
 
     { title: "call-lawyer", link: "/call-lawyer", icon: "call" },
     SearchToolBar,
@@ -66,6 +75,8 @@ const CUSTOMER_TOOLBAR: ToolBarButton[] = [
 const MANAGER_TOOLBAR: ToolBarButton[] = [
     { title: "my-home", link: "/manager/manager-home", icon: "home" },
     { title: "init-lawyers", link: "/manager/init-lawyers", icon: "home", },
+    getFavToolbar('manager'),
+    getMyQuestionToolbar(),
     { title: "registered-lawyers", link: "/manager/registered-lawyers", icon: "home", hasDivider: true },
 
     { title: "call-lawyer", link: "/call-lawyer", icon: "call" },
@@ -76,6 +87,9 @@ const MANAGER_TOOLBAR: ToolBarButton[] = [
 
 const LAWYER_TOOLBAR: ToolBarButton[] = [
     { title: "my-home", link: "/lawyer/lawyer-home", icon: "home", hasDivider: true },
+    getMyQuestionToolbar(),
+    getFavToolbar('lawyer'),
+    // { title: "favorite-lawyers", link: "/favorite-lawyers", icon: "favorite" },
 
     { title: "call-lawyer", link: "/call-lawyer", icon: "call" },
     { title: "text-lawyer", link: "/text-lawyer", icon: "textsms", hasDivider: true },

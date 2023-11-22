@@ -5,11 +5,14 @@ import { PageEvent } from '@angular/material/paginator';
 import { BehaviorSubject, Observable, combineLatest, concatMap, debounce, interval } from 'rxjs';
 import { PersianPipe } from 'src/app/_modules/pipes/persian.pipe';
 import { BASE_URL } from 'src/app/_modules/shared/config/consts';
-import { UserProfile, UserRole, UserRoles } from 'src/app/_modules/shared/models/user-profile.model';
-import { ToolBarButton } from '../tool-bar-button/toolbar-button.model';
+import { UserProfile } from 'src/app/_modules/shared/models/user-profile.model';
+import { LawyerViewConfig } from '../lawyer-view/lawyer-view.model';
 
 const URL = `${BASE_URL}users/search`;
 
+const PROGRESSIVE_ACTIONS = [
+  "ok",
+]
 
 interface SearchLawyer {
   data: UserProfile[],
@@ -39,8 +42,10 @@ export class UsersPanelComponent implements OnInit {
     private http: HttpClient,
   ) { }
 
-  @Input() role: UserRole = "customer";
-  @Input() actions: ToolBarButton[] = [];
+  @Input() config: LawyerViewConfig = {
+    role: "lawyer"
+  };
+  @Input() isFavorite: boolean = false;
 
   _pageSizeOptions = [6, 9, 27, 54];
   @Input() set pageSizeOptions(value: number[]) {
@@ -118,7 +123,7 @@ export class UsersPanelComponent implements OnInit {
   onAction(action: string, user: UserProfile) {
     const index = this.lawyers.data.findIndex(u => u.phone === user.phone);
 
-    this.lawyers.data[index].progress = true;
+    this.lawyers.data[index].progress = PROGRESSIVE_ACTIONS.includes(action);
 
     this.action.emit({ action, user });
   }
@@ -148,13 +153,14 @@ export class UsersPanelComponent implements OnInit {
     ]) => {
       return this.http.get(URL, {
         params: {
-          role: this.role ?? UserRoles.customer,
+          role: this.config.role ?? "customer",
           q,
           provinceId,
           expertiseId,
           pageIndex,
           pageSize,
           orderBy: orderBy.id,
+          isFavorite: this.isFavorite,
         }
       }) as Observable<SearchLawyer>
     })

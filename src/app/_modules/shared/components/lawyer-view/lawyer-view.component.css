@@ -22,3 +22,15 @@
 .progress {
     background-color: #eee;
 }
+
+.item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex: 1;
+}
+
+.item-icon {
+    font-size: 1.2rem;
+    margin-left: 0.4rem;
+}

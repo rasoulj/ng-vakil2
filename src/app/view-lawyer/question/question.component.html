@@ -1,0 +1,67 @@
+<div class="page-content">
+    <mat-card style="min-width: 44rem; padding: 1rem;">
+        <mat-card-content
+            style="display: flex; justify-content: center; flex-direction: column; margin-bottom: 2rem; align-items: center;">
+            <app-avatar [user]="user" [height]="14"></app-avatar>
+            <p style="font-size: 1.5rem; padding: 1rem; font-weight: 600;">{{displayName}}</p>
+        </mat-card-content>
+        <mat-card-content>
+
+            <form (submit)="onSubmit()" [formGroup]="form">
+
+
+                <mat-form-field appearance="outline" class="full">
+                    <mat-label>{{"expertise category" | persian}}</mat-label>
+                    <mat-select formControlName="expertiseId" placeholder="">
+                        <mat-option class="mat-option" *ngFor="let exp of expertise$ | async" [value]="exp.id">
+                            {{exp.name}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-hint>{{"expertise category hint" | persian}}</mat-hint>
+
+                    <mat-error *ngIf="expertiseId?.touched && expertiseId?.invalid">
+                        {{"expertise category error"| persian}}
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-checkbox formControlName="isPrivate">
+                    <strong>{{"is_private" | persian}}</strong>
+                </mat-checkbox>
+                <br>
+                <small>{{"is_private_hint" | persian}}</small>
+
+
+                <mat-form-field appearance="outline" class="full" style="margin-top: 1.2rem;">
+                    <mat-label>{{"question title" | persian}}</mat-label>
+                    <input type="text" matInput formControlName="title" placeholder="{{'question title' | persian}}">
+                    <mat-hint>{{'question title hint' | persian}}</mat-hint>
+                    <mat-error *ngIf="question?.touched && question?.invalid">
+                        {{"question title cannot be empty" | persian}}
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="full">
+                    <mat-label>{{"question body" | persian}}</mat-label>
+                    <textarea appearance="outline" matInput formControlName="question"
+                        placeholder="{{'question body' | persian}}" rows="5"></textarea>
+                    <mat-hint>{{'question body hint' | persian}}</mat-hint>
+                    <mat-error *ngIf="question?.touched && question?.invalid">
+                        {{"question body cannot be empty" | persian}}
+                    </mat-error>
+                </mat-form-field>
+            </form>
+        </mat-card-content>
+        <mat-card-actions style="display: flex; ">
+            <button [class.spinner]="loading | async" [disabled]="form.invalid" mat-raised-button color="accent"
+                style="flex: 1; margin-top: 0rem;" type="submit" (click)="onSubmit()">
+                <mat-icon iconPositionEnd style="transform: rotate(180deg);">send</mat-icon>
+                {{"send question" | persian}}
+            </button>
+            <small style="flex: 0.5;">&nbsp;</small>
+            <button mat-raised-button style="flex: 1; margin-top: 0rem;" type="button" (click)="back()">
+                <mat-icon iconPositionEnd>arrow_back</mat-icon>
+                {{"back" | persian}}
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>

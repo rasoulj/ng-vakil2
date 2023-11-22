@@ -69,3 +69,22 @@ body {
     border-radius: 0.25rem;
     box-shadow: 0 1px 2px rgb(0 0 0 / 0.2);
 }
+
+.page-content {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    padding: 1rem;
+}
+
+.askedMe {
+    background-color: aliceblue;
+}
+
+.completedQuestion {
+    background-color: #f4f4f4;
+}
+
+.container {
+    padding: 0.4rem;
+}

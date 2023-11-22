@@ -26,22 +26,11 @@ export class LoginButtonComponent {
     return PersianPipe.toPersian(this.isLogged ? this.authService.displayName ?? "profile" : "login");
   }
 
-  openSignInDialog(data: SignInModel): void {
-    const dialogRef = this.dialog.open<SignInModel>(SigninDialog, {
-      width: '450px',
-      data: data,
-    });
 
-    dialogRef.closed.subscribe((value) => {
-      if (value?.registerAsLawyer) {
-        this.router.navigate(['/lawyer-register']);
-      }
-    });
-  }
 
   onClick() {
     if (!this.isLogged) {
-      this.openSignInDialog({ registerAsLawyer: false });
+      this.authService.ensureLogged();
     } else {
       this.router.navigate(getProfileLink(this.authService.role));
     }

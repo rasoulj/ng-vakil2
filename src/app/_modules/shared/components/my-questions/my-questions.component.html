@@ -1,0 +1,23 @@
+<div style="padding: 1rem;">
+    <span>{{"questions category" | persian}}: </span>
+    <mat-chip-listbox [value]="status$ | async" (change)="statusChanged($event)">
+        <mat-chip-option *ngFor="let v of allStatus" color="accent">
+            <span>{{v.viewValue}}</span>
+        </mat-chip-option>
+    </mat-chip-listbox>
+</div>
+
+<div style="padding: 1rem;">
+    <span>{{"questions category" | persian}}: </span>
+    <mat-chip-listbox [value]="subject$ | async" (change)="subjectChanged($event)">
+        <mat-chip-option *ngFor="let v of allSubject" color="primary">
+            <span>{{v.viewValue}}</span>
+        </mat-chip-option>
+    </mat-chip-listbox>
+</div>
+
+<div style="display: flex; flex-wrap: wrap;">
+
+    <app-question-row *ngFor="let q of questions.data" [question]="q" (click)="onQuestionClick(q)"></app-question-row>
+
+</div>

@@ -1,11 +1,15 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, map, of, tap } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, map, of, tap } from 'rxjs';
 import { BASE_URL } from '../config/consts';
 import { UserProfile, UserRole, UserRoles, getDisplayName } from '../models/user-profile.model';
 import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
 import { MobileValidator, normalizePhone, stdViewPhone, toLatin } from '../validators/mobile.validator';
 import { removeItem, setItem, getItem } from '../utils/utils';
+import { Dialog } from '@angular/cdk/dialog';
+import { SignInModel } from '../dialogs/signin/signin.model';
+import { SigninDialog } from '../dialogs/signin/signin.dialog';
+import { Router } from '@angular/router';
 
 const BASE = "users/"
 const AUTH = "auth";
@@ -27,12 +31,17 @@ function getUrl(ep: string): string {
 export class AuthService {
 
 
+
   get isLogged(): boolean {
     return !!this.getToken();
   }
 
   get role(): UserRole {
     return this.getUser()?.role;
+  }
+
+  get userId(): string | undefined {
+    return this.getUser()?._id;
   }
 
   get isLawyer(): boolean {
@@ -65,10 +74,73 @@ export class AuthService {
   //Phone used in signin duration
   public phone?: string;
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    public dialog: Dialog,
+    public router: Router,
+  ) {
     this.setLogged(this.getUser());
   }
 
+  ensureLogged(cb?: VoidFunction): void {
+
+    if (this.isLogged) {
+      if (cb) cb.call(this);
+      return;
+    }
+
+    const dialogRef = this.dialog.open<SignInModel>(SigninDialog, {
+      width: '450px',
+      data: { registerAsLawyer: false },
+    });
+
+    dialogRef.closed.subscribe((value) => {
+      if (value?.registerAsLawyer) {
+        this.router.navigate(['/lawyer-register']);
+      } else {
+
+        if (cb) {
+          cb();
+        }
+
+        setTimeout(() => {
+          //window.location.reload();
+
+        }, 100);
+
+
+      }
+    });
+  }
+
+  // isFavorite(phone: string | undefined): boolean {
+  //   if (!phone) return false;
+  //   return this.getUser()?.favorites?.includes(phone) ?? false;
+  // }
+
+
+  setFavorite(phone: string, fav: boolean): Observable<any> {
+
+    const user = this.getUser();
+    // const origUser = { ...user } as UserProfile;
+
+    if (!user) return of();
+    if (!user.favorites) {
+      if (fav) user.favorites = [phone];
+    } else {
+      if (fav) user.favorites.push(phone);
+      else user.favorites = user.favorites.filter(p => p !== phone);
+    }
+
+    const body = fav ? { added: phone } : { removed: phone };
+
+
+    return this.http.put(`${BASE_URL}/users/favorites`, body).pipe(
+      tap(() => {
+        this.saveUser(user);
+      })
+    ) as Observable<any>;
+  }
 
   get displayName(): string | undefined {
     return getDisplayName(this.getUser());
@@ -185,5 +257,10 @@ export class AuthService {
         }
       })
     );
+  }
+
+  getUserById(id: string): Observable<UserProfile> {
+    return this.http.get(`${BASE_URL}/users/id/${id}`) as Observable<UserProfile>
+
   }
 }
