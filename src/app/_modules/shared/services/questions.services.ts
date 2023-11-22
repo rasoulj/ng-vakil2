@@ -15,6 +15,8 @@ export class QuestionsService {
     constructor(private http: HttpClient) {
     }
 
+    //A simple test for mary
+
     myQuestions(status: string | undefined, dir: string | undefined): Observable<IGetQuestions> {
         let params = {};
         if (status) params = { ...params, status };
