@@ -38,5 +38,4 @@ export class LoginComponent {
   })
 
   get phone() { return this.form.get('phone') }
-  // get password() { return this.form.get('password') }
 }

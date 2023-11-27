@@ -113,16 +113,9 @@ export class AuthService {
     });
   }
 
-  // isFavorite(phone: string | undefined): boolean {
-  //   if (!phone) return false;
-  //   return this.getUser()?.favorites?.includes(phone) ?? false;
-  // }
-
-
   setFavorite(phone: string, fav: boolean): Observable<any> {
 
     const user = this.getUser();
-    // const origUser = { ...user } as UserProfile;
 
     if (!user) return of();
     if (!user.favorites) {
@@ -233,9 +226,7 @@ export class AuthService {
 
       return this.getUserByMobile(control.value).pipe(
         map(res => {
-          // if res is true, username exists, return true
           return res ? { mobileExists: true } : null;
-          // NB: Return null if there is no error
         })
       );
     };
@@ -260,7 +251,8 @@ export class AuthService {
   }
 
   getUserById(id: string): Observable<UserProfile> {
-    return this.http.get(`${BASE_URL}/users/id/${id}`) as Observable<UserProfile>
+    const URL = `${BASE_URL}/users/id/${id}`;
+    return this.http.get(URL) as Observable<UserProfile>
 
   }
 }

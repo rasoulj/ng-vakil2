@@ -42,9 +42,6 @@ export class UploadAvatarComponent {
         this.snackBar.open(PersianPipe.toPersian('Avatar uploaded successfully'), PersianPipe.toPersian('Close'), {
           duration: 3000
         });
-
-
-        // this.file = undefined;
       },
       error: err => {
         this.snackBar.open(err.error, PersianPipe.toPersian('Close'), {

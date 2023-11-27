@@ -19,7 +19,6 @@ import { MatRadioModule } from '@angular/material/radio';
 
 
 import { LawTablesComponent } from './law-tables/law-tables.component';
-import { TextLawyerComponent } from './lawyers-view/text-lawyer/text-lawyer.component';
 import { CallLawyerComponent } from './lawyers-view/call-lawyer/call-lawyer.component';
 import { HomeComponent } from './home/home.component';
 import { LoginButtonComponent } from './_modules/shared/components/login-button/login-button.component';
@@ -56,7 +55,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     AppComponent,
     HeaderComponent,
     LawTablesComponent,
-    TextLawyerComponent,
     CallLawyerComponent,
     HomeComponent,
     LoginButtonComponent,

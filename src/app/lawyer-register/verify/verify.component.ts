@@ -60,9 +60,7 @@ export class VerifyComponent {
   submit() {
     this.lawyerRegService.create().subscribe({
       next: ({ count }) => {
-        // const { count } = data;
         this.router.navigate(['lawyer-register/verify', count]);
-
       },
       error: (err) => {
         this.snackBar.open(err.error, PersianPipe.toPersian("ok"), {

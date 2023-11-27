@@ -6,7 +6,7 @@ import { getItem, removeItem, setItem } from "../utils/utils";
 import { GenderEnum, GraduationTypeEnum, LawyerTypeEnum } from "../models/user-profile.model";
 
 
-const NA = "NA";
+const NA = "-";
 
 
 function getUrl(type: string, id: any) {

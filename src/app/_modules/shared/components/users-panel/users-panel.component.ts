@@ -49,7 +49,6 @@ export class UsersPanelComponent implements OnInit {
 
   _pageSizeOptions = [6, 9, 27, 54];
   @Input() set pageSizeOptions(value: number[]) {
-    // this._pageSize = id;
     if (value.length >= 2) {
       this._pageSizeOptions = value;
       this.pageSize$.next(value[1]);

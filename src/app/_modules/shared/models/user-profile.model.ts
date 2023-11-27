@@ -43,6 +43,13 @@ export interface EventType {
     }
 }
 
+export interface DailySchedule {
+    day: 'sat' | 'sun' | 'mon' | 'tue' | 'wed' | 'thu' | 'fri',
+    startTime: Date,
+    endTime: Date,
+    disabled: boolean,
+}
+
 export interface UserProfile {
     _id?: string,
     //Common Properties
@@ -73,6 +80,8 @@ export interface UserProfile {
 
     favorites?: string[],
 
+    dailySchedules?: DailySchedule[],
+
     progress?: boolean,
 }
 
@@ -87,12 +96,13 @@ export const EMPTY_USER: UserProfile = {
     expertise1: 0,
     expertise2: 0,
     lawyerType: LawyerTypeEnum.na,
-    graduationType: GraduationTypeEnum.na
+    graduationType: GraduationTypeEnum.na,
+
 }
 
 export function getDisplayName(user?: { firstName?: string, lastName?: string, phone?: string } | null): string | undefined {
     if (!user) return undefined;
-    const fn = `${user.firstName} ${user.lastName}`;
+    const fn = `${user.firstName ?? ''} ${user.lastName ?? ''}`;
     if (fn === ' ') {
         return stdViewPhone(user.phone);
     } else {

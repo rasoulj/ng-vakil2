@@ -7,12 +7,8 @@ import { Component, Input } from '@angular/core';
 })
 export class NoDataComponent {
   constructor(
-    // private loadingService: LoadingService,
   ) { }
 
   @Input() visible: boolean = false;
 
-  // get loading() {
-  //   return this.loadingService.isLoading$;
-  // }
 }

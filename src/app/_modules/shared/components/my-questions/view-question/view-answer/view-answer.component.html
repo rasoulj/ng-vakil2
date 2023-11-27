@@ -1,3 +1,15 @@
-<div>
-    <div>{{text}}</div>
+<div [class]="contentClass">
+
+    <div class="avatar-div">
+        <app-avatar [user]="answer?.uid" *ngIf="isMe"></app-avatar>
+    </div>
+
+
+    <div [class]="class">
+        <p *ngFor="let s of sentences">{{s}}</p>
+        <small>{{date}}</small>
+    </div>
+    <div class="avatar-div">
+        <app-avatar [user]="answer?.uid" *ngIf="!isMe"></app-avatar>
+    </div>
 </div>

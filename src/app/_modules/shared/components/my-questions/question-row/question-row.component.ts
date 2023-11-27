@@ -1,32 +1,30 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { EMPTY_QUESTION, IQuestion } from '../../../models/question.model';
-import { QuestionsService } from '../../../services/questions.services';
 import { AuthService } from '../../../services/auth.service';
-import { take, tap } from 'rxjs';
-import { EMPTY_USER, UserProfile } from '../../../models/user-profile.model';
+import { Observable } from 'rxjs';
+import { PickerService } from '../../../services/picker.service';
 
 @Component({
   selector: 'app-question-row',
   templateUrl: './question-row.component.html',
   styleUrls: ['./question-row.component.css']
 })
-export class QuestionRowComponent implements OnInit {
+export class QuestionRowComponent {
 
   @Input() question: IQuestion = EMPTY_QUESTION;
   @Output() click = new EventEmitter<IQuestion>();
 
   constructor(
     private authService: AuthService,
+    private picker: PickerService,
   ) { }
 
   get askedMe(): boolean {
-    return this.question.responderId === this.authService.userId;
+    return this.question.responderId._id === this.authService.userId;
   }
 
-  ngOnInit(): void {
-    const uid = this.askedMe ? this.question.userId : this.question.responderId;
-
-    this.authService.getUserById(uid).subscribe(value => this.responder = value);
+  get questionText(): string {
+    return this.question.answers[0]?.text ?? '-';
   }
 
   get completed(): boolean {
@@ -37,9 +35,15 @@ export class QuestionRowComponent implements OnInit {
     return this.completed ? 'completedQuestion' : (this.askedMe ? 'askedMe' : '');
   }
 
-  responder: UserProfile = EMPTY_USER;
-
   onClick() {
     this.click.emit(this.question);
+  }
+
+  get expertise(): Observable<string> {
+    return this.picker.getExpertiseName(this.question?.expertiseId);
+  }
+
+  get visibility(): string {
+    return this.question.isPrivate ? 'visibility_off' : 'visibility'
   }
 }

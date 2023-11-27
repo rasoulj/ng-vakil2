@@ -190,15 +190,22 @@ export const fa: any = {
     "answer title": "عنوان پاسخ",
     "answer title hint": "عنوان پاسخ خود را وارد کنید",
 
+    "desc body": "متن توضیح",
+    "desc body hint": "متن توضیح خود را وارد کنید",
+    "desc title": "عنوان توضیح",
+    "desc title hint": "عنوان توضیح خود را وارد کنید",
+
     "expertise category": "دسته بندی",
     "expertise category error": "دسته بندی مربوط به پرسش انتخاب نشده است",
     "expertise category hint": "لطفا دسته بندی مربوط به پرسش خود را انتخاب کنید",
     "question title cannot be empty": "عنوان پرسش نمیتواند خالی باشد",
     "question body cannot be empty": "متن پرسش نمیتواند خالی باشد",
     "answer body cannot be empty": "متن پاسخ نمیتواند خالی باشد",
+    "desc body cannot be empty": "متن نوضیح نمیتواند خالی باشد",
 
     "send question": "ارسال پرسش",
     "send answer": "ارسال پاسخ",
+    "send desc": "ارسال توضیح",
     "back": "بازگشت",
     "question created successfully": "پرسش با موفقیت ایجاد شد",
     "my questions": "پرسشهای من",
@@ -215,4 +222,29 @@ export const fa: any = {
     "subject.all": "همه",
     "subject.you": "پرسش از شما",
     "subject.other": "پرسشهای شما",
+
+    "confirm message": "آیا از انجام این عملیات اطمینان دارید؟",
+    "done successfully": "عملیات با موفقیت انجام شد",
+    "refresh": "به روز آوری",
+
+    "visibility_off": "پرسش محرمانه",
+    "visibility": "پرسش عمومی",
+
+    "scheduling": "زمانبندی",
+    "weekly scheduling": "برنامه هفتگی",
+    "vacations": "مرخصی ها",
+    "holiday": "تعطیل",
+    "sat": "شنبه",
+    "sun": "یکشنبه",
+    "mon": "دوشنبه",
+    "tue": "سه شنبه",
+    "wed": "چهارشنبه",
+    "thu": "پنجشنبه",
+    "fri": "جمعه",
+
+    "saved": "ذخیره شد",
+    "select date": "انتخاب تاریخ",
+    "next month": "ماه بعد",
+    "prev month": "ماه قبل",
+    "today": "امروز",
 }

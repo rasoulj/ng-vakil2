@@ -1,0 +1,39 @@
+<div style="display: flex; justify-content: space-around; align-items: center;">
+    <button mat-button color="primary" (click)="prevMonth()">
+        {{'prev month' | persian}}
+        <mat-icon>chevron_right</mat-icon>
+    </button>
+    {{title}}
+    <button type="button" (click)="selectToday()" mat-stroked-button color="accent">
+        {{"today" | persian}}
+    </button>
+    <button matIconPrefix mat-button color="primary" (click)="nextMonth()">
+        <mat-icon iconPositionEnd>chevron_left</mat-icon>
+        {{'next month' | persian}}
+    </button>
+</div>
+<div style="border: 1px solid gray; border-radius: 1rem; ">
+    <mat-grid-list cols="7" rowHeight="4:3" dir="rtl">
+        <mat-grid-tile [class]="getColClass(i)" *ngFor="let d of weekDays; index as i">
+            {{d[0]}}
+        </mat-grid-tile>
+
+        <mat-grid-tile *ngFor="let d of calendar">
+            <button [disabled]="d.disabled" *ngIf="d.isToday" mat-mini-fab color="white" type="button"
+                (click)="onSelect(d)">
+                <span [ngClass]="d.className">{{d.day}}</span>
+            </button>
+            <button [disabled]="d.disabled" *ngIf="d.isSelected" mat-mini-fab type="button" [disabled]="!d">
+                <span style="color: white;" [ngClass]="d.className">{{d.day}}</span>
+            </button>
+            <button [disabled]="d.disabled" class="btn" *ngIf="d.isNormal" type="button" (click)="onSelect(d)"
+                mat-icon-button>
+                <span [ngClass]="d.className">{{d.day}}</span>
+            </button>
+            <button [disabled]="d.disabled" class="btn" *ngIf="d.isOut && !d.isSelected && !d.isToday" type="button"
+                (click)="onSelect(d)" mat-icon-button>
+                <span [ngClass]="d.className">{{d.day}}</span>
+            </button>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

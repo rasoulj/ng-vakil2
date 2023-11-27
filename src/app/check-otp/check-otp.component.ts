@@ -62,11 +62,6 @@ export class CheckOtpComponent implements OnInit {
       },
       error: (err) => {
         this.otp?.setErrors({ invalidOtp: true });
-        // this.snack.open(err.error, PersianPipe.toPersian("ok"), {
-        //   duration: 3000,
-        //   panelClass: "success-snackbar",
-        // });
-
       }
     });
   }

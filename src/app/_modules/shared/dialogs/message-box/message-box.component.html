@@ -1,0 +1,19 @@
+<mat-card class="center">
+    <button mat-icon-button color="warn" (click)="close()" style="position: absolute; left: 1rem;">
+        <mat-icon>close</mat-icon>
+    </button>
+    <mat-card-header>
+        <mat-card-title class="title">
+            {{title | persian}}
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <h3>{{message | persian}}</h3>
+    </mat-card-content>
+    <mat-card-actions>
+        <button style="flex: 1; margin-left: 0.2rem; margin-right: 0.2rem;" *ngFor="let act of actions" type="button"
+            (click)="onAction(act.link)" [color]="act.color" mat-raised-button>
+            <span>{{act.title| persian}}</span>
+        </button>
+    </mat-card-actions>
+</mat-card>

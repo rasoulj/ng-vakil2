@@ -14,6 +14,7 @@ export class ListItemComponent {
   @Input() subtitle: string | undefined;
   @Input() subSubtitle: string | undefined;
   @Input() leadingIcon: string | undefined;
+  @Input() leadingTitle: string | undefined | null;
   @Output() click = new EventEmitter<void>();
 
   limitDots(text?: string | null, limit?: number): string {

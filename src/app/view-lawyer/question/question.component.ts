@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute, } from '@angular/router';
+import { ActivatedRoute, Router, } from '@angular/router';
 import { Observable, combineLatest, map } from 'rxjs';
 import { PersianPipe } from 'src/app/_modules/pipes/persian.pipe';
 import { BASE_URL } from 'src/app/_modules/shared/config/consts';
@@ -10,6 +10,9 @@ import { EMPTY_USER, UserProfile, getDisplayName } from 'src/app/_modules/shared
 import { PickerService } from 'src/app/_modules/shared/services/picker.service';
 import { Location } from '@angular/common';
 import { LoadingService } from 'src/app/_modules/shared/services/loading.service';
+import { AuthService } from 'src/app/_modules/shared/services/auth.service';
+import { QuestionsService } from 'src/app/_modules/shared/services/questions.services';
+import { IQuestionBody } from 'src/app/_modules/shared/models/question.model';
 
 @Component({
   selector: 'app-question',
@@ -23,10 +26,12 @@ export class QuestionComponent implements OnInit {
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
     private picker: PickerService,
-    private http: HttpClient,
     private route: ActivatedRoute,
+    private router: Router,
     private location: Location,
     private loadingService: LoadingService,
+    private authService: AuthService,
+    private questionsService: QuestionsService,
   ) { }
 
   get loading() {
@@ -53,7 +58,7 @@ export class QuestionComponent implements OnInit {
   }
 
   get user$(): Observable<UserProfile> {
-    return this.http.get(`${BASE_URL}/users/id/${this.userId}`) as Observable<UserProfile>;
+    return this.authService.getUserById(this.userId);
   }
 
   form = this.fb.group({
@@ -88,29 +93,38 @@ export class QuestionComponent implements OnInit {
     return this.c("isPrivate");
   }
 
-  get questionBody(): any {
+  get questionBody(): IQuestionBody {
     return {
       question: this.question?.value,
       title: this.title?.value,
       expertiseId: this.expertiseId?.value,
       responderId: this.user._id,
+      isPrivate: this.isPrivate?.value,
     }
   }
 
 
 
+
   onSubmit() {
-    this.http.post(`${BASE_URL}/questions`, this.questionBody).subscribe({
-      next: (value) => {
+    this.authService.ensureLogged(() => {
+      this.doSubmit();
+    });
+  }
+
+  doSubmit() {
+    this.questionsService.createQuestion(this.questionBody).subscribe({
+      next: qid => {
         this.snackBar.open(PersianPipe.toPersian("question created successfully"), PersianPipe.toPersian("ok"), {
           duration: 3000,
         });
         this.form.reset();
+        this.router.navigate(['my-questions', qid]);
       },
       error: err => this.snackBar.open(err.error, PersianPipe.toPersian("ok"), {
         duration: 3000,
       }),
-    });
+    })
   }
 
   back() {

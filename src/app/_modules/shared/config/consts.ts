@@ -30,7 +30,7 @@ function getMyQuestionToolbar(hasDivider?: boolean): ToolBarButton {
 }
 
 
-const SearchToolBar = { title: "search-lawyer", link: "/search-lawyer", icon: "search" };
+const SearchToolBar = { title: "search-lawyer", link: "/search-lawyer", icon: "policy" };
 
 const TODO_TOOLBAR: ToolBarButton[] = [
     HomeToolBar,
@@ -50,7 +50,7 @@ const NONE_TOOLBAR: ToolBarButton[] = [
 
 const NONE_SIDE: ToolBarButton[] = [
     { title: "call-lawyer", link: "/call-lawyer", icon: "call" },
-    { title: "search-lawyer", link: "/search-lawyer", icon: "search" },
+    { title: "search-lawyer", link: "/search-lawyer", icon: "policy" },
     { title: "law-tables", link: "/law-tables", icon: "payment", hasDivider: true },
 
     SignInToolBar,
@@ -87,12 +87,12 @@ const MANAGER_TOOLBAR: ToolBarButton[] = [
 
 const LAWYER_TOOLBAR: ToolBarButton[] = [
     { title: "my-home", link: "/lawyer/lawyer-home", icon: "home", hasDivider: true },
+    { title: "scheduling", link: "/lawyer/scheduling", icon: "calendar_month" },
     getMyQuestionToolbar(),
     getFavToolbar('lawyer'),
-    // { title: "favorite-lawyers", link: "/favorite-lawyers", icon: "favorite" },
 
     { title: "call-lawyer", link: "/call-lawyer", icon: "call" },
-    { title: "text-lawyer", link: "/text-lawyer", icon: "textsms", hasDivider: true },
+    { title: "search-lawyer", link: "/search-lawyer", icon: "policy", hasDivider: true },
 
     LogoutToolBar,
 ]

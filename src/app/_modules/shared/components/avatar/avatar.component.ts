@@ -25,9 +25,13 @@ export class AvatarComponent implements OnInit {
   @Input() user?: Partial<UserProfile> | null = {};
   @Input() style: string = "";
   @Input() link: string | undefined = undefined;
+  @Input() showName: boolean = false;
 
-  get isLogged(): boolean {
-    return !!this.user;
+  actLink?: string = this.link ?? (!this.user?._id ? undefined : `/view-lawyer/${this.user?._id}`);
+  // actLink?: string = undefined;  //
+
+  get hasUser(): boolean {
+    return !!(this.user?._id);
   }
 
   get displayName(): string | undefined {
@@ -41,11 +45,15 @@ export class AvatarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
+    this.actLink = this.link ?? (this.user?._id ? `/view-lawyer/${this.user?._id}` : undefined);
   }
 
   get moreStyle(): string {
     return `${this.style} object-fit: cover; width: ${this.height}rem; height: ${this.height}rem; background-color: ${this.color}; font-size: ${this.height / 3}rem`;
+  }
+
+  get textStyle(): string {
+    return this.height > 10 ? "font-size: 1.5rem; padding: 1rem; font-weight: 600;" : '';
   }
 
   get color(): string {

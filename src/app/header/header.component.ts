@@ -61,10 +61,6 @@ export class HeaderComponent implements OnInit {
       this.title = title;
       this.titleService.setTitle(title === "" ? MAIN_TITLE : `${MAIN_TITLE} | ${PersianPipe.toPersian(title)}`);
     });
-
-    // this.authService.loggedUser$.subscribe((user) => {
-    //   this.links = getSideMenu(user?.role);
-    // });
   }
 
 

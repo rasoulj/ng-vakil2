@@ -9,6 +9,7 @@ import { PersianPipe } from '../_modules/pipes/persian.pipe';
 import { PickerService } from '../_modules/shared/services/picker.service';
 import { limitDots } from '../_modules/shared/utils/utils';
 import { GeneralViewConfig } from '../_configs/consts';
+import { LoadingService } from '../_modules/shared/services/loading.service';
 
 @Component({
   selector: 'app-view-lawyer',
@@ -22,8 +23,13 @@ export class ViewLawyerComponent implements OnInit {
     private http: HttpClient,
     private snackBar: MatSnackBar,
     private picker: PickerService,
+    private loadingService: LoadingService,
   ) {
 
+  }
+
+  get loading() {
+    return this.loadingService.isLoading$;
   }
 
   actions = GeneralViewConfig.actions;

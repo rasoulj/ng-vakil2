@@ -13,9 +13,10 @@ export function getItem(key: string, value?: string): string | null {
     return localStorage.getItem(key);
 }
 
-export function limitDots(text?: string | null, limit?: number): string {
-    if (!text) return '';
+export function limitDots(p?: string | null, limit?: number): string {
+    if (!p) return '';
     const len = limit ?? 25;
+    const text = p.trim().replace(/(\r\n|\n|\r)/gm, "");
     if (text.length <= len) return text;
     return text.substring(0, len) + '...';
 

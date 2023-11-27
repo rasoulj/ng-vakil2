@@ -10,9 +10,6 @@ import { LawyerViewConfig } from '../lawyer-view/lawyer-view.model';
 export class FavoriteLawyersComponent {
   reloadToggle = false;
   onAction(e: { action: string; user: UserProfile }) {
-    // if (e.action === "setFavorite") {
-    //   this.reloadToggle = !this.reloadToggle;
-    // }
   }
 
   config: LawyerViewConfig = {

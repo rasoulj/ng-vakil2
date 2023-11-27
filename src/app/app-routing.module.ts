@@ -2,7 +2,6 @@ import { NgModule, inject } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LawTablesComponent } from './law-tables/law-tables.component';
 import { CallLawyerComponent } from './lawyers-view/call-lawyer/call-lawyer.component';
-import { TextLawyerComponent } from './lawyers-view/text-lawyer/text-lawyer.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './_modules/shared/services/auth.service';
@@ -28,7 +27,6 @@ const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "law-tables", component: LawTablesComponent },
   { path: "call-lawyer", component: CallLawyerComponent },
-  { path: "text-lawyer", component: TextLawyerComponent },
   { path: "search-lawyer", component: SearchLawyersComponent },
   { path: "home", component: HomeComponent },
   { path: "login", component: LoginComponent },

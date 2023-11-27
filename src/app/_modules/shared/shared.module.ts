@@ -30,6 +30,9 @@ import { MatRippleModule } from '@angular/material/core';
 import { ViewQuestionComponent } from './components/my-questions/view-question/view-question.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { ViewAnswerComponent } from './components/my-questions/view-question/view-answer/view-answer.component';
+import { AvatarIdComponent } from './components/avatar-id/avatar-id.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { JalaliDatePickerComponent } from './components/jalali-date-picker/jalali-date-picker.component';
 
 
 @NgModule({
@@ -49,6 +52,8 @@ import { ViewAnswerComponent } from './components/my-questions/view-question/vie
     QuestionRowComponent,
     ViewQuestionComponent,
     ViewAnswerComponent,
+    AvatarIdComponent,
+    JalaliDatePickerComponent,
   ],
   imports: [
     CommonModule,
@@ -68,7 +73,7 @@ import { ViewAnswerComponent } from './components/my-questions/view-question/vie
     MatGridListModule,
     FormsModule,
     ReactiveFormsModule,
-
+    MatTooltipModule,
   ],
   exports: [
     LogoutComponent,
@@ -82,6 +87,7 @@ import { ViewAnswerComponent } from './components/my-questions/view-question/vie
     UsersPanelComponent,
     FavoriteLawyersComponent,
     ViewQuestionComponent,
+    JalaliDatePickerComponent,
   ],
   providers: [
     { provide: MatPaginatorIntl, useClass: MatPaginatorIntlCro }

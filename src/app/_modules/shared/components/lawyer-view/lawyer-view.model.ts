@@ -6,8 +6,6 @@ export interface LawyerViewConfig {
     showEmail?: boolean;
     hideExpertise1?: boolean;
     showExpertise2?: boolean;
-    // showGraduationType?: boolean;
-    // showLawyerType?: boolean;
     hideLocation?: boolean;
     showLawyerDocId?: boolean;
     hideAvatar?: boolean;

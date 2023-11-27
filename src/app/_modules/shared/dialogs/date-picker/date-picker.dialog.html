@@ -1,0 +1,21 @@
+<mat-card class="center">
+    <button mat-icon-button color="warn" (click)="close()" style="position: absolute; left: 1rem;">
+        <mat-icon>close</mat-icon>
+    </button>
+
+
+    <mat-card-header>
+        <mat-card-title class="title">
+            {{"select date" | persian}}
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <app-jalali-date-picker [value]="data.date" [minDate]="data.minDate" [maxDate]="data.maxDate"
+            (change)="data.date = $event"></app-jalali-date-picker>
+    </mat-card-content>
+    <mat-card-actions style="display: flex; flex: 1; justify-content: center; justify-items: center;">
+        <button type="button" mat-raised-button color="accent" style="width: 50%;" (click)="onSelect()">
+            {{'ok' | persian}}
+        </button>
+    </mat-card-actions>
+</mat-card>

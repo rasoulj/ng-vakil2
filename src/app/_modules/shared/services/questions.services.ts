@@ -1,11 +1,12 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { IGetQuestions, IQuestion } from "../models/question.model";
+import { Observable, map } from "rxjs";
+import { IGetQuestions, IQuestion, IQuestionBody } from "../models/question.model";
 import { BASE_URL } from "../config/consts";
-import { UserProfile } from "../models/user-profile.model";
 
 const EP = 'questions';
+
+
 
 @Injectable({
     providedIn: 'root'
@@ -31,6 +32,12 @@ export class QuestionsService {
 
     sendAnswer(questionId: string, text: string | undefined | null, completed?: boolean): Observable<any> {
         return this.http.put(`${BASE_URL}${EP}/${questionId}`, { text: !text ? undefined : text, status: completed ? 'completed' : undefined })
+    }
+
+    createQuestion(questionBody: IQuestionBody): Observable<string> {
+        return (this.http.post(`${BASE_URL}/${EP}`, questionBody) as Observable<{ id: string }>).pipe(
+            map((value: { id: string }) => value.id)
+        );
     }
 
 }

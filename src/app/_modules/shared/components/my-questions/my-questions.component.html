@@ -21,3 +21,6 @@
     <app-question-row *ngFor="let q of questions.data" [question]="q" (click)="onQuestionClick(q)"></app-question-row>
 
 </div>
+
+<app-error-message [length]="questions.data.length">
+</app-error-message>

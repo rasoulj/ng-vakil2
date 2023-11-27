@@ -24,12 +24,6 @@ export class ToolBarButtonComponent {
       width: '450px',
       data: null,
     });
-
-    // dialogRef.closed.subscribe((value) => {
-    //   if (value?.registerAsLawyer) {
-    //     this.router.navigate(['/lawyer-register']);
-    //   }
-    // });
   }
 
 

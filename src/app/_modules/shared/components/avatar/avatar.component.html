@@ -1,11 +1,16 @@
-<a routerLink="/signin">
-    <img *ngIf="!isLogged " class="avatar" [style]="moreStyle" src="assets/images/logo.jpeg" alt="Avatar">
-</a>
-<a *ngIf="isLogged" [routerLink]="link">
+<!-- <mat-icon *ngIf="!hasUser " class="avatar" [style]="moreStyle">person</mat-icon> -->
+<img *ngIf="!hasUser" src="assets/images/logo.jpeg" class="avatar" [style]="moreStyle">
+<div>
+    <a *ngIf="hasUser" [routerLink]="actLink">
 
-    <div *ngIf="!avatar" class="avatar" [style]="moreStyle">
-        {{name}}
-    </div>
+        <div *ngIf="!avatar" class="avatar" [style]="moreStyle">
+            {{name}}
+        </div>
 
-    <img *ngIf="!!avatar" class="avatar" [style]="moreStyle" [src]="avatar" alt="Avatar">
-</a>
+        <img *ngIf="!!avatar" class="avatar" [style]="moreStyle" [src]="avatar" alt="Avatar">
+
+
+    </a>
+
+    <p *ngIf="showName" [style]="textStyle">{{displayName}}</p>
+</div>

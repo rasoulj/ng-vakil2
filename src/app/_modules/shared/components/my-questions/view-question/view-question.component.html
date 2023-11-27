@@ -1,23 +1,45 @@
 <div class="page-content">
     <mat-card style="min-width: 44rem; padding: 1rem;">
-        <mat-card-content>
-            <p style="font-size: 1.5rem; font-weight: 500;">{{question.title}}</p>
-            <p style="padding: 1rem;">{{question.question}}</p>
+        <mat-card-content style="display: flex; justify-content: space-between;">
+            <app-avatar [user]="question.responderId" [showName]="true">
+            </app-avatar>
+            <div style="display: flex; align-items: center;">
+                <small style="border: 1px solid #eee; border-radius: 5px; padding: 0.5rem;">{{expertise |
+                    async}}</small>
+
+                <button mat-icon-button color="warn" matTooltip="{{visibility | persian}}">
+                    <mat-icon>{{visibility}}</mat-icon>
+                </button>
+
+                <button mat-icon-button color="accent" (click)="loadData()" matTooltip="{{'refresh' | persian}}">
+                    <mat-icon>refresh</mat-icon>
+                </button>
+                <button mat-icon-button color="primary" routerLink="/my-questions"
+                    matTooltip="{{'my-questions' | persian}}">
+                    <mat-icon>contact_support</mat-icon>
+                </button>
+            </div>
         </mat-card-content>
-        <mat-card-content *ngIf="question.answers.length > 0">
-            <p *ngFor="let answer of question.answers">
-                {{answer.text}}
-            </p>
+        <mat-card-content>
+            <div
+                style="display: flex; justify-content: center; border: 1px solid #eee; padding: 1rem; margin-bottom: 1rem; font-size: 1rem; font-weight: 300; border-radius: 1rem;">
+                {{question.title}}
+            </div>
+
+        </mat-card-content>
+        <mat-card-content>
+            <app-view-answer *ngFor="let answer of question.answers" [answer]="answer">
+            </app-view-answer>
         </mat-card-content>
         <mat-card-content *ngIf="!completed">
             <form (submit)="onSend()" [formGroup]="form">
                 <mat-form-field appearance="outline" class="full">
-                    <mat-label>{{"answer body" | persian}}</mat-label>
+                    <mat-label>{{cap.body | persian}}</mat-label>
                     <textarea appearance="outline" matInput formControlName="answer"
-                        placeholder="{{'answer body' | persian}}" rows="5"></textarea>
-                    <mat-hint>{{'answer body hint' | persian}}</mat-hint>
+                        placeholder="{{cap.body | persian}}" rows="5"></textarea>
+                    <mat-hint>{{cap.hint | persian}}</mat-hint>
                     <mat-error *ngIf="answer?.touched && answer?.invalid">
-                        {{"answer body cannot be empty" | persian}}
+                        {{cap.message | persian}}
                     </mat-error>
                 </mat-form-field>
             </form>
@@ -25,14 +47,15 @@
         <mat-card-actions class="buttons">
             <button *ngIf="!completed" [class.spinner]="loading | async" (click)="onSend()" [disabled]="form.invalid"
                 color="primary" mat-raised-button>
-                {{"send answer" | persian}}
+                {{ cap.send | persian}}
                 <mat-icon iconPositionEnd style="transform: rotate(180deg);">send</mat-icon>
             </button>
-            <button [class.spinner]="loading | async" (click)="onBack()" mat-raised-button>
+            <button (click)="onBack()" mat-raised-button>
                 {{"back" | persian}}
                 <mat-icon iconPositionEnd>chevron_left</mat-icon>
             </button>
-            <button *ngIf="!completed" (click)="onComplete()" color="accent" mat-raised-button>
+            <button *ngIf="!completed" (click)="onComplete()" [class.spinner]="loading | async" color="accent"
+                mat-raised-button>
                 {{"complete question" | persian}}
                 <mat-icon iconPositionEnd>check</mat-icon>
             </button>
