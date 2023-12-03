@@ -66,6 +66,7 @@ export class ViewQuestionComponent implements OnInit {
     this.questionsService.getQuestion(this.questionId).subscribe({
 
       next: (value) => {
+        this.loadingId = '';
         this.question = value;
         this.cap = !this.isMe ? {
           body: "answer body",
@@ -81,11 +82,13 @@ export class ViewQuestionComponent implements OnInit {
         };
 
         //this.authService.getUserById(value.responderId).subscribe(value => this.responder = value);
-      }
+      },
+      error: err => this.handleError(err),
     });
   }
 
   handleError(error: any) {
+    this.loadingId = '';
     this.form.reset();
     this.snack.open(error.error, PersianPipe.toPersian('ok'), {
       duration: 3000
@@ -102,6 +105,8 @@ export class ViewQuestionComponent implements OnInit {
     return this.question.status === "completed";
   }
 
+  loadingId = '';
+
   onComplete() {
     this.messageBox.open(action => {
       if (action !== "yes") return;
@@ -111,10 +116,11 @@ export class ViewQuestionComponent implements OnInit {
   }
 
   doComplete() {
+    this.loadingId = 'c';
     this.questionsService.sendAnswer(this.questionId, undefined, true).subscribe({
       error: err => this.handleError(err),
       next: () => {
-        this.ngOnInit();
+        this.loadData();
         this.snack.open(PersianPipe.toPersian('done successfully'), PersianPipe.toPersian("ok"), {
           duration: 3000,
         })
@@ -130,11 +136,10 @@ export class ViewQuestionComponent implements OnInit {
   }
 
   doSend() {
+    this.loadingId = 's';
     this.questionsService.sendAnswer(this.questionId, this.answer?.value, false).subscribe({
       error: err => this.handleError(err),
-      next: () => {
-        this.ngOnInit();
-      }
+      next: () => this.loadData(),
     });
   }
 

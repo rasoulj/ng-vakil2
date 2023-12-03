@@ -6,6 +6,7 @@ import { ManagerHomeComponent } from './manager-home/manager-home.component';
 import { RegisteredLawyersComponent } from './registered-lawyers/registered-lawyers.component';
 import { FavoriteLawyersComponent } from '../shared/components/favorite-lawyers/favorite-lawyers.component';
 import { MyQuestionsComponent } from '../shared/components/my-questions/my-questions.component';
+import { CalendarComponent } from '../shared/components/calendar/calendar.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,7 @@ const routes: Routes = [
       { path: 'init-lawyers', component: InitLawyersComponent },
       { path: 'favorite-lawyers', component: FavoriteLawyersComponent },
       { path: 'my-questions', component: MyQuestionsComponent },
+      { path: 'calendar', component: CalendarComponent }
 
     ]
   },

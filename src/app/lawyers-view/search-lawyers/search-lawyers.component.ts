@@ -5,6 +5,7 @@ import { LawyerViewConfig } from 'src/app/_modules/shared/components/lawyer-view
 import { GeneralViewConfig } from 'src/app/_configs/consts';
 import { UserProfile } from 'src/app/_modules/shared/models/user-profile.model';
 import { Router } from '@angular/router';
+import { ToolBarButton } from 'src/app/_modules/shared/components/tool-bar-button/toolbar-button.model';
 
 @Component({
   selector: 'app-search-lawyers',
@@ -55,10 +56,10 @@ export class SearchLawyersComponent {
 
   config: LawyerViewConfig = GeneralViewConfig;
 
-  onAction(e: { action: string; user: UserProfile; }) {
+  onAction(e: { action: ToolBarButton; user: UserProfile; }) {
     let path = `/view-lawyer/${e.user._id}`;
-    if (e.action !== 'view') {
-      path += `/${e.action}`;
+    if (e.action.link !== 'view') {
+      path += `/${e.action.link}`;
     }
 
     this.router.navigate([path]);

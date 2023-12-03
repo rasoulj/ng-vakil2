@@ -11,7 +11,7 @@
                 <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-                <button *ngFor="let action of config.moreActions" mat-menu-item (click)="onAction(action.link)">
+                <button *ngFor="let action of config.moreActions" mat-menu-item (click)="onAction(action)">
                     <mat-icon>{{action.icon}}</mat-icon>
                     <span>{{action.title | persian}}</span>
                 </button>
@@ -54,7 +54,7 @@
             </div>
         </div>
         <div>
-            <button *ngFor="let act of config?.actions" [disabled]="user.progress" (click)="onAction(act.link)"
+            <button *ngFor="let act of config?.actions" [disabled]="user.progress" (click)="onAction(act)"
                 mat-stroked-button type="button" [color]="act.color">
                 <span>{{act.title| persian}}</span><br>
                 <!-- <mat-icon>{{act.icon}}</mat-icon> -->

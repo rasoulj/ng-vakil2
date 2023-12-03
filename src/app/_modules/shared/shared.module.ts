@@ -33,6 +33,10 @@ import { ViewAnswerComponent } from './components/my-questions/view-question/vie
 import { AvatarIdComponent } from './components/avatar-id/avatar-id.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { JalaliDatePickerComponent } from './components/jalali-date-picker/jalali-date-picker.component';
+import { MatBadgeModule } from '@angular/material/badge';
+import { CalendarComponent } from './components/calendar/calendar.component';
+import { DailyCallsComponent } from './components/daily-calls/daily-calls.component';
+import { HourlyButtonComponent } from './components/daily-calls/hourly-button/hourly-button.component';
 
 
 @NgModule({
@@ -54,6 +58,9 @@ import { JalaliDatePickerComponent } from './components/jalali-date-picker/jalal
     ViewAnswerComponent,
     AvatarIdComponent,
     JalaliDatePickerComponent,
+    CalendarComponent,
+    DailyCallsComponent,
+    HourlyButtonComponent,
   ],
   imports: [
     CommonModule,
@@ -74,12 +81,15 @@ import { JalaliDatePickerComponent } from './components/jalali-date-picker/jalal
     FormsModule,
     ReactiveFormsModule,
     MatTooltipModule,
+    MatBadgeModule,
+
   ],
   exports: [
     LogoutComponent,
     ToolBarComponent,
     ToolBarButtonComponent,
     AvatarComponent,
+    AvatarIdComponent,
     ErrorMessageComponent,
     NoDataComponent,
     LawyerOnlineViewComponent,
@@ -88,6 +98,7 @@ import { JalaliDatePickerComponent } from './components/jalali-date-picker/jalal
     FavoriteLawyersComponent,
     ViewQuestionComponent,
     JalaliDatePickerComponent,
+    DailyCallsComponent,
   ],
   providers: [
     { provide: MatPaginatorIntl, useClass: MatPaginatorIntlCro }

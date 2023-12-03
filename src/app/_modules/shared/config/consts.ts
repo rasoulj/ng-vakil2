@@ -21,6 +21,9 @@ const LogoutToolBar: ToolBarButton = {
     icon: "logout",
 }
 
+//const SchedulingToolBar: ToolBarButton = { title: "scheduling", link: "/lawyer/scheduling", icon: "calendar_month" };
+// const CalendarToolBar: ToolBarButton = { title: "calendar", link: "/lawyer/scheduling", icon: "calendar_month" };
+
 function getFavToolbar(role: string, hasDivider?: boolean): ToolBarButton {
     return { title: "favorite-lawyers", link: `/${role}/favorite-lawyers`, icon: "favorite", hasDivider };
 }
@@ -32,6 +35,8 @@ function getMyQuestionToolbar(hasDivider?: boolean): ToolBarButton {
 
 const SearchToolBar = { title: "search-lawyer", link: "/search-lawyer", icon: "policy" };
 
+
+
 const TODO_TOOLBAR: ToolBarButton[] = [
     HomeToolBar,
     LogoutToolBar,
@@ -41,6 +46,8 @@ const TODO_SIDE: ToolBarButton[] = [
     HomeToolBar,
     LogoutToolBar,
 ]
+
+
 
 
 ///Not logged
@@ -77,6 +84,7 @@ const MANAGER_TOOLBAR: ToolBarButton[] = [
     { title: "init-lawyers", link: "/manager/init-lawyers", icon: "home", },
     getFavToolbar('manager'),
     getMyQuestionToolbar(),
+    { title: "calendar", link: "/manager/calendar", icon: "calendar_month" },
     { title: "registered-lawyers", link: "/manager/registered-lawyers", icon: "home", hasDivider: true },
 
     { title: "call-lawyer", link: "/call-lawyer", icon: "call" },
@@ -88,6 +96,7 @@ const MANAGER_TOOLBAR: ToolBarButton[] = [
 const LAWYER_TOOLBAR: ToolBarButton[] = [
     { title: "my-home", link: "/lawyer/lawyer-home", icon: "home", hasDivider: true },
     { title: "scheduling", link: "/lawyer/scheduling", icon: "calendar_month" },
+    { title: "calendar", link: "/lawyer/calendar", icon: "calendar_month" },
     getMyQuestionToolbar(),
     getFavToolbar('lawyer'),
 

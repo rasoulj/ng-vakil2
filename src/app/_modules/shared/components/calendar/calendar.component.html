@@ -1,0 +1,73 @@
+<div class="card" style="margin-bottom: 1rem; justify-content: center; align-items: center; display: flex; flex: 1;">
+    <div class="card-header">
+        <h3 style="margin: 1rem;">{{"vacation scheduling" | persian}}</h3>
+    </div>
+    <div class="card-body" style="width: 80%;">
+        <app-jalali-date-picker [mode]="role" [dailySchedules]="dailySchedules" [calls]="calls" [value]="selectedDate"
+            [holidays]="holidays" (monthChange)="loadData($event)" (change)="changeDate($event)" rowHeight="2:1">
+        </app-jalali-date-picker>
+
+
+        <div *ngIf="role === 'manager'" class="command-bar">
+            <form (submit)="onHoliday()" [formGroup]="form">
+                <mat-form-field appearance="outline" class="input">
+                    <mat-label>{{'holiday body' | persian}}</mat-label>
+                    <input type="text" appearance="outline" matInput formControlName="desc"
+                        placeholder="{{'holiday body' | persian}}">
+                    <mat-hint>{{'holiday hint' | persian: formattedSelected}}</mat-hint>
+                    <mat-error *ngIf="desc?.touched && desc?.invalid">
+                        {{'holiday error' | persian}}
+                    </mat-error>
+                </mat-form-field>
+
+                <button [disabled]="(loading$ | async) || form.invalid" style="margin-right: 1rem;" mat-raised-button
+                    color="accent" type="submit">
+                    {{'create holiday' | persian}}
+                    <mat-icon>add</mat-icon>
+                </button>
+            </form>
+
+
+        </div>
+
+        <div class="command-bar" *ngIf="role === 'lawyer'">
+            <button [disabled]="!canVacate || (noCallsOfDate > 0) || (loading$ | async)"
+                [class.spinner]="loading$ | async" class="create-vacation-button" mat-raised-button color="accent"
+                type="button" (click)="onVacate()">
+                {{'create vacation' | persian: formattedSelected}}
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+    </div>
+
+    <div>
+        <app-daily-calls *ngIf="role === 'lawyer'" [hideHolidays]="true" (click)="onClick($event)" [regCalls]="regCalls"
+            [user]="user" [holidays]="holidays" [selectedDate]="selectedDate"></app-daily-calls>
+    </div>
+
+    <div class="command-bar">
+        <div *ngFor="let d of selectedHolidays" [ngClass]="'create-vacation-button chip red-'+d.type">
+            <div style="display: flex; flex: 1; justify-content: space-between; align-items: center; height: 100%;">
+                <div *ngIf="d.description" style="padding-right: 2rem;">
+                    <strong style="margin-left: 1rem;">{{d.description}}</strong>
+                    <small>({{('cal.'+d.type) | persian}})</small>
+                </div>
+
+                <div *ngIf="!d.description" style="padding-right: 2rem;">
+                    <strong>{{('cal.'+d.type) | persian}}</strong>
+                </div>
+
+                <button [class.spinner]="loadingId === d._id || d._id === ''"
+                    [disabled]="loadingId === d._id || d._id === ''" style="margin-left: 0.5rem;" type="button"
+                    mat-raised-button color="accent" *ngIf="canRemove(d)" (click)="onDelete(d.type, d._id)">
+                    {{(d._id === '' ? 'creation' : 'delete') | persian}}
+                    <mat-icon *ngIf="d._id !== ''">close</mat-icon>
+                </button>
+
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

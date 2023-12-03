@@ -1,0 +1,46 @@
+.chip {
+    border: 1px solid gray;
+    border-radius: 0.4rem;
+    height: 3rem;
+    margin-bottom: 0.2rem;
+}
+
+h3 {
+    font-family: "IRANSans"
+}
+
+.input {
+    flex: 1;
+}
+
+.card-body {
+    width: 100%;
+}
+
+.input {
+    width: 50%;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: aliceblue;
+    /* width: 50%; */
+}
+
+.command-bar {
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.create-vacation-button {
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%
+}
+
+.mat-dialog {
+    transition: none;
+}

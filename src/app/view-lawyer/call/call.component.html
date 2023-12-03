@@ -1,1 +1,16 @@
-<p>call works!</p>
+<div style="display: flex; flex: 1; justify-content: center; padding: 1rem;">
+    <app-avatar [user]="user" [height]="6" [showName]="true"></app-avatar>
+</div>
+<div style="display: flex; flex: 5; margin: 1rem;">
+    <div style="flex: 2;">
+        <app-jalali-date-picker mode="customer" (monthChange)="monthChange($event)" [dailySchedules]="dailySchedules"
+            [holidays]="holidays" [value]="selectedDate" [calls]="calls"
+            (change)="changeDate($event)"></app-jalali-date-picker>
+    </div>
+    <div style="flex: 3;">
+        <app-daily-calls [timeSlot]="timeSlot" (click)="onClick($event)" [regCalls]="regCalls" [user]="user"
+            [holidays]="holidays" [selectedDate]="selectedDate"></app-daily-calls>
+
+    </div>
+
+</div>

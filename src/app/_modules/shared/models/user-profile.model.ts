@@ -45,9 +45,24 @@ export interface EventType {
 
 export interface DailySchedule {
     day: 'sat' | 'sun' | 'mon' | 'tue' | 'wed' | 'thu' | 'fri',
-    startTime: Date,
-    endTime: Date,
+    startTime: number,
+    endTime: number,
     disabled: boolean,
+}
+
+export function getOffDays(dailySchedules: DailySchedule[]): number[] {
+    return dailySchedules.map((p, i) => {
+        if (p.disabled) return i;
+        else return -1;
+    }).filter(i => i >= 0) ?? [6];
+
+}
+
+export const EMPTY_DAILY_SCHEDULE: DailySchedule = {
+    day: 'sat',
+    startTime: 0,
+    endTime: 0,
+    disabled: false,
 }
 
 export interface UserProfile {

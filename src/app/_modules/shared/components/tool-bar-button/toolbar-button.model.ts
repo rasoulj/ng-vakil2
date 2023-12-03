@@ -4,5 +4,6 @@ export interface ToolBarButton {
     icon: string,
     hasDivider?: boolean,
     color?: string,
+    needsAuth?: boolean,
 }
 //

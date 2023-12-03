@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Route } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { EMPTY_USER, UserProfile, getDisplayName } from '../_modules/shared/models/user-profile.model';
 import { HttpClient } from '@angular/common/http';
@@ -10,6 +10,8 @@ import { PickerService } from '../_modules/shared/services/picker.service';
 import { limitDots } from '../_modules/shared/utils/utils';
 import { GeneralViewConfig } from '../_configs/consts';
 import { LoadingService } from '../_modules/shared/services/loading.service';
+import { ToolBarButton } from '../_modules/shared/components/tool-bar-button/toolbar-button.model';
+import { AuthService } from '../_modules/shared/services/auth.service';
 
 @Component({
   selector: 'app-view-lawyer',
@@ -18,12 +20,14 @@ import { LoadingService } from '../_modules/shared/services/loading.service';
 })
 export class ViewLawyerComponent implements OnInit {
 
+
   constructor(
     private route: ActivatedRoute,
-    private http: HttpClient,
     private snackBar: MatSnackBar,
     private picker: PickerService,
     private loadingService: LoadingService,
+    private router: Router,
+    private authService: AuthService,
   ) {
 
   }
@@ -39,7 +43,7 @@ export class ViewLawyerComponent implements OnInit {
   }
 
   get user$(): Observable<UserProfile> {
-    return this.http.get(`${BASE_URL}/users/id/${this.userId}`) as Observable<UserProfile>;
+    return this.authService.getUserById(this.userId);
   }
 
   user: UserProfile = EMPTY_USER;
@@ -83,6 +87,19 @@ export class ViewLawyerComponent implements OnInit {
 
   _limitDots(str: string | null) {
     return limitDots(str, 30);
+  }
+
+
+  goLink(act: ToolBarButton) {
+    this.router.navigate([...this.route.snapshot.url.map(u => u.path), act.link]);
+  }
+
+  onAction(act: ToolBarButton) {
+    if (act.link === "call") {
+      this.authService.ensureLogged(() => this.goLink(act));
+    } else {
+      this.goLink(act);
+    }
   }
 
 }

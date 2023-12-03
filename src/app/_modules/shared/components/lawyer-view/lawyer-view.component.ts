@@ -20,7 +20,7 @@ export class LawyerViewComponent implements OnInit {
   @Input() config: LawyerViewConfig = {
     role: "lawyer",
   };
-  @Output() action = new EventEmitter<string>();
+  @Output() action = new EventEmitter<ToolBarButton>();
 
   constructor(
     private picker: PickerService,
@@ -53,7 +53,11 @@ export class LawyerViewComponent implements OnInit {
     this.favorite = !oldValue;
     this.authService.setFavorite(this.user.phone, fav).subscribe({
       next: () => {
-        this.onAction("setFavorite");
+        this.onAction({
+          link: "setFavorite",
+          title: '',
+          icon: ''
+        });
       },
       error: () => {
         this.favorite = oldValue;
@@ -97,8 +101,14 @@ export class LawyerViewComponent implements OnInit {
     return limitDots(str, 30);
   }
 
-  onAction(action: string) {
-    this.action.emit(action);
+  onAction(action: ToolBarButton) {
+    if (action.needsAuth) {
+      this.authService.ensureLogged(() => {
+        this.action.emit(action);
+      })
+    } else {
+      this.action.emit(action);
+    }
   }
 
   get link(): string {

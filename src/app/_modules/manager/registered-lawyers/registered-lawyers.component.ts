@@ -50,8 +50,8 @@ export class RegisteredLawyersComponent {
     this.reloadToggle = !this.reloadToggle;
   }
 
-  onAction(act: { action: string, user: UserProfile }) {
-    switch (act.action) {
+  onAction(act: { action: ToolBarButton, user: UserProfile }) {
+    switch (act.action.link) {
       case "ok":
         this.manager.editUserRole(act.user, UserRoles.initLawyer).subscribe({
           next: () => this.loadData(),

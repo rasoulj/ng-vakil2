@@ -5,14 +5,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router, } from '@angular/router';
 import { Observable, combineLatest, map } from 'rxjs';
 import { PersianPipe } from 'src/app/_modules/pipes/persian.pipe';
-import { BASE_URL } from 'src/app/_modules/shared/config/consts';
 import { EMPTY_USER, UserProfile, getDisplayName } from 'src/app/_modules/shared/models/user-profile.model';
-import { PickerService } from 'src/app/_modules/shared/services/picker.service';
 import { Location } from '@angular/common';
 import { LoadingService } from 'src/app/_modules/shared/services/loading.service';
 import { AuthService } from 'src/app/_modules/shared/services/auth.service';
 import { QuestionsService } from 'src/app/_modules/shared/services/questions.services';
 import { IQuestionBody } from 'src/app/_modules/shared/models/question.model';
+import { PickerService } from 'src/app/_modules/shared/services/picker.service';
 
 @Component({
   selector: 'app-question',

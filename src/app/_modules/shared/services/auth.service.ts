@@ -29,6 +29,14 @@ function getUrl(ep: string): string {
   providedIn: 'root'
 })
 export class AuthService {
+  getAll(set: string[]): Observable<any> {
+    return this.http.get(getUrl('all'), {
+      params: {
+        uids: set.join('|')
+      }
+    })
+
+  }
 
 
 
@@ -97,18 +105,10 @@ export class AuthService {
     dialogRef.closed.subscribe((value) => {
       if (value?.registerAsLawyer) {
         this.router.navigate(['/lawyer-register']);
-      } else {
-
+      } else if (value) {
         if (cb) {
           cb();
         }
-
-        setTimeout(() => {
-          //window.location.reload();
-
-        }, 100);
-
-
       }
     });
   }

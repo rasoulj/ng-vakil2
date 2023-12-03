@@ -45,8 +45,8 @@
             </form>
         </mat-card-content>
         <mat-card-actions class="buttons">
-            <button *ngIf="!completed" [class.spinner]="loading | async" (click)="onSend()" [disabled]="form.invalid"
-                color="primary" mat-raised-button>
+            <button *ngIf="!completed" [class.spinner]="loadingId === 's'" (click)="onSend()"
+                [disabled]="form.invalid || loadingId === 's'" color="primary" mat-raised-button>
                 {{ cap.send | persian}}
                 <mat-icon iconPositionEnd style="transform: rotate(180deg);">send</mat-icon>
             </button>
@@ -54,8 +54,8 @@
                 {{"back" | persian}}
                 <mat-icon iconPositionEnd>chevron_left</mat-icon>
             </button>
-            <button *ngIf="!completed" (click)="onComplete()" [class.spinner]="loading | async" color="accent"
-                mat-raised-button>
+            <button *ngIf="!completed" (click)="onComplete()" [disabled]="loadingId === 'c'"
+                [class.spinner]="loadingId === 'c'" color="accent" mat-raised-button>
                 {{"complete question" | persian}}
                 <mat-icon iconPositionEnd>check</mat-icon>
             </button>

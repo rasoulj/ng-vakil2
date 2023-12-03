@@ -5,17 +5,17 @@ import { AuthService } from '../../shared/services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoadingService } from '../../shared/services/loading.service';
 import { FormControl } from '@angular/forms';
-import { DatePickerService } from '../../shared/services/date-picker.service';
-import { Jalali } from 'jalali-ts';
+import { formatLabel } from '../../shared/models/calls.model';
+
 
 type Days = 'sat' | 'sun' | 'mon' | 'tue' | 'wed' | 'thu' | 'fri';
 
-function dayToDayModel(day: Days): IDayModel {
+function dayToDayModel(day: Days): DailySchedule {
   return {
     disabled: true,
     day,
-    start: 16,
-    end: 32
+    startTime: 16,
+    endTime: 32
   }
 }
 
@@ -25,43 +25,7 @@ function getAllDays() {
   return AllDays.map((day) => dayToDayModel(day));
 }
 
-interface IDayModel {
-  disabled: boolean;
-  day: Days;
-  start: number,
-  end: number,
-}
 
-function convertToModel(day: IDayModel): DailySchedule {
-  return {
-    startTime: new Date(0, 0, 0, day.start / 2, day.start % 2 * 30),
-    endTime: new Date(0, 0, 0, day.end / 2, day.end % 2 * 30),
-    day: day.day,
-    disabled: day.disabled,
-  }
-}
-
-function backToModel(schedule: DailySchedule): IDayModel {
-  const startTime = new Date(schedule.startTime ?? new Date());
-  const endTime = new Date(schedule.endTime ?? new Date());
-  return {
-    disabled: schedule.disabled,
-    day: schedule.day,
-    start: startTime.getHours() * 2 + Math.floor(startTime.getMinutes() / 30),
-    end: endTime.getHours() * 2 + Math.floor(endTime.getMinutes() / 30),
-  }
-}
-
-function zeroPad(num: number): string {
-  if (num < 10) return `0${num}`;
-  else return num.toString();
-}
-
-function formatLabel(value: number): string {
-  const hour = Math.floor(value / 2);
-  const minute = (value % 2) * 30;
-  return `${zeroPad(hour)}:${zeroPad(minute)}`;
-}
 
 @Component({
   selector: 'app-scheduling',
@@ -70,14 +34,15 @@ function formatLabel(value: number): string {
 })
 export class SchedulingComponent implements OnInit {
 
+
   today: Date = new Date();
-  startChange(d: IDayModel, $event: number) {
-    d.start = $event;
+  startChange(d: DailySchedule, $event: number) {
+    d.startTime = $event;
     this.dirty = true;
   }
 
-  endChange(d: IDayModel, $event: number) {
-    d.end = $event;
+  endChange(d: DailySchedule, $event: number) {
+    d.endTime = $event;
     this.dirty = true;
   }
 
@@ -86,8 +51,12 @@ export class SchedulingComponent implements OnInit {
     private authService: AuthService,
     private snack: MatSnackBar,
     private loadingService: LoadingService,
-    private datePicker: DatePickerService,
   ) { }
+
+
+  canRemove(type: 'vacation' | 'holiday' | 'off'): boolean {
+    return (type === 'vacation' && this.authService?.getUser()?.role === 'lawyer') || (type === 'holiday' && this.authService?.getUser()?.role === 'manager');
+  }
 
   get loading$() {
     return this.loadingService.isLoading$
@@ -96,7 +65,7 @@ export class SchedulingComponent implements OnInit {
   dateValue = new FormControl();
 
   ngOnInit(): void {
-    let days = this.authService?.getUser()?.dailySchedules?.map(backToModel);
+    let days = this.authService?.getUser()?.dailySchedules ?? [];
     if (!days || days.length !== 7) {
       days = getAllDays();
     }
@@ -104,28 +73,28 @@ export class SchedulingComponent implements OnInit {
   }
 
   dirty: boolean = false;
-  days: IDayModel[] = getAllDays();
+  days: DailySchedule[] = getAllDays();
 
   formatLabel(value: number): string {
     return formatLabel(value);
   }
 
-  getLabel(d: IDayModel): string {
+  getLabel(d: DailySchedule): string {
     if (d.disabled) return PersianPipe.toPersian('holiday');
 
-    const start = formatLabel(d.start);
-    const end = formatLabel(d.end);
+    const start = formatLabel(d.startTime);
+    const end = formatLabel(d.endTime);
     return `${start} - ${end}`
   }
 
-  toggleChecked(d: IDayModel) {
+  toggleChecked(d: DailySchedule) {
     d.disabled = !d.disabled;
     this.dirty = true;
   }
 
 
   save() {
-    const dailySchedules = this.days.map(convertToModel);
+    const dailySchedules = this.days;//.map(convertToModel);
     this.authService.setUser({ dailySchedules }).subscribe({
       next: () => {
         this.snack.open(PersianPipe.toPersian('saved'), PersianPipe.toPersian('ok'), { duration: 3000 });
@@ -138,17 +107,4 @@ export class SchedulingComponent implements OnInit {
 
 
 
-  testDate = new Date(1978, 6, 2);
-  changeDate(d: Date) {
-    this.testDate = d;
-  }
-
-  pickDate() {
-    const jal = Jalali.parse("1402-01-01");
-
-
-    this.datePicker.pick(new Date(2023, 10, 28), new Date(2023, 10, 29), new Date(2023, 11, 16)).subscribe({
-      next: console.log,
-    });
-  }
 }

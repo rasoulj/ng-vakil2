@@ -1,19 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { UserProfile, getDisplayName, isOnlineUser } from '../../models/user-profile.model';
 import { BASE_URL } from '../../config/consts';
+import { stringToHslColor } from '../../utils/utils';
 
-const SAT = '48.75%';
-const LUM = '53.333%';
 
-function stringToHslColor(str?: string): string {
-  const text = (str ?? "AA").trim();
-  let hash = 0; //..reduce((s, i) => i + ((s << 5) - s));
-  for (let i of text) {
-    hash = i.charCodeAt(0) + ((hash << 5) - hash);
-  }
-  var h = hash % 360;
-  return `hsl(${1.0 * h}, ${SAT}, ${LUM})`;
-}
+
 
 @Component({
   selector: 'app-avatar',

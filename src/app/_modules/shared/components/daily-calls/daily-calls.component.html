@@ -1,0 +1,25 @@
+<div
+    style="box-shadow: 0 1px 2px rgb(0 0 0 / 0.2); background-color: white; padding: 1rem; border-radius: 0.4rem; padding: 1rem; margin: 1rem; flex-wrap: wrap;">
+
+    <app-hourly-button [loggedUserId]="loggedUserId" *ngFor="let c of calls" [timeSlot]="timeSlot" [callUi]="c"
+        [holidaysLength]="selectedHolidays.length" (click)="onClick(c)"></app-hourly-button>
+
+    <div *ngIf="!hideHolidays">
+        <div style="height: 1rem;"></div>
+        <div *ngFor="let d of selectedHolidays" [ngClass]="'create-vacation-button chip red-'+d.type">
+            <div style="display: flex; flex: 1; justify-content: space-between; align-items: center; height: 100%;">
+                <div *ngIf="d.description" style="padding-right: 2rem;">
+                    <strong style="margin-left: 1rem;">{{d.description}}</strong>
+                    <small>({{('cal.'+d.type) | persian}})</small>
+                </div>
+
+                <div *ngIf="!d.description" style="padding-right: 2rem;">
+                    <strong>{{('cal.'+d.type) | persian}}</strong>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

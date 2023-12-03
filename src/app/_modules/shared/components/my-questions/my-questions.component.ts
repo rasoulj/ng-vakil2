@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { QuestionsService } from '../../services/questions.services';
 import { IGetQuestions, IQuestion } from '../../models/question.model';
 import { Router } from '@angular/router';

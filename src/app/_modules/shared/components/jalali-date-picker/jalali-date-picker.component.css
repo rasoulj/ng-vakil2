@@ -1,19 +1,20 @@
 .col {
-    background-color: #ccc;
+    background-color: #ddd;
     font-weight: 600;
 }
 
-.col6 {
-    border-top-left-radius: 1rem;
-    color: red;
+.colH {
+    font-weight: 600;
+    color: #ff3f80;
+    background-color: #904a6154
 }
 
-/* .friday {
-    color: red;
-} */
+.col6 {
+    border-top-left-radius: 0.25rem;
+}
 
 .col0 {
-    border-top-right-radius: 1rem;
+    border-top-right-radius: 0.25rem;
 }
 
 .normal {
@@ -22,7 +23,7 @@
 
 .normal-friday {
     font-weight: 400;
-    color: red;
+    color: ff3f80;
 }
 
 .out {
@@ -32,10 +33,23 @@
 
 .out-friday {
     font-weight: 100;
-    color: rgb(216, 179, 179)
+    color: #ff3f80;
 }
 
 .btn {
     font-size: 1rem;
     text-align: center;
+}
+
+/* .mat-badge.hide-text .mat-badge-content {
+    font-size: 1px;
+    color: transparent;
+} */
+
+.red {
+    background-color: #ff3f7f12;
+}
+
+.bg-white {
+    background-color: white;
 }

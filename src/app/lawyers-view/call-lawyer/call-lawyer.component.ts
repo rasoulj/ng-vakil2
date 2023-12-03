@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { GeneralViewConfig } from 'src/app/_configs/consts';
 import { PersianPipe } from 'src/app/_modules/pipes/persian.pipe';
 import { LawyerViewConfig } from 'src/app/_modules/shared/components/lawyer-view/lawyer-view.model';
+import { ToolBarButton } from 'src/app/_modules/shared/components/tool-bar-button/toolbar-button.model';
 import { UserProfile } from 'src/app/_modules/shared/models/user-profile.model';
 import { PickedValue, PickerService } from 'src/app/_modules/shared/services/picker.service';
 
@@ -45,10 +46,10 @@ export class CallLawyerComponent implements OnInit {
 
   config: LawyerViewConfig = GeneralViewConfig;
 
-  onAction(e: { action: string; user: UserProfile; }) {
+  onAction(e: { action: ToolBarButton; user: UserProfile; }) {
     let path = `/view-lawyer/${e.user._id}`;
-    if (e.action !== 'view') {
-      path += `/${e.action}`;
+    if (e.action.link !== 'view') {
+      path += `/${e.action.link}`;
     }
 
     this.router.navigate([path]);

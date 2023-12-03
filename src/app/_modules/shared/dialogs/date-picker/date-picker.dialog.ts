@@ -35,11 +35,6 @@ export interface IDatePickerModel {
 })
 export class DatePickerDialog {
 
-  onChange($event: Date) {
-    throw new Error('Method not implemented.');
-  }
-
-
   constructor(
     public dialogRef: DialogRef<IDatePickerModel | undefined>,
     @Inject(DIALOG_DATA) public data: IDatePickerModel,

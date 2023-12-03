@@ -247,4 +247,18 @@ export const fa: any = {
     "next month": "ماه بعد",
     "prev month": "ماه قبل",
     "today": "امروز",
+    "vacation scheduling": "برنامه مرخصی ها",
+    "cal.vacation": "مرخصی",
+    "cal.holiday": "تعطیل رسمی",
+    "cal.off": "روز غیرکاری",
+
+    "create vacation": "ایجاد مرخصی برای روز {0}",
+    "calendar": "تقویم",
+    "reserved": "رزرو شده",
+    "holiday body": "عنوان مناسبت تعطیل",
+    "holiday error": "عنوان مناسبت تعطیل نمیتواند خالی باشد",
+    "holiday hint": "برای ایجاد مناسبت تعطیل در روز {0} عنوانی برای آن وارد کنید",
+    "create holiday": "ایجاد مناسبت تعطیل",
+    "creation": "در حال ایجاد",
+    "selfie": "خودم"
 }

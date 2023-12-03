@@ -16,6 +16,7 @@ import { UserProfile } from '../../models/user-profile.model';
 import { interval, take } from 'rxjs';
 import { MatIconModule } from '@angular/material/icon';
 import { LoadingService } from '../../services/loading.service';
+import { zeroPad } from '../../models/calls.model';
 
 enum SignInStageEnum {
   phone = 1,
@@ -23,12 +24,6 @@ enum SignInStageEnum {
 }
 
 const MAX_COUNT = 12;
-
-function zeroPad(num: number): string {
-  if (num < 10) return `0${num}`;
-  else return num.toString();
-}
-
 
 @Component({
   selector: 'app-signin',
@@ -130,7 +125,7 @@ export class SigninDialog {
       next: (user) => {
         if (!!user.accessToken) {
           this.authService.saveUser(user);
-          this.dialogRef.close();
+          this.dialogRef.close({ registerAsLawyer: false });
           this.snack.open(PersianPipe.toPersian("logged in successfully"), PersianPipe.toPersian("ok"), {
             duration: 3000,
           })
@@ -168,3 +163,4 @@ export class SigninDialog {
   }
 
 }
+

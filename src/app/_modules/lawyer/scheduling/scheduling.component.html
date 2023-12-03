@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" style="margin-bottom: 1rem;">
     <div class="card-header">
         <h3 style="margin: 1rem;">{{"weekly scheduling" | persian}}</h3>
     </div>
@@ -15,8 +15,8 @@
             <div style="flex: 5;">
                 <mat-slider min="16" max="40" style="width: 95%;" [disabled]="d.disabled" showTickMarks discrete
                     [displayWith]="formatLabel">
-                    <input [value]="d.start" (valueChange)="startChange(d, $event)" matSliderStartThumb>
-                    <input [value]="d.end" (valueChange)="endChange(d, $event)" matSliderEndThumb>
+                    <input [value]="d.startTime" (valueChange)="startChange(d, $event)" matSliderStartThumb>
+                    <input [value]="d.endTime" (valueChange)="endChange(d, $event)" matSliderEndThumb>
                 </mat-slider>
             </div>
         </div>
@@ -27,8 +27,4 @@
             {{'save' | persian}}
         </button>
     </div>
-</div>
-
-<div class="card">
-    <button type="button" (click)="pickDate()">{{"next" | persian}}</button>
 </div>

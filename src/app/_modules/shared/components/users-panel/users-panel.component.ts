@@ -7,6 +7,8 @@ import { PersianPipe } from 'src/app/_modules/pipes/persian.pipe';
 import { BASE_URL } from 'src/app/_modules/shared/config/consts';
 import { UserProfile } from 'src/app/_modules/shared/models/user-profile.model';
 import { LawyerViewConfig } from '../lawyer-view/lawyer-view.model';
+import { ToolBarButton } from '../tool-bar-button/toolbar-button.model';
+import { AuthService } from '../../services/auth.service';
 
 const URL = `${BASE_URL}users/search`;
 
@@ -40,6 +42,7 @@ export class UsersPanelComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
+    private authService: AuthService,
   ) { }
 
   @Input() config: LawyerViewConfig = {
@@ -68,7 +71,7 @@ export class UsersPanelComponent implements OnInit {
   reloadToggle$ = new BehaviorSubject<boolean>(this._reloadToggle);
 
 
-  @Output() action = new EventEmitter<{ action: string, user: UserProfile }>();
+  @Output() action = new EventEmitter<{ action: ToolBarButton, user: UserProfile }>();
 
   _provinceId: number = 0;
   @Input() set provinceId(id: number) {
@@ -119,12 +122,18 @@ export class UsersPanelComponent implements OnInit {
 
   }
 
-  onAction(action: string, user: UserProfile) {
+  onAction(action: ToolBarButton, user: UserProfile) {
     const index = this.lawyers.data.findIndex(u => u.phone === user.phone);
 
-    this.lawyers.data[index].progress = PROGRESSIVE_ACTIONS.includes(action);
+    this.lawyers.data[index].progress = PROGRESSIVE_ACTIONS.includes(action.link);
 
-    this.action.emit({ action, user });
+    if (action.needsAuth) {
+      this.authService.ensureLogged(() => {
+        this.action.emit({ action, user });
+      })
+    } else {
+      this.action.emit({ action, user });
+    }
   }
 
   lawyers$ = combineLatest([

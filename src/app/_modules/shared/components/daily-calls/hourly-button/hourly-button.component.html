@@ -1,0 +1,17 @@
+<button [class.spinner]="timeSlot === callUi.timeSlot" [disabled]="(callUi.disabled || holidaysLength > 0)"
+    (click)="onClick()" [color]="callUi.call ? 'primary' : ''" mat-raised-button
+    style="height: 3rem; width: 12rem; margin: 0.2rem;" type="button" [ngStyle]="{backgroundColor}">
+    <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center">
+        <app-avatar *ngIf="backgroundColor" [height]="2" [user]="callUi.call?.userId"></app-avatar>
+        <div style="display: flex; flex-direction: column;">
+            <small>{{title ?? callUi.title}}</small>
+            <small *ngIf="title" style="font-size: 9px; font-weight: 300;">({{callUi.title}})</small>
+        </div>
+
+    </div>
+
+
+
+    <!-- <mat-icon *ngIf="callUi.call?.userId">
+    </mat-icon> -->
+</button>

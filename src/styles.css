@@ -89,3 +89,15 @@ body {
 .container {
     padding: 0.4rem;
 }
+
+.red-holiday {
+    background-color: #ff3f7f32;
+}
+
+.red-vacation {
+    background-color: #ff3f7f52;
+}
+
+.red-off {
+    background-color: #ff3f7f12;
+}
