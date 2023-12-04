@@ -4,7 +4,7 @@
 <div style="display: flex; flex: 5; margin: 1rem;">
     <div style="flex: 2;">
         <app-jalali-date-picker mode="customer" (monthChange)="monthChange($event)" [dailySchedules]="dailySchedules"
-            [holidays]="holidays" [value]="selectedDate" [calls]="calls"
+            [holidays]="holidays" [value]="selectedDate" [calls]="calls" [minDate]="minDate" [maxDate]="maxDate"
             (change)="changeDate($event)"></app-jalali-date-picker>
     </div>
     <div style="flex: 3;">

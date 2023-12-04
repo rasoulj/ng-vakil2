@@ -147,6 +147,8 @@ export class JalaliDatePickerComponent implements OnInit {
   }
 
   onSelect(cd: CalendarDay) {
+    if (cd.disabled) return;
+
     const jd = this.currentDate.clone();
     if (cd.isOut) {
       jd.add(cd.day <= 7 ? 1 : -1, "month");

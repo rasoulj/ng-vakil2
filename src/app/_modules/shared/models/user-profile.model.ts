@@ -96,6 +96,7 @@ export interface UserProfile {
     favorites?: string[],
 
     dailySchedules?: DailySchedule[],
+    weeksNotice?: number,
 
     progress?: boolean,
 }
@@ -112,7 +113,6 @@ export const EMPTY_USER: UserProfile = {
     expertise2: 0,
     lawyerType: LawyerTypeEnum.na,
     graduationType: GraduationTypeEnum.na,
-
 }
 
 export function getDisplayName(user?: { firstName?: string, lastName?: string, phone?: string } | null): string | undefined {

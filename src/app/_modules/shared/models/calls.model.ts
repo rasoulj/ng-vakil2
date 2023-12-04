@@ -68,20 +68,17 @@ export function isSelfie(call: ICalls): boolean {
     return call.userId._id === call.responderId._id;
 }
 
+export function nextFriday(n?: number): Date {
+    let d = new Jalali();
+    const day = (d.date.getDay() + 1) % 7;
+    let daysToFriday = 6 - day;
+    if (daysToFriday === 0) daysToFriday = 7;
 
-// export function getCalls(ds: DailySchedule, regCalls: ICalls[], userId?: string): ICallUI[] {
-//     const calls: ICallUI[] = [];
-//     for (let i = 16; i <= 41; i++) {
-//         const call = regCalls.find(p => p.timeSlot === i);
-//         calls.push({
-//             timeSlot: i,
-//             title: getCallLabel(geEmptyCall(new Date(), i)),
-//             disabled: ds.startTime > i || ds.endTime < i || ((!!call?.userId && (call?.userId !== userId)) && (!!call?.responderId && (call?.responderId !== userId))),
-//             call,
-//         });
-//     }
-//     return calls;
-// }
+    if (!n || n <= 0) n = 1;
+    const daysToEnd = daysToFriday + (n - 1) * 7;
+    d.add(daysToEnd, 'day');
+    return d.date;
+}
 
 export function filterCallsOfDate(date: Date, calls: ICalls[]): ICalls[] {
     const dd = new Jalali(date);

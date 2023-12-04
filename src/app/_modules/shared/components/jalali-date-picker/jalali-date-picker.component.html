@@ -18,20 +18,19 @@
             {{d[0]}}
         </mat-grid-tile>
 
-        <mat-grid-tile *ngFor="let d of calendar" [ngClass]="d.classNameParent">
-            <button [disabled]="d.disabled" *ngIf="d.isToday" mat-mini-fab color="white" type="button"
-                (click)="onSelect(d)">
+        <mat-grid-tile matRipple [matRippleDisabled]="d.disabled" (click)="onSelect(d)" *ngFor="let d of calendar"
+            [ngClass]="d.classNameParent">
+            <button [disabled]="d.disabled" *ngIf="d.isToday" mat-mini-fab color="white" type="button">
                 <ng-container *ngTemplateOutlet="term; context: d" />
             </button>
             <button [disabled]="d.disabled" *ngIf="d.isSelected" mat-mini-fab type="button" [disabled]="!d">
                 <ng-container *ngTemplateOutlet="term; context: d" />
             </button>
-            <button [disabled]="d.disabled" class="btn" *ngIf="d.isNormal" type="button" (click)="onSelect(d)"
-                mat-icon-button>
+            <button [disabled]="d.disabled" class="btn" *ngIf="d.isNormal" type="button" mat-icon-button>
                 <ng-container *ngTemplateOutlet="term; context: d" />
             </button>
             <button [disabled]="d.disabled" class="btn" *ngIf="d.isOut && !d.isSelected && !d.isToday" type="button"
-                (click)="onSelect(d)" mat-icon-button>
+                mat-icon-button>
                 <ng-container *ngTemplateOutlet="term; context: d" />
             </button>
         </mat-grid-tile>
@@ -39,8 +38,8 @@
 </div>
 
 <ng-template #term let-isSelected="isSelected" let-day="day" let-className="className" let-holiday="holiday"
-    let-type="type" let-callsCount="callsCount">
-    <span class="hide-text" [matBadgeHidden]="callsCount <= 0" [matBadge]="callsCount" matBadgeSize="small"
+    let-disabled="disabled" let-type="type" let-callsCount="callsCount">
+    <span class="hide-text" [matBadgeHidden]="callsCount <= 0 || disabled" [matBadge]="callsCount" matBadgeSize="small"
         [matBadgeColor]="(holiday?.type === 'holiday' || isSelected) ? 'primary' : 'accent'"
         [ngStyle]="{color: isSelected ? 'white' : ''}" [ngClass]="className">{{day}}</span>
 </ng-template>

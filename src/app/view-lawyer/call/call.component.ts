@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Jalali } from 'jalali-ts';
 import { Observable } from 'rxjs';
-import { filterCallsOfDate, ICalls, ICallUI } from 'src/app/_modules/shared/models/calls.model';
+import { filterCallsOfDate, ICalls, ICallUI, nextFriday } from 'src/app/_modules/shared/models/calls.model';
 import { IHoliday } from 'src/app/_modules/shared/models/holiday.model';
 import { DailySchedule, EMPTY_USER, UserProfile } from 'src/app/_modules/shared/models/user-profile.model';
 import { AuthService } from 'src/app/_modules/shared/services/auth.service';
@@ -32,6 +32,11 @@ export class CallComponent implements OnInit {
   selectedDate: Date = new Date();
   timeSlot = -1;
 
+
+  minDate = new Date();
+  get maxDate(): Date {
+    return nextFriday(this.user.weeksNotice);
+  }
 
   ngOnInit(): void {
     this.changeDate(new Date());
@@ -104,7 +109,7 @@ export class CallComponent implements OnInit {
 
   onClick(cu: ICallUI) {
     if (!cu.timeSlot) return;
-    
+
 
     this.timeSlot = cu.timeSlot;
 
