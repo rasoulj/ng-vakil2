@@ -7,6 +7,7 @@ import { RegisteredLawyersComponent } from './registered-lawyers/registered-lawy
 import { FavoriteLawyersComponent } from '../shared/components/favorite-lawyers/favorite-lawyers.component';
 import { MyQuestionsComponent } from '../shared/components/my-questions/my-questions.component';
 import { CalendarComponent } from '../shared/components/calendar/calendar.component';
+import { ViewQuestionComponent } from '../shared/components/my-questions/view-question/view-question.component';
 
 const routes: Routes = [
   {
@@ -18,7 +19,9 @@ const routes: Routes = [
       { path: 'init-lawyers', component: InitLawyersComponent },
       { path: 'favorite-lawyers', component: FavoriteLawyersComponent },
       { path: 'my-questions', component: MyQuestionsComponent },
-      { path: 'calendar', component: CalendarComponent }
+      { path: 'calendar', component: CalendarComponent },
+      { path: 'my-questions', component: MyQuestionsComponent },
+      { path: 'my-questions/:questionId', component: ViewQuestionComponent },
 
     ]
   },

@@ -15,6 +15,7 @@ export class AvatarComponent implements OnInit {
   @Input() height: number = 2.5;
   @Input() user?: Partial<UserProfile> | null = {};
   @Input() style: string = "";
+  @Input() divStyle: string = "";
   @Input() link: string | undefined = undefined;
   @Input() showName: boolean = false;
 

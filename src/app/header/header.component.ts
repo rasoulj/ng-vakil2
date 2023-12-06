@@ -1,16 +1,18 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { LayoutService } from '../_modules/shared/services/layout.service';
 import { NavigationEnd, Router } from '@angular/router';
-import { combineLatest, filter, map, mergeAll } from 'rxjs';
+import { combineLatest, filter, map } from 'rxjs';
 import { Title } from '@angular/platform-browser';
 import { PersianPipe } from '../_modules/pipes/persian.pipe';
 import { LoadingService } from '../_modules/shared/services/loading.service';
-import { getHeaderMenu, getSideMenu } from '../_modules/shared/config/consts';
-import { UserProfile, UserRole, UserRoles } from '../_modules/shared/models/user-profile.model';
+import { getHeaderMenu } from '../_modules/shared/config/consts';
+import { UserProfile } from '../_modules/shared/models/user-profile.model';
 import { AuthService } from '../_modules/shared/services/auth.service';
 import { ToolBarButton } from '../_modules/shared/components/tool-bar-button/toolbar-button.model';
 
 const MAIN_TITLE = PersianPipe.toPersian("title");
+
+const LAST_ID = ['view-lawyer', 'my-questions', 'customers'];
 
 @Component({
   selector: 'app-header',
@@ -56,6 +58,10 @@ export class HeaderComponent implements OnInit {
       this.title = tt[tt.length - 1];
       if (title === "home") {
         title = "";
+      }
+
+      if (tt.length >= 2 && LAST_ID.includes(tt[tt.length - 2])) {
+        title = tt[tt.length - 2] + ".detail";
       }
 
       this.title = title;

@@ -35,7 +35,7 @@ export class JalaliDatePickerComponent implements OnInit {
   currentDate: Jalali = new Jalali(new Date());
 
   get title(): string {
-    return MONTH_NAMES[this.currentDate.getMonth()] + " " + this.currentDate.getFullYear();
+    return (new Jalali(this.value).getDate()) + ' ' + MONTH_NAMES[this.currentDate.getMonth()] + " " + this.currentDate.getFullYear();
   }
 
   get min(): Jalali {

@@ -28,8 +28,8 @@ function getFavToolbar(role: string, hasDivider?: boolean): ToolBarButton {
     return { title: "favorite-lawyers", link: `/${role}/favorite-lawyers`, icon: "favorite", hasDivider };
 }
 
-function getMyQuestionToolbar(hasDivider?: boolean): ToolBarButton {
-    return { title: "my-questions", link: `/my-questions`, icon: "contact_support", hasDivider };
+function getMyQuestionToolbar(path: string, hasDivider?: boolean): ToolBarButton {
+    return { title: "my-questions", link: `/${path}/my-questions`, icon: "contact_support", hasDivider };
 }
 
 
@@ -71,7 +71,7 @@ const CUSTOMER_TOOLBAR: ToolBarButton[] = [
     { title: "legal-requests", link: "/profile/legal-requests", icon: "assignment" },
     { title: "pending-payments", link: "/profile/pending-payments", icon: "payment" },
     { title: "my-calls", link: "/profile/my-calls", icon: "call" },
-    getMyQuestionToolbar(true),
+    getMyQuestionToolbar('profile', true),
 
     { title: "call-lawyer", link: "/call-lawyer", icon: "call" },
     SearchToolBar,
@@ -83,7 +83,7 @@ const MANAGER_TOOLBAR: ToolBarButton[] = [
     { title: "my-home", link: "/manager/manager-home", icon: "home" },
     { title: "init-lawyers", link: "/manager/init-lawyers", icon: "home", },
     getFavToolbar('manager'),
-    getMyQuestionToolbar(),
+    getMyQuestionToolbar('manager'),
     { title: "calendar", link: "/manager/calendar", icon: "calendar_month" },
     { title: "registered-lawyers", link: "/manager/registered-lawyers", icon: "home", hasDivider: true },
 
@@ -95,9 +95,10 @@ const MANAGER_TOOLBAR: ToolBarButton[] = [
 
 const LAWYER_TOOLBAR: ToolBarButton[] = [
     { title: "my-home", link: "/lawyer/lawyer-home", icon: "home", hasDivider: true },
-    { title: "scheduling", link: "/lawyer/scheduling", icon: "calendar_month" },
+    { title: "scheduling", link: "/lawyer/scheduling", icon: "event_note" },
     { title: "calendar", link: "/lawyer/calendar", icon: "calendar_month" },
-    getMyQuestionToolbar(),
+    getMyQuestionToolbar('lawyer'),
+    { title: "customers", link: "/lawyer/customers", icon: "support_agent" },
     getFavToolbar('lawyer'),
 
     { title: "call-lawyer", link: "/call-lawyer", icon: "call" },

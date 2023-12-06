@@ -63,7 +63,7 @@ export class MyQuestionsComponent {
   });
 
   onQuestionClick(q: IQuestion) {
-    this.router.navigate(['my-questions', q._id]);
+    this.router.navigate(['my-questions/' + q._id]);
   }
 
   statusChanged(chipVal: MatChipListboxChange) {

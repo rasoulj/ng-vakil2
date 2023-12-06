@@ -99,6 +99,9 @@ import { HourlyButtonComponent } from './components/daily-calls/hourly-button/ho
     ViewQuestionComponent,
     JalaliDatePickerComponent,
     DailyCallsComponent,
+    QuestionRowComponent,
+    MyQuestionsComponent,
+    ViewQuestionComponent,
   ],
   providers: [
     { provide: MatPaginatorIntl, useClass: MatPaginatorIntlCro }

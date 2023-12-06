@@ -260,5 +260,9 @@ export const fa: any = {
     "holiday hint": "برای ایجاد مناسبت تعطیل در روز {0} عنوانی برای آن وارد کنید",
     "create holiday": "ایجاد مناسبت تعطیل",
     "creation": "در حال ایجاد",
-    "selfie": "خودم"
+    "selfie": "خودم",
+    "customers": "مشتریان",
+    'view-lawyer.detail': 'جزییات وکیل',
+    'my-questions.detail': 'پرسش',
+    'customers.detail': 'مشتری',
 }

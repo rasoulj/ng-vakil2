@@ -1,6 +1,6 @@
 <div style="width: 28rem; margin-left: 0.2rem; margin-right: 0.2rem;">
     <app-list-item [class]="class" [title]="question.title" [subtitle]="questionText" [leadingIcon]="visibility"
-        [subSubtitle]="(askedMe ? 'askedMe' : '') | persian" (click)="onClick()" [leadingTitle]="expertise | async">
-        <app-avatar [user]="question.responderId" [height]="4"></app-avatar>
+        [subSubtitle]="(askedMe ? 'askedMe' : '') | persian" [routerLink]="link" [leadingTitle]="expertise | async">
+        <app-avatar [user]="owner" [height]="4"></app-avatar>
     </app-list-item>
 </div>

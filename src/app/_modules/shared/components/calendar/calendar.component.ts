@@ -66,6 +66,7 @@ export class CalendarComponent implements OnInit {
   loadData(jd: Jalali) {
     this.calendarService.loadHolidayCalls(jd).subscribe({
       next: ({ holidays, calls }) => {
+
         this.calls = calls;
         this.holidays = holidays;
         this.loadingId = '';

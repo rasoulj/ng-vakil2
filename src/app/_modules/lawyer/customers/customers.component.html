@@ -1,0 +1,10 @@
+<div class="card">
+    <div style="flex-wrap: wrap; display: flex;">
+        <div *ngFor="let customer of customers" style="margin: 1rem; width: 10rem;">
+            <app-avatar [link]="customer._id" [user]="customer" [height]="5" [showName]="true"></app-avatar>
+        </div>
+
+    </div>
+</div>
+
+<app-error-message [length]="customers.length"></app-error-message>

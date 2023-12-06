@@ -13,12 +13,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { CustomersComponent } from './customers/customers.component';
+import { CustomerDetailComponent } from './customers/customer-detail/customer-detail.component';
 
 @NgModule({
   declarations: [
     LawyerComponent,
     LawyerHomeComponent,
-    SchedulingComponent
+    SchedulingComponent,
+    CustomersComponent,
+    CustomerDetailComponent
   ],
   imports: [
     CommonModule,

@@ -50,14 +50,6 @@ export class DailyCallsComponent {
     return calls;
   }
 
-  // isResponder(call: ICalls | undefined): boolean {
-  //   return (!!call?.responderId) && call?.responderId._id === this.loggedUserId;
-  // }
-
-  // itsMe(call: ICalls | undefined): boolean {
-  //   return !call?.userId || (!!call?.userId) && call?.userId._id === this.loggedUserId;
-  // }
-
   get dailySchedule(): DailySchedule {
     return this.user.dailySchedules?.[this.selectedDay] ?? EMPTY_DAILY_SCHEDULE;
   }

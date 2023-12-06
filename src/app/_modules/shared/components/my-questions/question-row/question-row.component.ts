@@ -3,6 +3,7 @@ import { EMPTY_QUESTION, IQuestion } from '../../../models/question.model';
 import { AuthService } from '../../../services/auth.service';
 import { Observable } from 'rxjs';
 import { PickerService } from '../../../services/picker.service';
+import { UserProfile } from '../../../models/user-profile.model';
 
 @Component({
   selector: 'app-question-row',
@@ -12,7 +13,8 @@ import { PickerService } from '../../../services/picker.service';
 export class QuestionRowComponent {
 
   @Input() question: IQuestion = EMPTY_QUESTION;
-  @Output() click = new EventEmitter<IQuestion>();
+  @Input() link: string = '';
+
 
   constructor(
     private authService: AuthService,
@@ -21,6 +23,11 @@ export class QuestionRowComponent {
 
   get askedMe(): boolean {
     return this.question.responderId._id === this.authService.userId;
+  }
+
+  get owner(): Partial<UserProfile> {
+    console.log(this.question);
+    return !this.askedMe ? this.question.responderId : this.question.userId;
   }
 
   get questionText(): string {
@@ -35,9 +42,9 @@ export class QuestionRowComponent {
     return this.completed ? 'completedQuestion' : (this.askedMe ? 'askedMe' : '');
   }
 
-  onClick() {
-    this.click.emit(this.question);
-  }
+  // onClick() {
+  //   this.click.emit(this.question);
+  // }
 
   get expertise(): Observable<string> {
     return this.picker.getExpertiseName(this.question?.expertiseId);
@@ -46,4 +53,6 @@ export class QuestionRowComponent {
   get visibility(): string {
     return this.question.isPrivate ? 'visibility_off' : 'visibility'
   }
+
+
 }

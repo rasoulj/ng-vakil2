@@ -15,7 +15,7 @@
 <div style="border-radius: 0.25rem; box-shadow: 0 1px 2px rgb(0 0 0 / 0.2);">
     <mat-grid-list cols="7" [rowHeight]="rowHeight" dir="rtl">
         <mat-grid-tile [class]="getColClass(i)" *ngFor="let d of weekDays; index as i">
-            {{d[0]}}
+            {{d}}
         </mat-grid-tile>
 
         <mat-grid-tile matRipple [matRippleDisabled]="d.disabled" (click)="onSelect(d)" *ngFor="let d of calendar"

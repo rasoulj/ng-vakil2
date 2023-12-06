@@ -3,7 +3,8 @@
     style="height: 3rem; margin: 0.2rem;" [ngStyle]="{backgroundColor}">
     <div
         style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; width: 12rem; ">
-        <app-avatar *ngIf="backgroundColor" [height]="2.9" [user]="callUi.call?.userId"></app-avatar>
+        <app-avatar *ngIf="backgroundColor && (callUi.call?.userId?.firstName || callUi.call?.userId?.lastName)"
+            [height]="2.9" [user]="callUi.call?.userId"></app-avatar>
 
         <div style="display: flex; flex-direction: column; justify-content: flex-start; width: 100%;">
             <span style="font-size: 0.8rem; font-weight: 500;">{{title ?? callUi.title}}</span>

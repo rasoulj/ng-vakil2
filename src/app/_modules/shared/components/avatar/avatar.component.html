@@ -1,6 +1,6 @@
 <!-- <mat-icon *ngIf="!hasUser " class="avatar" [style]="moreStyle">person</mat-icon> -->
 <img *ngIf="!hasUser" src="assets/images/logo.jpeg" class="avatar" [style]="moreStyle">
-<div>
+<div [style]="divStyle">
     <a *ngIf="hasUser" [routerLink]="actLink">
 
         <div *ngIf="!avatar" class="avatar" [style]="moreStyle">

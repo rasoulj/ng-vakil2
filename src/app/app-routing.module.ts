@@ -41,10 +41,6 @@ const routes: Routes = [
   { path: "view-lawyer/:id/question", component: QuestionComponent },
   { path: "view-lawyer/:id/call", component: CallComponent },
 
-  { path: 'my-questions', component: MyQuestionsComponent },
-  { path: 'my-questions/:questionId', component: ViewQuestionComponent },
-
-
   {
     path: 'profile',
     canActivate: [isLogged],

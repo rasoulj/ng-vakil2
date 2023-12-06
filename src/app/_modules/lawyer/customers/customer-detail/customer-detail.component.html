@@ -1,0 +1,22 @@
+<app-avatar-id [height]="5" [uid]="customerId ?? ''" [showName]="true"></app-avatar-id>
+
+<div class="card" *ngIf="questions.length > 0">
+    <p style="font-weight: 500; font-size: 1.5rem; padding: 1rem;">{{'question' | persian}}</p>
+    <div style="display: flex; flex-wrap: wrap;">
+        <app-question-row *ngFor="let q of questions" [question]="q" [link]="'../../my-questions/' + q._id">
+        </app-question-row>
+    </div>
+</div>
+<br>
+<div class="card" *ngIf="calls.length > 0">
+    <p style="font-weight: 500; font-size: 1.5rem; padding: 1rem;">{{'call' | persian}}</p>
+    <div style="display: flex; flex-wrap: wrap;">
+        <div *ngFor="let c of calls" dir="ltr"
+            style="display: flex; justify-content: space-between; padding: 1rem; margin: 0.4rem; border: 1px solid gray; border-radius: 0.4rem; width: 12rem;">
+            <span>{{formatDate(c)}}</span>
+            <span style="color: gray; font-size: 0.7rem">({{formatTime(c)}})</span>
+        </div>
+    </div>
+
+</div>
+<br>

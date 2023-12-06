@@ -8,6 +8,7 @@ import { ProfileHomeComponent } from './profile-home/profile-home.component';
 import { LogoutComponent } from '../shared/components/logout/logout.component';
 import { FavoriteLawyersComponent } from '../shared/components/favorite-lawyers/favorite-lawyers.component';
 import { MyQuestionsComponent } from '../shared/components/my-questions/my-questions.component';
+import { ViewQuestionComponent } from '../shared/components/my-questions/view-question/view-question.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,8 @@ const routes: Routes = [
       { path: 'pending-payments', component: PendingPaymentsComponent },
       { path: 'my-calls', component: MyCallsComponent },
       { path: 'logout', component: LogoutComponent },
+      { path: 'my-questions', component: MyQuestionsComponent },
+      { path: 'my-questions/:questionId', component: ViewQuestionComponent },
 
     ]
   },
